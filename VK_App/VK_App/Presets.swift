@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
-public struct Colors {
+public struct Presets {
+    
+    //MARK: - Colors
     let vkBlue = UIColor(red: 82.0/255.0, green: 129.0/255.0, blue: 185.0/255.0, alpha: 1)
     let vkLightBlue = UIColor(red: 95.0/255.0, green: 155.0/255.0, blue: 224.0/255.0, alpha: 1)
     
@@ -18,5 +20,19 @@ public struct Colors {
     
     let placeholderLightGray = UIColor(red: 140.0/255, green: 142.0/255, blue: 146.0/255.0, alpha: 1)
     
+    //MARK: - Fonts
+    let countLabelFont = UIFont(name: "Arial", size: 14)
+    let standartLabelFont = UIFont(name: "Arial", size: 16)
+    let descriptionLabelFont = UIFont(name: "Arial", size: 12)
+    
+    //MARK: - Images
+    let heartImage = UIImage(systemName: "heart")
+    let heartFillImage = UIImage(systemName: "heart.fill")
+    let commentImage = UIImage(systemName: "bubble.left")
+    let shareImage = UIImage(systemName: "arrowshape.turn.up.right")
+    let seenImage = UIImage(systemName: "eye")
+    
+    
+
     
 }

@@ -20,7 +20,7 @@ class AddGroupTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = Colors.init().vkDarkGray
+        self.view.backgroundColor = Presets.init().vkDarkGray
 
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
     }

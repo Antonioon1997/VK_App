@@ -44,7 +44,7 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = Colors.init().vkDarkGray
+        tableView.backgroundColor = Presets.init().vkDarkGray
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         
         getFirstLetter()

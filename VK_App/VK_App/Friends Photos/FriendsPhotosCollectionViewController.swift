@@ -17,7 +17,7 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.backgroundColor = Colors.init().vkDarkGray
+        collectionView.backgroundColor = Presets.init().vkDarkGray
         
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 

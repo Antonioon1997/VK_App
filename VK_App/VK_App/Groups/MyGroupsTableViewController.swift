@@ -9,21 +9,37 @@ import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    private var searchBarIsActive: Bool!
+    
+    
+    //MARK:- Groups Data
     var groups = [
         GroupsData(name: "Reddit", desctription: "Юмор", avatar: UIImage(named: "Reddit")!),
         GroupsData(name: "Видео категории Б", desctription: "Юмор", avatar: UIImage(named: "Видео категории Б")!),
         GroupsData(name: "КЛИЕНТ ВСЕГДА ПРАВ!", desctription: "Юмор", avatar: UIImage(named: "КЛИЕНТ ВСЕГДА ПРАВ!")!),
         GroupsData(name: "SAUCE", desctription: "Юмор", avatar: UIImage(named: "SAUCE")!)
     ]
+    
+    var searchedGroups = [GroupsData] ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       tableView.backgroundColor = Colors.init().vkDarkGray
+        searchBar.delegate = self
+        
+       tableView.backgroundColor = Presets.init().vkDarkGray
 
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        self .navigationItem.titleView = searchBar
+        self.searchBar.sizeToFit()
+//        self.searchBar.isHidden = false
+        
+//        searchBar.placeholder = "Lets Search"
+        searchedGroups = groups
     }
 
     // MARK: - Table view data source
@@ -34,29 +50,26 @@ class MyGroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return searchedGroups.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
+        var groupsData: GroupsData!
+        if searchBarIsActive == true {
+            groupsData = searchedGroups[indexPath.row]
+        } else {
+            groupsData = groups[indexPath.row]
+        }
 
-        cell.avatarImage.image = groups[indexPath.row].avatar
-        cell.nameLabel.text = groups[indexPath.row].name
-        cell.descriptionLabel.text = groups[indexPath.row].desctription
+        cell.avatarImage.image = groupsData.avatar
+        cell.nameLabel.text = groupsData.name
+        cell.descriptionLabel.text = groupsData.desctription
 
         return cell
+//        }
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -65,6 +78,7 @@ class MyGroupsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
     @IBAction func addGroup(_ unwindSegue: UIStoryboardSegue) {
     if let sourceViewController = unwindSegue.source as? AddGroupTableViewController,
        unwindSegue.identifier == "AddGroup",
@@ -76,31 +90,45 @@ class MyGroupsTableViewController: UITableViewController {
                 tableView.reloadData()
         }
     }
+        
+}
+    
+}
+//MARK: - SearchBar extension
+
+extension MyGroupsTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        guard !searchText.isEmpty else { searchedGroups = groups
+            tableView.reloadData()
+            return
+        }
+        searchedGroups = groups.filter({ (groups) -> Bool in
+            groups.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+//
+//        searchedGroups = groups.filter({ (group) -> Bool in
+//        guard searchBar.text != nil else {
+//            searchBarIsActive = false
+//            return false }
+//            searchBarIsActive = true
+//            return group.name.lowercased().contains(searchText.lowercased()) })
+//        tableView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchBarIsActive = false
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchBarIsActive = false
+        tableView.reloadData()
+    }
+    
 }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}

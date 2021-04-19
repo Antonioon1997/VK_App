@@ -14,4 +14,9 @@ struct NewsFeed {
     let authorAvatar: UIImage!
     let postText: String?
     let postImages: [UIImage?]
+    let isLiked: Bool!
+    let likeCount: Int!
+    let commentCount: Int!
+    let shareCount: Int!
+    let seenCount: Int!
 }
