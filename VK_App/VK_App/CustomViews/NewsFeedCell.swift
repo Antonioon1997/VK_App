@@ -27,7 +27,7 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet var delimetrView: UIView!
     
     var isLiked: Bool!
-    
+    var indexPath: IndexPath!
     
     var likeCount: Int!
     
@@ -62,6 +62,8 @@ class NewsFeedCell: UITableViewCell {
         postLabel?.textColor = .white
         
         postImages?.forEach({$0.isHidden = true})
+//        postImages?[0].tag = 0
+        postImages?.forEach({$0.isUserInteractionEnabled = true})
         
         self.backgroundColor = Presets.init().vkDarkGray
         
@@ -84,6 +86,7 @@ class NewsFeedCell: UITableViewCell {
         seenImageView.image = Presets.init().seenImage
         seenImageView.tintColor = Presets.init().vkLightGray
         
+        likeImageView.tintColor = .red
         let isLikedTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         likeImageView.isUserInteractionEnabled = true
         likeImageView.addGestureRecognizer(isLikedTapGestureRecognizer)
@@ -91,7 +94,7 @@ class NewsFeedCell: UITableViewCell {
         delimetrView.backgroundColor = Presets.init().vkLightGray
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -99,18 +102,41 @@ class NewsFeedCell: UITableViewCell {
     
     @objc func likeTapped() {
         
+        
+        let scale = CABasicAnimation(keyPath: "transform.scale")
+        scale.fromValue = 1
+        scale.toValue = 2
+        
+        let disappear = CABasicAnimation(keyPath: "opacity")
+        disappear.fromValue = 1
+        disappear.toValue = 0
+        
+        let group = CAAnimationGroup()
+        group.animations = [scale, disappear]
+        group.duration = 0.25
+        
+        likeImageView.layer.add(group, forKey: nil)
+        
         if isLiked == true {
+            
             likeCount -= 1
-            likeCountLabel.text = String(describing: likeCount!)
+            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromBottom) { [ self ] in
+                likeCountLabel.text = String(describing: likeCount!)
+                }
             likeImage = Presets.init().heartImage
+            
+            
         } else if isLiked == false {
+            
             likeCount += 1
-            likeCountLabel.text = String(describing: likeCount!)
+            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromTop) { [ self ] in
+                likeCountLabel.text = String(describing: likeCount!)
+                }
+//            likeCountLabel.text = String(describing: likeCount!)
             likeImage = Presets.init().heartFillImage
         }
         
         isLiked.toggle()
     }
-    
     
 }

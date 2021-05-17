@@ -10,13 +10,15 @@ import UIKit
 class LoginScreenViewController: UIViewController {
     
     //MARK: - Outlets for view
-    @IBOutlet var appLogo: UIImageView!
     @IBOutlet var loginTextField: UITextField!
     @IBOutlet var passwordTextFiled: UITextField!
     @IBOutlet var forgotPasswordButton: UIButton!
     @IBOutlet var signInButton: UIButton!
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var vkLogoPathView: VkLogoDraw!
+    @IBOutlet weak var vkLogoFillView: VkLogoDraw!
+    
     
     
     let loginTextFieldPlaceholder = NSAttributedString(string: "Enter your email or phone number", attributes: [NSAttributedString.Key.foregroundColor : Presets.init().placeholderLightGray])
@@ -28,12 +30,9 @@ class LoginScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //MARK: - Design for login screen
         self.view.backgroundColor = Presets.init().vkDarkGray
-        
-        appLogo.image = UIImage(named: "vk_logo")
-        appLogo.layer.cornerRadius = 20
-        appLogo.layer.masksToBounds = true
         
         loginTextField.backgroundColor = Presets.init().vkGray
         loginTextField.textColor = .white
@@ -63,7 +62,8 @@ class LoginScreenViewController: UIViewController {
         signUpButton.setTitle("Sign Up", for: .normal)
         signUpButton.titleLabel?.tintColor = .white
         signUpButton.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 18)
-    
+        
+        vkLogoPathView.vkLogoLayer.fillColor = UIColor.clear.cgColor
     }
     
     //MARK: - Scrolling for keyboard
@@ -73,6 +73,33 @@ class LoginScreenViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let bezierPathLogoAnimation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.strokeEnd))
+        bezierPathLogoAnimation.fromValue = 0
+        bezierPathLogoAnimation.toValue = 1
+        bezierPathLogoAnimation.repeatCount = 1
+        bezierPathLogoAnimation.duration = 0.8
+        bezierPathLogoAnimation.beginTime = CACurrentMediaTime()
+        
+        let appearLogoAnimation = CABasicAnimation(keyPath: "opacity")
+        appearLogoAnimation.fromValue = 0
+        appearLogoAnimation.toValue = 1
+        appearLogoAnimation.duration = 0.8
+        appearLogoAnimation.beginTime = CACurrentMediaTime() + 0.8
+        appearLogoAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        appearLogoAnimation.fillMode = CAMediaTimingFillMode.backwards
+    
+        vkLogoPathView.vkLogoLayer.add(bezierPathLogoAnimation, forKey: nil)
+        vkLogoFillView.layer.add(appearLogoAnimation, forKey: nil)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.loginTextField.frame.size.height *= 2
+            self.passwordTextFiled.frame.size.height *= 2
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -114,6 +141,5 @@ class LoginScreenViewController: UIViewController {
         }
     }
     
-
 }
 

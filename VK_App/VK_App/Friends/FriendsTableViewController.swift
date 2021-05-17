@@ -63,6 +63,7 @@ class FriendsTableViewController: UITableViewController {
         return sortedFriends[section].friends.count
     }
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
         
@@ -91,6 +92,7 @@ class FriendsTableViewController: UITableViewController {
             
         }
     }
+   
 }
 
 

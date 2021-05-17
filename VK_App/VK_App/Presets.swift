@@ -33,6 +33,4 @@ public struct Presets {
     let seenImage = UIImage(systemName: "eye")
     
     
-
-    
 }

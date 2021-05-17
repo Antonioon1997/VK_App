@@ -40,7 +40,7 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentFriendPhotos", for: indexPath) as! FriendsPhotosCellCollectionView
     
         cell.currentFriendPhotos.image = currentFriend?.friendPhotos[indexPath.row]
-    
+        
         return cell
     }
 
