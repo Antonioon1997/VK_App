@@ -12,12 +12,9 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
     @IBOutlet weak var currentPhoto: UIImageView!
     @IBOutlet weak var nextPhoto: UIImageView!
     
-   
-    
-    let duration = 0.4
-    let queue = 0.37
+    let animationDuration = 0.4
+    let animationQueueTime = 0.37
     var photosFromNews: NewsFeed?
-    var photoIndexPath: IndexPath!
     var photoIndexPathInt: Int!
     
     override func viewDidLoad() {
@@ -26,10 +23,9 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
         
         currentPhoto.isUserInteractionEnabled = true
 
-        guard photoIndexPathInt != nil else { return currentPhoto.image = photosFromNews?.postImages[0] }
+        guard photoIndexPathInt != nil else {
+            return currentPhoto.image = photosFromNews?.postImages[0] }
         currentPhoto.image = photosFromNews?.postImages[photoIndexPathInt]
-        
-        
     }
     
     @IBAction func previousPhotoSwipe(_ sender: UISwipeGestureRecognizer) {
@@ -38,30 +34,26 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
         addDisapperImageAnimation(currentPhoto, false)
         addAppearAnimation(nextPhoto, false)
         
-       
-        DispatchQueue.main.asyncAfter(deadline: .now() + queue) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationQueueTime) { [self] in
             
             currentPhoto.image = photosFromNews?.postImages[photoIndexPathInt]
         }
-        
-
         
     }
     
     @IBAction func nextPhotoSwipe(_ sender: UISwipeGestureRecognizer) {
         print ("2")
-        guard photoIndexPathInt != nil && photoIndexPathInt + 1 < (photosFromNews?.postImages.count)! else { return }
+        guard photoIndexPathInt != nil && ((photoIndexPathInt + 1) < (photosFromNews?.postImages.count)!) else { return }
 
         photoIndexPathInt += 1
         addDisapperImageAnimation(currentPhoto,  true)
         addAppearAnimation(nextPhoto, true)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + queue) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationQueueTime) { [self] in
             
             currentPhoto.image = photosFromNews?.postImages[photoIndexPathInt]
         }
     }
-    
     
     func addDisapperImageAnimation (_ currentUIView: UIImageView, _ isMovedLeft: Bool ) {
     
@@ -83,12 +75,10 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
         scaleAnimation.fromValue = 1
         scaleAnimation.toValue = 0
         
-        
         let groupedAnimations = CAAnimationGroup()
         groupedAnimations.animations = [transitionAnimation, scaleAnimation]
-        groupedAnimations.duration = duration
+        groupedAnimations.duration = animationDuration
        
-        
         currentUIView.layer.add(groupedAnimations, forKey: nil)
         currentUIView.image = photosFromNews?.postImages[photoIndexPathInt]
     }
@@ -99,9 +89,11 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
         let toValue: CGFloat
         
         if isMovedLeft == true {
+            
             fromValue = self.view.layer.position.x * 1.2
             toValue = self.view.layer.position.x
         } else {
+            
             fromValue = -(self.view.layer.position.x * 1.2)
             toValue = self.view.layer.position.x
         }
@@ -113,11 +105,9 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
         scaleAnimation.fromValue = 0
         scaleAnimation.toValue = 1
         
-        
         let groupedAnimations = CAAnimationGroup()
         groupedAnimations.animations = [transitionAnimation, scaleAnimation]
-        groupedAnimations.duration = duration
-       
+        groupedAnimations.duration = animationDuration
         
         nextImageView.layer.add(groupedAnimations, forKey: nil)
         nextImageView.image = photosFromNews?.postImages[photoIndexPathInt]

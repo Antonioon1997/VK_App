@@ -52,21 +52,17 @@ class MyGroupsTableViewController: UITableViewController {
 
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         
-//        self.searchBar.sizeToFit()
-        
         searchedGroups = groups
-        
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        searchBar.searchTextField.leftView?.layer.position.x = 200
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
         
-       
     }
 
     // MARK: - Table view data source
@@ -77,12 +73,13 @@ class MyGroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return searchedGroups.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-//        print (searchBar.searchTextField.leftView?.layer.position)
+        
         if searchBarIsActive == true { groupsData = searchedGroups }
         else { groupsData = groups }
             
@@ -93,7 +90,6 @@ class MyGroupsTableViewController: UITableViewController {
         if searchBarIsActive == false {
             position = searchBar.searchTextField.layer.bounds.width/2
         viewForSearchBar.layer.position.x = searchBar.searchTextField.layer.bounds.width/2
-            
         }
         
         return cell
@@ -122,18 +118,6 @@ class MyGroupsTableViewController: UITableViewController {
         }
     }
     
-    
-    // MARK: - ToDo
-   
-    
-    @objc func activateSearchBarAnimated () {
-        if searchBar.isFocused == true || searchBarIsActive == true{
-            
-        }
-        
-        
-        
-    }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBarIsActive = true
         
@@ -146,13 +130,10 @@ class MyGroupsTableViewController: UITableViewController {
 extension MyGroupsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        
-        
-        
         guard !searchText.isEmpty else { searchedGroups = groups
             tableView.reloadData()
             searchBarIsActive = false
-//            searchBarPlaceholderText.text = " "
+            
             return
         }
         searchBarIsActive = true
@@ -161,14 +142,13 @@ extension MyGroupsTableViewController: UISearchBarDelegate {
             groups.name.lowercased().contains(searchText.lowercased())
         })
         
-        
         tableView.reloadData()
     }
+    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         let transition = CABasicAnimation(keyPath: "position.x")
         transition.fromValue = searchBar.searchTextField.layer.bounds.width/2 - 150
         transition.toValue = searchBar.searchTextField.leftView
-        
         
         let scale = CABasicAnimation(keyPath: "transform.scale.x")
         scale.fromValue = 1
@@ -183,25 +163,19 @@ extension MyGroupsTableViewController: UISearchBarDelegate {
         comp.animations = [transition]
         comp.duration = 0.25
         
-    
-          
             searchBarPlaceholderText.layer.add(disappear, forKey: nil)
             viewForSearchBar.layer.add(comp, forKey: nil)
         
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [self] in
-//            searchBar.searchTextField.leftView = searchBarPlaceholderIcon
             searchBarPlaceholderText.text = ""
             searchBar.searchTextField.placeholder = placeholderText
-//            searchBar.showsCancelButton = true
             
         }
         
         searchBar.setShowsCancelButton(true, animated: true)
         return true
     }
-    
-    
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
@@ -216,7 +190,6 @@ extension MyGroupsTableViewController: UISearchBarDelegate {
         searchBarPlaceholderText.text = placeholderText
         let transition = CABasicAnimation(keyPath: "position.x")
         transition.fromValue = searchBar.searchTextField.leftView?.layer.position.x
-//        searchBar.searchTextField.layer.bounds.width/2
         transition.toValue = searchBar.searchTextField.layer.bounds.size.width/3
         
         let appear = CABasicAnimation(keyPath: "opacity")
@@ -232,16 +205,15 @@ extension MyGroupsTableViewController: UISearchBarDelegate {
         searchBar.searchTextField.leftView = viewForSearchBar
         searchBarPlaceholderText.layer.add(appear, forKey: nil)
         viewForSearchBar.layer.add(comp, forKey: nil)
-//        searchBarPlaceholderText.layer.add(comp, forKey: nil)
         searchBarPlaceholderIcon.layer.add(comp, forKey: nil)
     
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) { [self] in
+            
             searchBarPlaceholderText.isHidden = false
-        searchBar.searchTextField.leftView?.layer.position.x =  position
-        searchBarPlaceholderText.text = placeholderText
-        searchBarPlaceholderText.layer.add(appear, forKey: nil)
-        searchBar.searchTextField.leftView = viewForSearchBar
-
+            searchBar.searchTextField.leftView?.layer.position.x =  position
+            searchBarPlaceholderText.text = placeholderText
+            searchBarPlaceholderText.layer.add(appear, forKey: nil)
+            searchBar.searchTextField.leftView = viewForSearchBar
     }
         
         searchBar.setShowsCancelButton(false, animated: true)
@@ -250,9 +222,6 @@ extension MyGroupsTableViewController: UISearchBarDelegate {
         
         tableView.reloadData()
     }
-   
-    
-    
 }
 
 

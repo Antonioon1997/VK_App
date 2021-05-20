@@ -27,6 +27,7 @@ class FullscreenPhotoViewController: UIViewController {
         super.viewDidAppear(animated)
         
     }
+    
     @IBAction func nextPhotoSwipe(_ sender: UISwipeGestureRecognizer) {
         
         guard photoIndexPath >= 0 && photoIndexPath + 1 < photos.count else {

@@ -37,13 +37,13 @@ class AddGroupTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         selectedRow = indexPath
         performSegue(withIdentifier: "AddGroup", sender: nil)
-        
-        
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
 
         cell.avatarImage.image = addGroups[indexPath.row].avatar
@@ -52,5 +52,4 @@ class AddGroupTableViewController: UITableViewController {
 
         return cell
     }
-    
 }

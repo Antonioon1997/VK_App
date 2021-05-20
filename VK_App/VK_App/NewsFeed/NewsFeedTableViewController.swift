@@ -48,13 +48,7 @@ class NewsFeedTableViewController: UITableViewController {
         
         return newsPosts.count
     }
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print (indexPath)
-//        indexPathForPhoto = indexPath
-//    }
-
-    
+     
     //MARK: - Cell View
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
@@ -84,18 +78,17 @@ class NewsFeedTableViewController: UITableViewController {
    
         cell.postImages?.forEach({$0.tag = indexPath.row})
         
-
         for image in 0...postData.postImages.count - 1  {
            
             if image <= 3 {
                 cell.postImages?[image].tag = indexPath.row
                 cell.postImages?[image].isHidden = false
                 cell.postImages?[image].image = postData.postImages[image]
-                cell.postImages?[image].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPhotoTapGestureRecognizer)))
+                cell.postImages?[image].addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                    action: #selector(openPhotoTapGestureRecognizer)))
             } else {
                 cell.moreImagesCount.isHidden = false
                 cell.moreImagesView.isHidden = false
-//                cell.moreImagesView.tag = indexPath.row
                 cell.postImages?[3].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showMorePhotos)))
                 cell.postImages?[3].alpha = 0.5
                 cell.moreImagesCount?.text = "+\(postData.postImages.count - 4)"
