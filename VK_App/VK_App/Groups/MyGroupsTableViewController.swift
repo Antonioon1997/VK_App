@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MyGroupsTableViewController: UITableViewController {
     
@@ -20,6 +21,14 @@ class MyGroupsTableViewController: UITableViewController {
     let activateSearchImage = UIImage(systemName: "magnifyingglass")
     var placeholderText = "Groups"
     
+    let parameters: Parameters = [
+        "user_id" : NetworkSession.instance.myID,
+        "extended" : "0",
+        "access_token" : NetworkSession.instance.token,
+        "v" : "5.68"
+
+    ]
+    
     //MARK:- Groups Data
     var groups = [
         GroupsData(name: "Reddit", desctription: "Юмор", avatar: UIImage(named: "Reddit")!),
@@ -32,6 +41,8 @@ class MyGroupsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkSession.instance.fetchData(methodForSearch: "groups.get", parameters: parameters)
         
         viewForSearchBar.backgroundColor = .clear
         

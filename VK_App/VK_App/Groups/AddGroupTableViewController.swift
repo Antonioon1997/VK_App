@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AddGroupTableViewController: UITableViewController {
     
@@ -17,8 +18,16 @@ class AddGroupTableViewController: UITableViewController {
     ]
     var selectedRow: IndexPath!
 
+    let parameters: Parameters = [
+        "q" : "Reddit",
+        "sort" : "0",
+        "access_token" : NetworkSession.instance.token,
+        "v" : "5.68"
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkSession.instance.fetchData(methodForSearch: "groups.search", parameters: parameters)
         
         self.view.backgroundColor = Presets.init().vkDarkGray
 

@@ -13,6 +13,7 @@ struct FriendsData {
     let city: String
     let avatar: UIImage
     let friendPhotos: [UIImage?]
+    let id: String
 }
 
 struct SortedFriends {

@@ -6,43 +6,37 @@
 //
 
 import UIKit
-
+import Alamofire
 class FriendsTableViewController: UITableViewController {
     
     var selectedRow: IndexPath! // IndexPath for Segue
     //MARK: - Data
+    let parameters: Parameters = [
+        "user_id" : NetworkSession.instance.myID,
+        "order" : "name",
+        "count" : "10",
+        "fields" : "domain",
+        "access_token" : NetworkSession.instance.token,
+        "v" : "5.68"
+    ]
     
     
     var firstLetters = [String] ()
     var sortedFriends = [SortedFriends] ()
     
     var friends = [
-        FriendsData(name: "Сергей Герман", city: "Москва", avatar: UIImage(named: "Сергей Герман")!, friendPhotos: [UIImage(named: "Сергей Герман"), UIImage(named: "Сергей Герман_2"), UIImage(named: "Сергей Герман_3")]),
-        FriendsData(name: "Елизавета Анищенко", city: "Москва", avatar: UIImage(named: "Елизавета Анищенко")!, friendPhotos: [UIImage(named: "Елизавета Анищенко"), UIImage(named: "Елизавета Анищенко_2"), UIImage(named: "Елизавета Анищенко_3")]),
-        FriendsData(name: "Елена Манаенкова", city: "Москва", avatar: UIImage(named: "Елена Манаенкова")!, friendPhotos: [UIImage(named: "Елена Манаенкова"), UIImage(named: "Елена Манаенкова_2"), UIImage(named: "Елена Манаенкова_3")]),
-        FriendsData(name: "Дмитрий Сиюткин", city: "Москва", avatar: UIImage(named: "Дмитрий Сиюткин")!, friendPhotos: [UIImage(named: "Дмитрий Сиюткин"), UIImage(named: "Дмитрий Сиюткин"), UIImage(named: "Дмитрий Сиюткин_3")]),
-        FriendsData(name: "Дмитрий Степанов", city: "Феодосия", avatar: UIImage(named: "Дмитрий Степанов")!, friendPhotos: [UIImage(named: "Дмитрий Степанов"), UIImage(named: "Дмитрий Степанов_2"), UIImage(named: "Дмитрий Степанов_3")]),
-        FriendsData(name: "Александр Онищенко", city: "Голицино", avatar: UIImage(named: "Александр Онищенко")!, friendPhotos: [UIImage(named: "Александр Онищенко_2"), UIImage(named: "Александр Онищенко"), UIImage(named: "Александр Онищенко_3")]),
-        FriendsData(name: "Анастасия Онищенко", city: "Голицино", avatar: UIImage(named: "Анастасия Онищенко")!, friendPhotos: [UIImage(named: "Анастасия Онищенко_2"), UIImage(named: "Анастасия Онищенко"), UIImage(named: "Анастасия Онищенко_3")]),
-        FriendsData(name: "Валентин Чуканов", city: "Москва", avatar: UIImage(named: "Валентин Чуканов")!, friendPhotos: [UIImage(named: "Валентин Чуканов"), UIImage(named: "Валентин Чуканов_2"), UIImage(named: "Валентин Чуканов_3")]),
-        FriendsData(name: "Наталия Гончарова", city: "Москва", avatar: UIImage(named: "Наталия Гончарова")!, friendPhotos: [UIImage(named: "Наталия Гончарова")]),
-        FriendsData(name: "Валерия Попова", city: "Санкт-Петербург", avatar: UIImage(named: "Валерия Попова")!, friendPhotos: [UIImage(named: "Валерия Попова"), UIImage(named: "Валерия Попова_2"), UIImage(named: "Валерия Попова_3")]),
-        FriendsData(name: "Татьяна Шмакова", city: "Одинцово", avatar: UIImage(named: "Татьяна Шмакова")!, friendPhotos: [UIImage(named: "Татьяна Шмакова"), UIImage(named: "Татьяна Шмакова_2"), UIImage(named: "Татьяна Шмакова_3")]),
-        FriendsData(name: "Рустам Мухамеджанов", city: "Москва", avatar: UIImage(named: "Рустам Мухамеджанов")!, friendPhotos: [UIImage(named: "Рустам Мухамеджанов"), UIImage(named: "Рустам Мухамеджанов_2"), UIImage(named: "Рустам Мухамеджанов_3")]),
-        FriendsData(name: "Диана Мельничук", city: "Симферополь", avatar: UIImage(named: "Диана Мельничук")!, friendPhotos: [UIImage(named: "Диана Мельничук"), UIImage(named: "Диана Мельничук_2"), UIImage(named: "Диана Мельничук_3")]),
-        FriendsData(name: "Диана Гончарова", city: "Джанкой", avatar: UIImage(named: "Диана Гончарова")!, friendPhotos: [UIImage(named: "Диана Гончарова"), UIImage(named: "Диана Гончарова_2"), UIImage(named: "Диана Гончарова_3")]),
-        FriendsData(name: "Рина Зыкова", city: "Тюмень", avatar: UIImage(named: "Рина Зыкова")!, friendPhotos: [UIImage(named: "Рина Зыкова"), UIImage(named: "Рина Зыкова_2"), UIImage(named: "Рина Зыкова_3")]),
-        FriendsData(name: "Камилла Руссакова", city: "Минск", avatar: UIImage(named: "Камилла Руссакова")!, friendPhotos: [UIImage(named: "Камилла Руссакова"), UIImage(named: "Камилла Руссакова_2"), UIImage(named: "Камилла Руссакова_3")]),
-        FriendsData(name: "Андрей Романюк", city: "Яркое", avatar: UIImage(named: "Андрей Романюк")!, friendPhotos: [UIImage(named: "Андрей Романюк"), UIImage(named: "Андрей Романюк_2"), UIImage(named: "Андрей Романюк_3")]),
-        FriendsData(name: "Яна Капинус", city: "Калуга", avatar: UIImage(named: "Яна Капинус")!, friendPhotos: [UIImage(named: "Яна Капинус"), UIImage(named: "Яна Капинус_2"), UIImage(named: "Яна Капинус_3")]),
-        FriendsData(name: "Евгений Загоненко", city: "Феодосия", avatar: UIImage(named: "Евгений Загоненко")!, friendPhotos: [UIImage(named: "Евгений Загоненко"), UIImage(named: "Евгений Загоненко_2"), UIImage(named: "Евгений Загоненко_3")]),
-        FriendsData(name: "Светлана Коршак", city: "Кировск", avatar: UIImage(named: "Светлана Коршак")!, friendPhotos: [UIImage(named: "Светлана Коршак"), UIImage(named: "Светлана Коршак_2"), UIImage(named: "Светлана Коршак_3")]),
-        FriendsData(name: "Богдан Герасимович", city: "Симферополь", avatar: UIImage(named: "Богдан Герасимович")!, friendPhotos: [UIImage(named: "Богдан Герасимович"), UIImage(named: "Богдан Герасимович_2"), UIImage(named: "Богдан Герасимович_3")]),
-        FriendsData(name: "Михаил Харламов", city: "Одинцово", avatar: UIImage(named: "Михаил Харламов")!, friendPhotos: [UIImage(named: "Михаил Харламов"), UIImage(named: "Михаил Харламов_2"), UIImage(named: "Михаил Харламов_3")])
+        FriendsData(name: "Сергей Герман", city: "Москва", avatar: UIImage(named: "Сергей Герман")!, friendPhotos: [UIImage(named: "Сергей Герман"), UIImage(named: "Сергей Герман_2"), UIImage(named: "Сергей Герман_3")], id: "16699309"),
+        FriendsData(name: "Елизавета Анищенко", city: "Москва", avatar: UIImage(named: "Елизавета Анищенко")!, friendPhotos: [UIImage(named: "Елизавета Анищенко"), UIImage(named: "Елизавета Анищенко_2"), UIImage(named: "Елизавета Анищенко_3")], id: "330941378"),
+        FriendsData(name: "Дмитрий Сиюткин", city: "Москва", avatar: UIImage(named: "Дмитрий Сиюткин")!, friendPhotos: [UIImage(named: "Дмитрий Сиюткин"), UIImage(named: "Дмитрий Сиюткин"), UIImage(named: "Дмитрий Сиюткин_3")], id: "63388119"),
+        FriendsData(name: "Александр Онищенко", city: "Голицино", avatar: UIImage(named: "Александр Онищенко")!, friendPhotos: [UIImage(named: "Александр Онищенко_2"), UIImage(named: "Александр Онищенко"), UIImage(named: "Александр Онищенко_3")], id: "38959919"),
+        FriendsData(name: "Анастасия Онищенко", city: "Голицино", avatar: UIImage(named: "Анастасия Онищенко")!, friendPhotos: [UIImage(named: "Анастасия Онищенко_2"), UIImage(named: "Анастасия Онищенко"), UIImage(named: "Анастасия Онищенко_3")], id: "113379049"),
+        FriendsData(name: "Валентин Чуканов", city: "Москва", avatar: UIImage(named: "Валентин Чуканов")!, friendPhotos: [UIImage(named: "Валентин Чуканов"), UIImage(named: "Валентин Чуканов_2"), UIImage(named: "Валентин Чуканов_3")], id: "95986961"),
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkSession.instance.fetchData(methodForSearch: "friends.get", parameters: parameters)
         
         tableView.backgroundColor = Presets.init().vkDarkGray
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")

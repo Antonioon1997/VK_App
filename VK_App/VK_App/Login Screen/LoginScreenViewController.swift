@@ -134,7 +134,7 @@ class LoginScreenViewController: UIViewController {
     
     @IBAction func signInPressed(_ sender: UIButton) {
         if passwordTextFiled.text == password && loginTextField.text == login {
-            self.performSegue(withIdentifier: "SignIn", sender: self)
+            self.performSegue(withIdentifier: "Accccc", sender: self)
         }
         else {
             signInButton.setTitle("Wrong login or password", for: .normal)
