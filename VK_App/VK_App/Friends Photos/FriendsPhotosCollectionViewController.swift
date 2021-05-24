@@ -12,6 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class FriendsPhotosCollectionViewController: UICollectionViewController {
     
+    var networkService = NetworkRequests()
     var currentFriend: FriendsData?
     var friendPhotos: [UIImage]?
     var id: String = ""
@@ -20,16 +21,12 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard currentFriend != nil else { return }
-        id = currentFriend!.id
         
-        let parameters: Parameters = [
-            "owner_id" : id,
-            "extended" : "1",
-            "album_id" : "profile",
-            "access_token" : NetworkSession.instance.token,
-            "v" : "5.68"
-        ]
-        NetworkSession.instance.fetchData(methodForSearch: "photos.get", parameters: parameters)
+        Session.instance.userID = currentFriend!.id
+    
+        networkService.getUserPhotos(Session.instance.userID, "profile", "", "0", "1", "", "", "", "", "5")
+        networkService.getPhotosComments(Session.instance.userID, "", "1", "", "20")
+        
         
         collectionView.backgroundColor = Presets.init().vkDarkGray
         

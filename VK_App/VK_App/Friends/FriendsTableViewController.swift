@@ -8,18 +8,11 @@
 import UIKit
 import Alamofire
 class FriendsTableViewController: UITableViewController {
+    let networkServise = NetworkRequests()
     
     var selectedRow: IndexPath! // IndexPath for Segue
     //MARK: - Data
-    let parameters: Parameters = [
-        "user_id" : NetworkSession.instance.myID,
-        "order" : "name",
-        "count" : "10",
-        "fields" : "domain",
-        "access_token" : NetworkSession.instance.token,
-        "v" : "5.68"
-    ]
-    
+
     
     var firstLetters = [String] ()
     var sortedFriends = [SortedFriends] ()
@@ -36,7 +29,7 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkSession.instance.fetchData(methodForSearch: "friends.get", parameters: parameters)
+        networkServise.getFriends(Session.instance.myID, "", "", "online")
         
         tableView.backgroundColor = Presets.init().vkDarkGray
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")

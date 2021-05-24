@@ -26,7 +26,7 @@ class VKLoginViewController: UIViewController{
                 urlComponents.host = "oauth.vk.com"
                 urlComponents.path = "/authorize"
                 urlComponents.queryItems = [
-                    URLQueryItem(name: "client_id", value: "\(NetworkSession.instance.appID)"),
+                    URLQueryItem(name: "client_id", value: "\(Session.instance.appID)"),
                     URLQueryItem(name: "display", value: "mobile"),
                     URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
                     URLQueryItem(name: "scope", value: "262150"),
@@ -62,9 +62,9 @@ extension VKLoginViewController: WKNavigationDelegate {
         }
         
         guard let token = params["access_token"] else { return }
-        NetworkSession.instance.token = token
+        Session.instance.token = token
         let id = params["user_id"]
-        NetworkSession.instance.myID = id!
+        Session.instance.myID = id!
         
         
 //        NetworkSession.instance.fetchData(method: "groups", parametrs: "get", methodForSearch: "friends.get")
