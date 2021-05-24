@@ -10,6 +10,8 @@ import Alamofire
 
 class MyGroupsTableViewController: UITableViewController {
     
+    let networkServise = NetworkRequests()
+    
     @IBOutlet weak var searchBar: UISearchBar!
     private var searchBarIsActive: Bool!
     var groupsData: [GroupsData]!
@@ -20,14 +22,8 @@ class MyGroupsTableViewController: UITableViewController {
     var position: CGFloat = 0
     let activateSearchImage = UIImage(systemName: "magnifyingglass")
     var placeholderText = "Groups"
+ 
     
-    let parameters: Parameters = [
-        "user_id" : NetworkSession.instance.myID,
-        "extended" : "0",
-        "access_token" : NetworkSession.instance.token,
-        "v" : "5.68"
-
-    ]
     
     //MARK:- Groups Data
     var groups = [
@@ -42,7 +38,7 @@ class MyGroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkSession.instance.fetchData(methodForSearch: "groups.get", parameters: parameters)
+        networkServise.getGroups(Session.instance.myID, "1", "", "", "", "50")
         
         viewForSearchBar.backgroundColor = .clear
         

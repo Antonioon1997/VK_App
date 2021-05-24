@@ -10,6 +10,8 @@ import Alamofire
 
 class AddGroupTableViewController: UITableViewController {
     
+    let networkServise = NetworkRequests()
+    
     var addGroups = [
         GroupsData(name: "GabeStore", desctription: "Игры, игрушки", avatar: UIImage(named: "GabeStore")!),
         GroupsData(name: "Вижу рифмы", desctription: "Юмор", avatar: UIImage(named: "Вижу рифмы")!),
@@ -18,17 +20,11 @@ class AddGroupTableViewController: UITableViewController {
     ]
     var selectedRow: IndexPath!
 
-    let parameters: Parameters = [
-        "q" : "Reddit",
-        "sort" : "0",
-        "access_token" : NetworkSession.instance.token,
-        "v" : "5.68"
-    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NetworkSession.instance.fetchData(methodForSearch: "groups.search", parameters: parameters)
-        
+        networkServise.getSearchedGroups("Reddit", "", "", "", "", "", "0", "", "4")
+           
         self.view.backgroundColor = Presets.init().vkDarkGray
 
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")

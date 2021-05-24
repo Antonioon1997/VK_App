@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		30F0FAB0480A6EB9DB123654 /* Pods_VK_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA145BACA0E154EB539C84AA /* Pods_VK_App.framework */; };
 		F403EB52261DFB8100748090 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F403EB51261DFB8100748090 /* FooterView.swift */; };
-		F4394B0126564BB300CDFDB7 /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4394B0026564BB300CDFDB7 /* NetworkSession.swift */; };
+		F4394B0126564BB300CDFDB7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4394B0026564BB300CDFDB7 /* Session.swift */; };
 		F44986072615C4DB0091D3DC /* GroupsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44986062615C4DB0091D3DC /* GroupsData.swift */; };
 		F449860B261626FC0091D3DC /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F449860A261626FC0091D3DC /* Presets.swift */; };
 		F4498622261779BB0091D3DC /* AddGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4498621261779BB0091D3DC /* AddGroupTableViewController.swift */; };
@@ -25,6 +25,7 @@
 		F494A2082615BA5C0058DC78 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494A2062615BA5C0058DC78 /* CustomCell.swift */; };
 		F494A2092615BA5C0058DC78 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F494A2072615BA5C0058DC78 /* CustomCell.xib */; };
 		F4B1CFAB265A96D500556FB1 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1CFAA265A96D500556FB1 /* VKLoginViewController.swift */; };
+		F4B1CFAD265BDBC100556FB1 /* NetworkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1CFAC265BDBC100556FB1 /* NetworkRequests.swift */; };
 		F4D472D22614D6CD005C9254 /* FriendsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D12614D6CD005C9254 /* FriendsData.swift */; };
 		F4D472D62614E483005C9254 /* FriendsPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D52614E483005C9254 /* FriendsPhotosCollectionViewController.swift */; };
 		F4D472D92614E495005C9254 /* FriendsPhotosCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D82614E495005C9254 /* FriendsPhotosCellCollectionView.swift */; };
@@ -40,7 +41,7 @@
 		41F0AF6EF745C43BC42F2B86 /* Pods-VK_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_App.release.xcconfig"; path = "Target Support Files/Pods-VK_App/Pods-VK_App.release.xcconfig"; sourceTree = "<group>"; };
 		7126F9BCC2C410FBF2E5ABC0 /* Pods-VK_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_App.debug.xcconfig"; path = "Target Support Files/Pods-VK_App/Pods-VK_App.debug.xcconfig"; sourceTree = "<group>"; };
 		F403EB51261DFB8100748090 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
-		F4394B0026564BB300CDFDB7 /* NetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
+		F4394B0026564BB300CDFDB7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		F44986062615C4DB0091D3DC /* GroupsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsData.swift; sourceTree = "<group>"; };
 		F449860A261626FC0091D3DC /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		F4498621261779BB0091D3DC /* AddGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +57,7 @@
 		F494A2062615BA5C0058DC78 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		F494A2072615BA5C0058DC78 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		F4B1CFAA265A96D500556FB1 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		F4B1CFAC265BDBC100556FB1 /* NetworkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequests.swift; sourceTree = "<group>"; };
 		F4D472D12614D6CD005C9254 /* FriendsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsData.swift; sourceTree = "<group>"; };
 		F4D472D52614E483005C9254 /* FriendsPhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		F4D472D82614E495005C9254 /* FriendsPhotosCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCellCollectionView.swift; sourceTree = "<group>"; };
@@ -201,8 +203,9 @@
 		F4DAAB9926582DBC00257B9F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				F4394B0026564BB300CDFDB7 /* NetworkSession.swift */,
+				F4394B0026564BB300CDFDB7 /* Session.swift */,
 				F4B1CFAA265A96D500556FB1 /* VKLoginViewController.swift */,
+				F4B1CFAC265BDBC100556FB1 /* NetworkRequests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -327,8 +330,9 @@
 				F4B1CFAB265A96D500556FB1 /* VKLoginViewController.swift in Sources */,
 				F4D68D9F26137121001E1DFC /* AppDelegate.swift in Sources */,
 				F449860B261626FC0091D3DC /* Presets.swift in Sources */,
+				F4B1CFAD265BDBC100556FB1 /* NetworkRequests.swift in Sources */,
 				F4D68DB92614CFAD001E1DFC /* FriendsTableViewController.swift in Sources */,
-				F4394B0126564BB300CDFDB7 /* NetworkSession.swift in Sources */,
+				F4394B0126564BB300CDFDB7 /* Session.swift in Sources */,
 				F4D472D22614D6CD005C9254 /* FriendsData.swift in Sources */,
 				F403EB52261DFB8100748090 /* FooterView.swift in Sources */,
 				F4D472D62614E483005C9254 /* FriendsPhotosCollectionViewController.swift in Sources */,
