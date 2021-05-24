@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 private let reuseIdentifier = "Cell"
 
@@ -13,10 +14,23 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
     
     var currentFriend: FriendsData?
     var friendPhotos: [UIImage]?
+    var id: String = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        guard currentFriend != nil else { return }
+        id = currentFriend!.id
+        
+        let parameters: Parameters = [
+            "owner_id" : id,
+            "extended" : "1",
+            "album_id" : "profile",
+            "access_token" : NetworkSession.instance.token,
+            "v" : "5.68"
+        ]
+        NetworkSession.instance.fetchData(methodForSearch: "photos.get", parameters: parameters)
+        
         collectionView.backgroundColor = Presets.init().vkDarkGray
         
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
