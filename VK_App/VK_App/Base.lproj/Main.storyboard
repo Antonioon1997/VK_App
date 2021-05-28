@@ -188,7 +188,7 @@
             <objects>
                 <tableViewController id="veE-VV-tkM" customClass="NewsFeedTableViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="7PE-Wz-ce3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -211,7 +211,7 @@
             <objects>
                 <tableViewController id="Xbd-Jk-6IH" customClass="DetailNewsTableViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="64G-E3-RAi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -233,14 +233,14 @@
             <objects>
                 <viewController id="azH-ND-az4" customClass="FeedNewsFullscreenPhotoViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tqh-OW-HTd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Lc-mn-wYx">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Thg-c8-faF">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yGQ-ad-6Cg" appends="YES" id="CiN-cy-NKH"/>
@@ -286,7 +286,7 @@
             <objects>
                 <tableViewController id="rTE-zg-3u8" customClass="FriendsTableViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oUV-gd-TQG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -308,7 +308,7 @@
             <objects>
                 <tableViewController id="4bs-OD-Mvb" customClass="MyGroupsTableViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oH2-Um-sEn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections/>
@@ -326,9 +326,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="xSL-B3-Zmn" id="IU6-6t-1eH"/>
-                        <outlet property="searchBarPlaceholderIcon" destination="xkq-98-KTS" id="UTb-QX-t7b"/>
-                        <outlet property="searchBarPlaceholderText" destination="Ab2-GI-JHY" id="9nA-8A-t3Y"/>
-                        <outlet property="viewForSearchBar" destination="vS7-wf-WYh" id="Fgi-A0-jvG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGE-oW-0i7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -341,35 +338,6 @@
                         <string>Title</string>
                     </scopeButtonTitles>
                 </searchBar>
-                <view contentMode="scaleAspectFit" id="vS7-wf-WYh">
-                    <rect key="frame" x="0.0" y="0.0" width="80" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ab2-GI-JHY">
-                            <rect key="frame" x="27" y="0.0" width="53" height="22"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xkq-98-KTS">
-                            <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="xkq-98-KTS" secondAttribute="height" multiplier="1:1" id="Y1a-U8-LBI"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <viewLayoutGuide key="safeArea" id="JqY-Zf-Bww"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="xkq-98-KTS" firstAttribute="leading" secondItem="vS7-wf-WYh" secondAttribute="leading" id="7HV-Ec-68a"/>
-                        <constraint firstAttribute="bottom" secondItem="xkq-98-KTS" secondAttribute="bottom" id="BwQ-H5-p7r"/>
-                        <constraint firstItem="Ab2-GI-JHY" firstAttribute="leading" secondItem="xkq-98-KTS" secondAttribute="trailing" constant="5" id="Lcb-vT-KIh"/>
-                        <constraint firstItem="xkq-98-KTS" firstAttribute="top" secondItem="vS7-wf-WYh" secondAttribute="top" id="Z2H-3E-Yeb"/>
-                        <constraint firstItem="JqY-Zf-Bww" firstAttribute="bottom" secondItem="Ab2-GI-JHY" secondAttribute="bottom" id="ZIR-xg-tXa"/>
-                        <constraint firstAttribute="trailing" secondItem="Ab2-GI-JHY" secondAttribute="trailing" id="kcF-Qw-ayg"/>
-                        <constraint firstItem="Ab2-GI-JHY" firstAttribute="top" secondItem="vS7-wf-WYh" secondAttribute="top" id="rim-R3-Czg"/>
-                    </constraints>
-                </view>
             </objects>
             <point key="canvasLocation" x="3408.6956521739135" y="1521.4285714285713"/>
         </scene>
@@ -378,7 +346,7 @@
             <objects>
                 <tableViewController id="2MD-ci-3qN" customClass="AddGroupTableViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H3i-7W-R2o">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -401,7 +369,7 @@
             <objects>
                 <collectionViewController id="vNt-rd-53A" customClass="FriendsPhotosCollectionViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="I62-MJ-zPL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wKp-mE-Wia">
@@ -455,14 +423,14 @@
             <objects>
                 <viewController id="Hg8-Vc-818" customClass="FullscreenPhotoViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YWu-KD-rxG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="22W-bn-I3P">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RPr-t5-Ken">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="PT6-Dp-vsW" appends="YES" id="mb1-Z2-Lub"/>
@@ -513,7 +481,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="sw0-oD-g9i"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LC8-GU-X1t">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -532,7 +500,7 @@
                     <tabBarItem key="tabBarItem" title="Groups" image="person.3" catalog="system" selectedImage="person.3" id="wBO-Xe-ASv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WGv-Oe-VMt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -551,7 +519,7 @@
                     <tabBarItem key="tabBarItem" title="News" image="house" catalog="system" selectedImage="house" id="QqG-ms-DCh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DDk-u4-STw">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -566,7 +534,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="otU-Py-xeM"/>
-        <segue reference="WbJ-EM-YXP"/>
+        <segue reference="ymH-OB-fI8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>

@@ -10,12 +10,15 @@
 		30F0FAB0480A6EB9DB123654 /* Pods_VK_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA145BACA0E154EB539C84AA /* Pods_VK_App.framework */; };
 		F403EB52261DFB8100748090 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F403EB51261DFB8100748090 /* FooterView.swift */; };
 		F4394B0126564BB300CDFDB7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4394B0026564BB300CDFDB7 /* Session.swift */; };
-		F44986072615C4DB0091D3DC /* GroupsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44986062615C4DB0091D3DC /* GroupsData.swift */; };
+		F44834F6265C1F6A00611596 /* VKItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44834F5265C1F6A00611596 /* VKItems.swift */; };
+		F44834F8265C1FC600611596 /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44834F7265C1FC600611596 /* VKResponse.swift */; };
 		F449860B261626FC0091D3DC /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F449860A261626FC0091D3DC /* Presets.swift */; };
 		F4498622261779BB0091D3DC /* AddGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4498621261779BB0091D3DC /* AddGroupTableViewController.swift */; };
 		F44986272618C68F0091D3DC /* NewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44986252618C68F0091D3DC /* NewsFeedCell.swift */; };
 		F44986282618C68F0091D3DC /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44986262618C68F0091D3DC /* NewsFeedCell.xib */; };
 		F45B5D2A26396FD700CC8145 /* VkLogoDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B5D2926396FD700CC8145 /* VkLogoDraw.swift */; };
+		F45D710C265EC0C700571A14 /* VKGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D710B265EC0C700571A14 /* VKGroups.swift */; };
+		F45D7118265F8B4700571A14 /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D7117265F8B4700571A14 /* VKPhoto.swift */; };
 		F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */; };
 		F48EA6ED261C86A300E1CBD9 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48EA6EC261C86A300E1CBD9 /* NewsFeedTableViewController.swift */; };
 		F48EA6F2261C876400E1CBD9 /* NewsFeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48EA6F1261C876400E1CBD9 /* NewsFeedData.swift */; };
@@ -25,8 +28,8 @@
 		F494A2082615BA5C0058DC78 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494A2062615BA5C0058DC78 /* CustomCell.swift */; };
 		F494A2092615BA5C0058DC78 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F494A2072615BA5C0058DC78 /* CustomCell.xib */; };
 		F4B1CFAB265A96D500556FB1 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1CFAA265A96D500556FB1 /* VKLoginViewController.swift */; };
-		F4B1CFAD265BDBC100556FB1 /* NetworkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1CFAC265BDBC100556FB1 /* NetworkRequests.swift */; };
-		F4D472D22614D6CD005C9254 /* FriendsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D12614D6CD005C9254 /* FriendsData.swift */; };
+		F4B1CFAD265BDBC100556FB1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1CFAC265BDBC100556FB1 /* NetworkService.swift */; };
+		F4D472D22614D6CD005C9254 /* VKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D12614D6CD005C9254 /* VKUser.swift */; };
 		F4D472D62614E483005C9254 /* FriendsPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D52614E483005C9254 /* FriendsPhotosCollectionViewController.swift */; };
 		F4D472D92614E495005C9254 /* FriendsPhotosCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D82614E495005C9254 /* FriendsPhotosCellCollectionView.swift */; };
 		F4D68D9F26137121001E1DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D68D9E26137121001E1DFC /* AppDelegate.swift */; };
@@ -42,12 +45,15 @@
 		7126F9BCC2C410FBF2E5ABC0 /* Pods-VK_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_App.debug.xcconfig"; path = "Target Support Files/Pods-VK_App/Pods-VK_App.debug.xcconfig"; sourceTree = "<group>"; };
 		F403EB51261DFB8100748090 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		F4394B0026564BB300CDFDB7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		F44986062615C4DB0091D3DC /* GroupsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsData.swift; sourceTree = "<group>"; };
+		F44834F5265C1F6A00611596 /* VKItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKItems.swift; sourceTree = "<group>"; };
+		F44834F7265C1FC600611596 /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
 		F449860A261626FC0091D3DC /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		F4498621261779BB0091D3DC /* AddGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewController.swift; sourceTree = "<group>"; };
 		F44986252618C68F0091D3DC /* NewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCell.swift; sourceTree = "<group>"; };
 		F44986262618C68F0091D3DC /* NewsFeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
 		F45B5D2926396FD700CC8145 /* VkLogoDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLogoDraw.swift; sourceTree = "<group>"; };
+		F45D710B265EC0C700571A14 /* VKGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroups.swift; sourceTree = "<group>"; };
+		F45D7117265F8B4700571A14 /* VKPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
 		F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsTableViewController.swift; sourceTree = "<group>"; };
 		F48EA6EC261C86A300E1CBD9 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
 		F48EA6F1261C876400E1CBD9 /* NewsFeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedData.swift; sourceTree = "<group>"; };
@@ -57,8 +63,8 @@
 		F494A2062615BA5C0058DC78 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		F494A2072615BA5C0058DC78 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		F4B1CFAA265A96D500556FB1 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
-		F4B1CFAC265BDBC100556FB1 /* NetworkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequests.swift; sourceTree = "<group>"; };
-		F4D472D12614D6CD005C9254 /* FriendsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsData.swift; sourceTree = "<group>"; };
+		F4B1CFAC265BDBC100556FB1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		F4D472D12614D6CD005C9254 /* VKUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUser.swift; sourceTree = "<group>"; };
 		F4D472D52614E483005C9254 /* FriendsPhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		F4D472D82614E495005C9254 /* FriendsPhotosCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCellCollectionView.swift; sourceTree = "<group>"; };
 		F4D68D9B26137121001E1DFC /* VK_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +107,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F45D7102265E376500571A14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F44834F7265C1FC600611596 /* VKResponse.swift */,
+				F44834F5265C1F6A00611596 /* VKItems.swift */,
+				F4D472D12614D6CD005C9254 /* VKUser.swift */,
+				F45D710B265EC0C700571A14 /* VKGroups.swift */,
+				F45D7117265F8B4700571A14 /* VKPhoto.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F48EA6EF261C86B700E1CBD9 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,7 +135,6 @@
 			children = (
 				F494A1FB2615B8DC0058DC78 /* MyGroupsTableViewController.swift */,
 				F4498621261779BB0091D3DC /* AddGroupTableViewController.swift */,
-				F44986062615C4DB0091D3DC /* GroupsData.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -165,6 +182,7 @@
 		F4D68D9D26137121001E1DFC /* VK_App */ = {
 			isa = PBXGroup;
 			children = (
+				F45D7102265E376500571A14 /* Models */,
 				F4DAAB9926582DBC00257B9F /* Network */,
 				F4D68D9E26137121001E1DFC /* AppDelegate.swift */,
 				F4D68DA426137121001E1DFC /* Main.storyboard */,
@@ -195,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				F4D68DB82614CFAD001E1DFC /* FriendsTableViewController.swift */,
-				F4D472D12614D6CD005C9254 /* FriendsData.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -205,7 +222,7 @@
 			children = (
 				F4394B0026564BB300CDFDB7 /* Session.swift */,
 				F4B1CFAA265A96D500556FB1 /* VKLoginViewController.swift */,
-				F4B1CFAC265BDBC100556FB1 /* NetworkRequests.swift */,
+				F4B1CFAC265BDBC100556FB1 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -330,21 +347,24 @@
 				F4B1CFAB265A96D500556FB1 /* VKLoginViewController.swift in Sources */,
 				F4D68D9F26137121001E1DFC /* AppDelegate.swift in Sources */,
 				F449860B261626FC0091D3DC /* Presets.swift in Sources */,
-				F4B1CFAD265BDBC100556FB1 /* NetworkRequests.swift in Sources */,
+				F4B1CFAD265BDBC100556FB1 /* NetworkService.swift in Sources */,
 				F4D68DB92614CFAD001E1DFC /* FriendsTableViewController.swift in Sources */,
+				F44834F8265C1FC600611596 /* VKResponse.swift in Sources */,
 				F4394B0126564BB300CDFDB7 /* Session.swift in Sources */,
-				F4D472D22614D6CD005C9254 /* FriendsData.swift in Sources */,
+				F4D472D22614D6CD005C9254 /* VKUser.swift in Sources */,
 				F403EB52261DFB8100748090 /* FooterView.swift in Sources */,
 				F4D472D62614E483005C9254 /* FriendsPhotosCollectionViewController.swift in Sources */,
 				F494A1FC2615B8DC0058DC78 /* MyGroupsTableViewController.swift in Sources */,
 				F4498622261779BB0091D3DC /* AddGroupTableViewController.swift in Sources */,
 				F4D68DA126137121001E1DFC /* SceneDelegate.swift in Sources */,
+				F45D7118265F8B4700571A14 /* VKPhoto.swift in Sources */,
+				F44834F6265C1F6A00611596 /* VKItems.swift in Sources */,
 				F45B5D2A26396FD700CC8145 /* VkLogoDraw.swift in Sources */,
 				F4922ECF262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift in Sources */,
 				F494A2082615BA5C0058DC78 /* CustomCell.swift in Sources */,
 				F44986272618C68F0091D3DC /* NewsFeedCell.swift in Sources */,
-				F44986072615C4DB0091D3DC /* GroupsData.swift in Sources */,
 				F48EA6F2261C876400E1CBD9 /* NewsFeedData.swift in Sources */,
+				F45D710C265EC0C700571A14 /* VKGroups.swift in Sources */,
 				F48EA6ED261C86A300E1CBD9 /* NewsFeedTableViewController.swift in Sources */,
 				F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */,
 				F4D472D92614E495005C9254 /* FriendsPhotosCellCollectionView.swift in Sources */,

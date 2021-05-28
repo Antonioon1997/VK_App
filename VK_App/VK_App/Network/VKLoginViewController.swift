@@ -66,12 +66,12 @@ extension VKLoginViewController: WKNavigationDelegate {
         let id = params["user_id"]
         Session.instance.myID = id!
         
-        
-//        NetworkSession.instance.fetchData(method: "groups", parametrs: "get", methodForSearch: "friends.get")
-        print(token)
+
+//        print(token)
         
         
         decisionHandler(.cancel)
+        
         performSegue(withIdentifier: "accessTrue", sender: self)
         
     }

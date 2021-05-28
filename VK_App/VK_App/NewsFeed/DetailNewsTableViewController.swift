@@ -80,7 +80,6 @@ class DetailNewsTableViewController: UITableViewController {
 
         cellTag = sender.view?.tag
         performSegue(withIdentifier: "ShowFullscreenNewsPhoto", sender: nil)
-        print ("222")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
