@@ -12,7 +12,7 @@ class FullscreenPhotoViewController: UIViewController {
     @IBOutlet var currentPhoto: UIImageView!
     @IBOutlet var nextPhoto: UIImageView!
     
-    var photos: [UIImage?] = []
+    var photos: [String?] = []
     var photoIndexPath: Int!
     let duration = 0.23
     let queue = 0.37
@@ -20,7 +20,8 @@ class FullscreenPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Presets.init().vkDarkGray
-        currentPhoto.image = photos[photoIndexPath]
+//        currentPhoto.image = photos[photoIndexPath]
+        currentPhoto.image = UIImage(data: try! Data(contentsOf: (photos[photoIndexPath]?.asURL())!))
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -57,55 +58,55 @@ class FullscreenPhotoViewController: UIViewController {
         
         
         let transition = CABasicAnimation(keyPath: "position.x")
-        
+
         if isMovedLeft {
-            
-            nextImageView.image = photos[photoIndexPath+1]
-            
+
+            nextImageView.image = UIImage(data: try! Data(contentsOf: (photos[photoIndexPath + 1]?.asURL())!))
+
             transition.fromValue = nextImageView.layer.frame.width * 1.5 + 5
         } else {
-            
-            nextImageView.image = photos[photoIndexPath - 1]
-            
+
+            nextImageView.image = UIImage(data: try! Data(contentsOf: (photos[photoIndexPath - 1]?.asURL())!))
+
             transition.fromValue = -(nextImageView.layer.frame.width/2) - 5
         }
-        
+
         transition.toValue = nextImageView.layer.position.x
         transition.duration = duration
-        
+
         nextImageView.layer.add(transition, forKey: nil)
-        
+
         
     }
     
     func disappearPhotoAnimation(_ currentImageView: UIImageView,_ isMovedLeft: Bool){
-        
-        
+//
+//
         let transition = CABasicAnimation(keyPath: "position.x")
         transition.fromValue = currentImageView.layer.position.x
         transition.duration = duration
-        
+
         if isMovedLeft {
-            
-            
+
+
             transition.toValue = -currentImageView.layer.frame.width/2
         } else {
-            
-            
+
+
             transition.toValue = currentImageView.layer.frame.width * 1.5
         }
-        
+
         currentImageView.layer.add(transition, forKey: nil)
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + duration * 0.9) { [self] in
             if isMovedLeft{
-                
+
                 photoIndexPath += 1
             } else {
-                
+
                 photoIndexPath -= 1
             }
-            currentImageView.image = photos[photoIndexPath]
+            currentImageView.image = UIImage(data: try! Data(contentsOf: (photos[photoIndexPath]?.asURL())!))
         }
     }
 }
