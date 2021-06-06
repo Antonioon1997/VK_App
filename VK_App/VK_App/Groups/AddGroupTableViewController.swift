@@ -10,23 +10,16 @@ import Alamofire
 
 class AddGroupTableViewController: UITableViewController {
     
-    let networkServise = NetworkRequests()
+    private let networkServise = NetworkService()
     
-    var addGroups = [
-        GroupsData(name: "GabeStore", desctription: "Игры, игрушки", avatar: UIImage(named: "GabeStore")!),
-        GroupsData(name: "Вижу рифмы", desctription: "Юмор", avatar: UIImage(named: "Вижу рифмы")!),
-        GroupsData(name: "Ridddle", desctription: "Наука", avatar: UIImage(named: "Ridddle")!),
-        GroupsData(name: "Marmok", desctription: "Игры", avatar: UIImage(named: "Marmok")!)
-    ]
+   
     var selectedRow: IndexPath!
 
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        networkServise.getSearchedGroups("Reddit", "", "", "", "", "", "0", "", "4")
-           
         self.view.backgroundColor = Presets.init().vkDarkGray
-
         tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
     }
 
@@ -38,7 +31,7 @@ class AddGroupTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addGroups.count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -51,9 +44,6 @@ class AddGroupTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
 
-        cell.avatarImage.image = addGroups[indexPath.row].avatar
-        cell.descriptionLabel.text = addGroups[indexPath.row].desctription
-        cell.nameLabel.text = addGroups[indexPath.row].name
 
         return cell
     }

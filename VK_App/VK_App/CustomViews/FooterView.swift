@@ -19,8 +19,6 @@ class FooterView: UITableViewHeaderFooterView {
     @IBOutlet var seenCountLabel: UILabel!
     @IBOutlet weak var backgroundColorView: UIView!
     var isLiked: Bool!
-    
-    
     var likeCount: Int!
     
     var likeImage: UIImage! {
@@ -78,6 +76,5 @@ class FooterView: UITableViewHeaderFooterView {
         
         
         
-        print ("tapped")
     }
 }
