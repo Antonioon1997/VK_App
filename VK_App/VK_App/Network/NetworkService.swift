@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import Alamofire
+import RealmSwift
+import SwiftyJSON
 
 class NetworkService{
     let baseURL = "https://api.vk.com/"
@@ -17,6 +19,7 @@ class NetworkService{
 
     func getFriends(_ user_id: String,_ order: String,_ offset: String,_ fields: String,  completion: @escaping (VKResponse<VKItems<VKUser>>) -> Void ) {
         
+        let url = baseURL+path+"friends.get"
         let parameters: Parameters = [
             "access_token" : Session.instance.token,
             "v" : Session.instance.appVersion,
@@ -25,20 +28,18 @@ class NetworkService{
             "offset" : offset,
             "fields" : fields
         ]
-        let url = baseURL+path+"friends.get"
         
         AF.request(url, method: .get, parameters: parameters).responseDecodable(of: VKResponse<VKItems<VKUser>>.self) { response in
             switch response.result {
             case .success(let vkResponce):
-                print(vkResponce)
                 completion(vkResponce)
 
             case .failure(let error):
                 print(error)
-
             }
         }
     }
+    
     
     func getGroups(_ user_id: String,_ extended: String,_ filter: String,_ fields: String,_ offset: String,_ count: String, completion: @escaping (VKResponse<VKItems<VKGroups>>) -> Void )  {
          
@@ -57,15 +58,15 @@ class NetworkService{
         AF.request(url, method: .get, parameters: parameters).responseDecodable(of: VKResponse<VKItems<VKGroups>>.self) { response in
             switch response.result {
             case .success(let vkResponce):
-                print(vkResponce)
+//                print(vkResponce)
                 completion(vkResponce)
 
             case .failure(let error):
                 print(error)
-
             }
         }
     }
+    
     
     func getPhotos(_ owner_id: String,_ album_id: String,_ photo_ids: String,_ rev: String,_ extended: String,_ feed_type: String,_ feed: String,_ photo_sizes: String,_ offset: String,_ count: String,  completion: @escaping (VKResponse<VKItems<VKPhoto>>) -> Void ) {
         let url = baseURL+path+"photos.get"
