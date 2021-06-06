@@ -58,7 +58,7 @@ class NewsFeedTableViewController: UITableViewController {
         cell.selectionStyle = .none
 
         cell.indexPath = indexPath
-//        print (cell.indexPath)
+        
         cell.avatarImage.image = postData.authorAvatar
         cell.nameLabel.text = postData.authorName
         cell.descriptionLabel.text = postData.authorDescription

@@ -42,7 +42,7 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
     }
     
     @IBAction func nextPhotoSwipe(_ sender: UISwipeGestureRecognizer) {
-        print ("2")
+        
         guard photoIndexPathInt != nil && ((photoIndexPathInt + 1) < (photosFromNews?.postImages.count)!) else { return }
 
         photoIndexPathInt += 1
