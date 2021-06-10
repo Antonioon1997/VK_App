@@ -48,6 +48,16 @@
 
 #pragma mark - Initializers
 
+- (instancetype)initWithObjectClassName:(__unsafe_unretained NSString *const)objectClassName
+                                keyType:(__unused RLMPropertyType)keyType {
+    return [self initWithObjectClassName:objectClassName];
+}
+- (instancetype)initWithObjectType:(RLMPropertyType)type
+                          optional:(BOOL)optional
+                           keyType:(__unused RLMPropertyType)keyType {
+    return [self initWithObjectType:type optional:optional];
+}
+
 - (instancetype)initWithObjectClassName:(__unsafe_unretained NSString *const)objectClassName {
     REALM_ASSERT([objectClassName length] > 0);
     self = [super init];
@@ -65,6 +75,11 @@
         _optional = optional;
     }
     return self;
+}
+
+- (void)setParent:(RLMObjectBase *)parentObject property:(RLMProperty *)property {
+    _parentObject = parentObject;
+    _key = property.name;
 }
 
 #pragma mark - Convenience wrappers used for all RLMSet types

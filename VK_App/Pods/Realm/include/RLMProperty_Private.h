@@ -64,7 +64,6 @@ static inline NSString *RLMTypeToString(RLMPropertyType type) {
 @interface RLMProperty () {
 @public
     RLMPropertyType _type;
-    Ivar _swiftIvar;
 }
 
 - (instancetype)initWithName:(NSString *)name
@@ -78,6 +77,9 @@ static inline NSString *RLMTypeToString(RLMPropertyType type) {
                                  property:(objc_property_t)property
                                  instance:(RLMObjectBase *)objectInstance;
 
+- (instancetype)initWithName:(NSString *)name
+             createSelectors:(BOOL)createSelectors;
+
 - (void)updateAccessors;
 
 // private setters
@@ -87,6 +89,7 @@ static inline NSString *RLMTypeToString(RLMPropertyType type) {
 @property (nonatomic, readwrite) BOOL optional;
 @property (nonatomic, readwrite) BOOL array;
 @property (nonatomic, readwrite) BOOL set;
+@property (nonatomic, readwrite) BOOL dictionary;
 @property (nonatomic, copy, nullable) NSString *objectClassName;
 @property (nonatomic, copy, nullable) NSString *linkOriginPropertyName;
 
@@ -96,12 +99,13 @@ static inline NSString *RLMTypeToString(RLMPropertyType type) {
 @property (nonatomic, assign) BOOL isPrimary;
 @property (nonatomic, assign, nullable) Ivar swiftIvar;
 @property (nonatomic, assign, nullable) Class swiftAccessor;
+@property (nonatomic, readwrite, assign) RLMPropertyType dictionaryKeyType;
 
 // getter and setter names
 @property (nonatomic, copy) NSString *getterName;
 @property (nonatomic, copy) NSString *setterName;
-@property (nonatomic) SEL getterSel;
-@property (nonatomic) SEL setterSel;
+@property (nonatomic, nullable) SEL getterSel;
+@property (nonatomic, nullable) SEL setterSel;
 
 - (RLMProperty *)copyWithNewName:(NSString *)name;
 

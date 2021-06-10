@@ -68,7 +68,8 @@
     if (property.type == RLMPropertyTypeObject)
         self = [self initWithObjectClassName:property.objectClassName];
     else
-        self = [self initWithObjectType:property.type optional:property.optional];
+        self = [self initWithObjectType:property.type
+                               optional:property.optional];
     if (self) {
         _realm = parentInfo->realm;
         REALM_ASSERT(list.get_realm() == _realm->_realm);
@@ -89,6 +90,15 @@
     auto col = parentObject->_info->tableColumn(property);
     return [self initWithBackingCollection:realm::List(realm->_realm, parentObject->_row, col)
                                 parentInfo:parentObject->_info
+                                  property:property];
+}
+
+- (RLMManagedArray *)initWithParent:(realm::Obj)parent
+                           property:(__unsafe_unretained RLMProperty *const)property
+                         parentInfo:(RLMClassInfo&)info {
+    auto col = info.tableColumn(property);
+    return [self initWithBackingCollection:realm::List(info.realm->_realm, parent, col)
+                                parentInfo:&info
                                   property:property];
 }
 
@@ -394,35 +404,25 @@ static void RLMInsertObject(RLMManagedArray *ar, id object, NSUInteger index) {
     }
 }
 
-- (realm::ColKey)columnForProperty:(NSString *)propertyName {
-    if (_backingList.get_type() == realm::PropertyType::Object) {
-        return _objectInfo->tableColumn(propertyName);
-    }
-    if (![propertyName isEqualToString:@"self"]) {
-        @throw RLMException(@"Arrays of '%@' can only be aggregated on \"self\"", RLMTypeToString(_type));
-    }
-    return {};
-}
-
 - (id)minOfProperty:(NSString *)property {
-    auto column = [self columnForProperty:property];
+    auto column = columnForProperty(property, _backingList, _objectInfo, _type, RLMCollectionTypeArray);
     auto value = translateErrors(self, [&] { return _backingList.min(column); }, @"minOfProperty");
     return value ? RLMMixedToObjc(*value) : nil;
 }
 
 - (id)maxOfProperty:(NSString *)property {
-    auto column = [self columnForProperty:property];
+    auto column = columnForProperty(property, _backingList, _objectInfo, _type, RLMCollectionTypeArray);
     auto value = translateErrors(self, [&] { return _backingList.max(column); }, @"maxOfProperty");
     return value ? RLMMixedToObjc(*value) : nil;
 }
 
 - (id)sumOfProperty:(NSString *)property {
-    auto column = [self columnForProperty:property];
+    auto column = columnForProperty(property, _backingList, _objectInfo, _type, RLMCollectionTypeArray);
     return RLMMixedToObjc(translateErrors(self, [&] { return _backingList.sum(column); }, @"sumOfProperty"));
 }
 
 - (id)averageOfProperty:(NSString *)property {
-    auto column = [self columnForProperty:property];
+    auto column = columnForProperty(property, _backingList, _objectInfo, _type, RLMCollectionTypeArray);
     auto value = translateErrors(self, [&] { return _backingList.average(column); }, @"averageOfProperty");
     return value ? RLMMixedToObjc(*value) : nil;
 }

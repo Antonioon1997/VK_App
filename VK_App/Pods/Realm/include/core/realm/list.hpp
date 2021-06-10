@@ -291,6 +291,16 @@ public:
             return std::make_unique<LnkLst>();
         }
     }
+    // Overriding members of ObjList:
+    LinkCollectionPtr clone_obj_list() const
+    {
+        if (get_obj().is_valid()) {
+            return std::make_unique<LnkLst>(get_obj(), get_col_key());
+        }
+        else {
+            return std::make_unique<LnkLst>();
+        }
+    }
     void set_null(size_t ndx) final;
     void set_any(size_t ndx, Mixed val) final;
     void insert_null(size_t ndx) final;
@@ -387,9 +397,9 @@ private:
         return m_list.init_from_parent();
     }
 
-    BPlusTree<ObjKey>& get_mutable_tree() const final
+    BPlusTree<ObjKey>* get_mutable_tree() const final
     {
-        return *m_list.m_tree;
+        return m_list.m_tree.get();
     }
 };
 
@@ -897,7 +907,7 @@ inline util::Optional<Mixed> LnkLst::avg(size_t* return_cnt) const
 
 inline std::unique_ptr<CollectionBase> LnkLst::clone_collection() const
 {
-    return get_obj().get_linklist_ptr(get_col_key());
+    return clone_linklist();
 }
 
 inline void LnkLst::sort(std::vector<size_t>& indices, bool ascending) const

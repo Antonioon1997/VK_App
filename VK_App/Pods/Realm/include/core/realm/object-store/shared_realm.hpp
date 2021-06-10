@@ -315,7 +315,7 @@ public:
     // Returns true if the Realm is either in a read or frozen transaction
     bool is_in_read_transaction() const
     {
-        return m_group != nullptr;
+        return m_transaction != nullptr;
     }
     uint64_t last_seen_transaction_version()
     {
@@ -355,7 +355,9 @@ public:
     // WARNING / FIXME: compact() should NOT be exposed publicly on Windows
     // because it's not crash safe! It may corrupt your database if something fails
     bool compact();
+    // For synchronized realms, the file written will have the client file ident removed.
     void write_copy(StringData path, BinaryData encryption_key);
+    void write_copy_without_client_file_id(StringData path, BinaryData encryption_key, bool allow_overwrite = false);
     OwnedBinaryData write_copy();
 
     void verify_thread() const;
@@ -373,7 +375,7 @@ public:
     void close();
     bool is_closed() const
     {
-        return !m_group && !m_coordinator;
+        return !m_transaction && !m_coordinator;
     }
 
     // returns the file format version upgraded from if an upgrade took place
@@ -440,7 +442,7 @@ private:
     std::shared_ptr<util::Scheduler> m_scheduler;
     bool m_auto_refresh = true;
 
-    std::shared_ptr<Group> m_group;
+    TransactionRef m_transaction;
 
     uint64_t m_schema_version;
     Schema m_schema;

@@ -92,6 +92,7 @@ using namespace realm;
     _primaryKeyProperty.isPrimary = NO;
     primaryKeyProperty.isPrimary = YES;
     _primaryKeyProperty = primaryKeyProperty;
+    _primaryKeyProperty.indexed = YES;
 }
 
 + (instancetype)schemaForObjectClass:(Class)objectClass {
@@ -163,13 +164,13 @@ using namespace realm;
             schema.primaryKeyProperty.type != RLMPropertyTypeString &&
             schema.primaryKeyProperty.type != RLMPropertyTypeObjectId &&
             schema.primaryKeyProperty.type != RLMPropertyTypeUUID) {
-            @throw RLMException(@"Property '%@' cannot be made the primary key of '%@' because it is not a 'string', 'int', or 'objectId' property.",
+            @throw RLMException(@"Property '%@' cannot be made the primary key of '%@' because it is not a 'string', 'int', 'objectId', or 'uuid' property.",
                                 primaryKey, className);
         }
     }
 
     for (RLMProperty *prop in schema.properties) {
-        if (prop.optional && prop.collection && (prop.type == RLMPropertyTypeObject || prop.type == RLMPropertyTypeLinkingObjects)) {
+        if (prop.optional && prop.collection && !prop.dictionary && (prop.type == RLMPropertyTypeObject || prop.type == RLMPropertyTypeLinkingObjects)) {
             // FIXME: message is awkward
             @throw RLMException(@"Property '%@.%@' cannot be made optional because optional '%@' properties are not supported.",
                                 className, prop.name, RLMTypeToString(prop.type));
@@ -232,7 +233,7 @@ using namespace realm;
     if (auto requiredProperties = [objectClass requiredProperties]) {
         for (RLMProperty *property in propArray) {
             bool required = [requiredProperties containsObject:property.name];
-            if (required && property.type == RLMPropertyTypeObject && !property.collection) {
+            if (required && property.type == RLMPropertyTypeObject && (!property.collection || property.dictionary)) {
                 @throw RLMException(@"Object properties cannot be made required, "
                                     "but '+[%@ requiredProperties]' included '%@'", objectClass, property.name);
             }
@@ -366,7 +367,7 @@ using namespace realm;
 
     NSMutableArray *genericProperties = [NSMutableArray new];
     for (RLMProperty *prop in _properties) {
-        if (prop->_swiftIvar) {
+        if (prop.swiftAccessor) {
             [genericProperties addObject:prop];
         }
     }

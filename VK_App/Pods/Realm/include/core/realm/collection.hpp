@@ -243,7 +243,12 @@ struct AverageHelper<T, std::void_t<ColumnSumType<T>>> {
     template <class U>
     static util::Optional<Mixed> eval(U& tree, size_t* return_cnt)
     {
-        return Mixed{bptree_average<T>(tree, return_cnt)};
+        size_t count = 0;
+        auto result = Mixed{bptree_average<T>(tree, &count)};
+        if (return_cnt) {
+            *return_cnt = count;
+        }
+        return count == 0 ? util::none : result;
     }
 };
 
@@ -277,6 +282,7 @@ public:
     }
 
     using Interface::get_owner_key;
+    using Interface::get_table;
     using Interface::get_target_table;
 
 protected:
@@ -304,7 +310,8 @@ protected:
 
     bool operator==(const CollectionBaseImpl& other) const noexcept
     {
-        return get_owner_key() == other.get_owner_key() && get_col_key() == other.get_col_key();
+        return get_table() == other.get_table() && get_owner_key() == other.get_owner_key() &&
+               get_col_key() == other.get_col_key();
     }
 
     bool operator!=(const CollectionBaseImpl& other) const noexcept
@@ -373,10 +380,10 @@ size_t virtual2real(const std::vector<size_t>& vec, size_t ndx) noexcept;
 size_t real2virtual(const std::vector<size_t>& vec, size_t ndx) noexcept;
 
 /// Rebuild the list of unresolved keys for tombstone handling.
-void update_unresolved(std::vector<size_t>& vec, const BPlusTree<ObjKey>& tree);
+void update_unresolved(std::vector<size_t>& vec, const BPlusTree<ObjKey>* tree);
 
 /// Clear the context flag on the tree if there are no more unresolved links.
-void check_for_last_unresolved(BPlusTree<ObjKey>& tree);
+void check_for_last_unresolved(BPlusTree<ObjKey>* tree);
 
 /// Proxy class needed because the ObjList interface clobbers method names from
 /// CollectionBase.
@@ -398,6 +405,8 @@ class ObjCollectionBase : public Interface, public _impl::ObjListProxy {
 public:
     static_assert(std::is_base_of_v<CollectionBase, Interface>);
 
+    using Interface::get_col_key;
+    using Interface::get_obj;
     using Interface::get_table;
     using Interface::is_attached;
     using Interface::size;
@@ -448,7 +457,7 @@ protected:
 
     /// Implementations should return a non-const reference to their internal
     /// `BPlusTree<T>`.
-    virtual BPlusTree<ObjKey>& get_mutable_tree() const = 0;
+    virtual BPlusTree<ObjKey>* get_mutable_tree() const = 0;
 
     /// Calls `do_init_from_parent()` and updates the list of unresolved links.
     bool init_from_parent() const final
@@ -531,6 +540,19 @@ private:
     TableRef proxy_get_target_table() const final
     {
         return Interface::get_target_table();
+    }
+    bool matches(const ObjList& other) const final
+    {
+        return get_owning_obj().get_key() == other.get_owning_obj().get_key() &&
+               get_owning_col_key() == other.get_owning_col_key();
+    }
+    Obj get_owning_obj() const final
+    {
+        return get_obj();
+    }
+    ColKey get_owning_col_key() const final
+    {
+        return get_col_key();
     }
 };
 

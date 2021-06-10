@@ -247,6 +247,7 @@ public:
     // Return key for existing object or return null key.
     ObjKey find_primary_key(Mixed value) const;
     // Return ObjKey for object identified by id. If objects does not exist, return null key
+    // Important: This function must not be called for tables with primary keys.
     ObjKey get_objkey(GlobalKey id) const;
     // Return key for existing object or return unresolved key.
     // Important: This is to be used ONLY by the Sync client. SDKs should NEVER
@@ -303,7 +304,7 @@ public:
     // Invalidate object. To be used by the Sync client.
     // - turns the object into a tombstone if links exist
     // - otherwise works just as remove_object()
-    void invalidate_object(ObjKey key);
+    ObjKey invalidate_object(ObjKey key);
     Obj get_tombstone(ObjKey key) const
     {
         REALM_ASSERT(key.is_unresolved());
@@ -346,7 +347,7 @@ public:
     size_t get_index_in_group() const noexcept;
     TableKey get_key() const noexcept;
 
-    uint32_t allocate_sequence_number();
+    uint64_t allocate_sequence_number();
     // Used by upgrade
     void set_sequence_number(uint64_t seq);
     void set_collision_map(ref_type ref);
@@ -483,6 +484,7 @@ public:
     template <typename Func>
     bool for_each_backlink_column(Func func) const
     {
+        // Could be optimized - to not iterate through all non-backlink columns:
         for (auto col_key : m_leaf_ndx2colkey) {
             if (!col_key)
                 continue;
@@ -531,17 +533,12 @@ public:
         return Query(m_own_ref, tv);
     }
 
-    // Perform queries on a LinkView. The returned Query holds a reference to list.
-    Query where(const LnkLst& list) const
+    // Perform queries on a Link Collection. The returned Query holds a reference to collection.
+    Query where(const ObjList& list) const
     {
         return Query(m_own_ref, list);
     }
-
-    // Perform queries on a LnkSet. The returned Query holds a reference to set.
-    Query where(const LnkSet& set) const
-    {
-        return Query(m_own_ref, set);
-    }
+    Query where(const DictionaryLinkValues& dictionary_of_links) const;
 
     Query query(const std::string& query_string, const std::vector<Mixed>& arguments = {}) const;
     Query query(const std::string& query_string, const std::vector<Mixed>& arguments,
@@ -678,11 +675,16 @@ private:
     void migrate_indexes(ColKey pk_col_key);
     void migrate_subspec();
     void create_columns();
-    bool migrate_objects(ColKey pk_col_key); // Returns true if there are no links to migrate
+    bool migrate_objects(); // Returns true if there are no links to migrate
     void migrate_links();
     void finalize_migration(ColKey pk_col_key);
 
     /// Disable copying assignment.
+    ///
+    /// It could easily be implemented by calling assign(), but the
+    /// non-checking nature of the low-level dynamically typed API
+    /// makes it too risky to offer this feature as an
+    /// operator.
     Table& operator=(const Table&) = delete;
 
     /// Create an uninitialized accessor whose lifetime is managed by Group
@@ -704,6 +706,7 @@ private:
     void erase_root_column(ColKey col_key);
     ColKey do_insert_root_column(ColKey col_key, ColumnType, StringData name, DataType key_type = DataType(0));
     void do_erase_root_column(ColKey col_key);
+    void do_add_search_index(ColKey col_key);
 
     bool has_any_embedded_objects();
     void set_opposite_column(ColKey col_key, TableKey opposite_table, ColKey opposite_column);
@@ -711,9 +714,8 @@ private:
     ColKey find_or_add_backlink_column(ColKey origin_col_key, TableKey origin_table);
     void do_set_primary_key_column(ColKey col_key);
     void validate_column_is_unique(ColKey col_key) const;
-    void rebuild_table_with_pk_column();
 
-    ObjKey get_next_key();
+    ObjKey get_next_valid_key();
     /// Some Object IDs are generated as a tuple of the client_file_ident and a
     /// local sequence number. This function takes the next number in the
     /// sequence for the given table and returns an appropriate globally unique
@@ -1173,7 +1175,9 @@ inline void Table::revive(Replication* const* repl, Allocator& alloc, bool writa
     m_own_ref = TableRef(this, m_alloc.get_instance_version());
 
     // since we're rebinding to a new table, we'll bump version counters
-    // TODO this can be optimized if version counters are saved along with the table data.
+    // Possible optimization: save version counters along with the table data
+    // and restore them from there. Should decrease amount of non-necessary
+    // recomputations of any queries relying on this table.
     bump_content_version();
     bump_storage_version();
     // we assume all other accessors are detached, so we're done.

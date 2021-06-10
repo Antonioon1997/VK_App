@@ -20,6 +20,7 @@
 
 #import "RLMAccessor.hpp"
 #import "RLMArray_Private.hpp"
+#import "RLMDictionary_Private.hpp"
 #import "RLMObjectSchema_Private.hpp"
 #import "RLMObjectStore.h"
 #import "RLMObject_Private.hpp"
@@ -27,7 +28,7 @@
 #import "RLMSet_Private.hpp"
 #import "RLMSwiftCollectionBase.h"
 
-#import <realm/object-store/collection_notifications.hpp>
+#import <realm/object-store/dictionary.hpp>
 #import <realm/object-store/list.hpp>
 #import <realm/object-store/results.hpp>
 #import <realm/object-store/set.hpp>
@@ -68,6 +69,27 @@ static const int RLMEnumerationBufferSize = 16;
         else {
             _snapshot = backingCollection.as_results();
             _collection = collection;
+            [_realm registerEnumerator:self];
+        }
+        _results = &_snapshot;
+    }
+    return self;
+}
+
+- (instancetype)initWithBackingDictionary:(realm::object_store::Dictionary const&)backingDictionary
+                               dictionary:(RLMManagedDictionary *)dictionary
+                                classInfo:(RLMClassInfo&)info {
+    self = [super init];
+    if (self) {
+        _info = &info;
+        _realm = _info->realm;
+
+        if (_realm.inWriteTransaction) {
+            _snapshot = backingDictionary.get_keys().snapshot();
+        }
+        else {
+            _snapshot = backingDictionary.get_keys();
+            _collection = dictionary;
             [_realm registerEnumerator:self];
         }
         _results = &_snapshot;
@@ -141,6 +163,7 @@ static const int RLMEnumerationBufferSize = 16;
             _collection = nil;
             [_realm unregisterEnumerator:self];
         }
+
         _snapshot = {};
     }
 
@@ -198,22 +221,17 @@ NSArray *RLMCollectionValueForKey(Collection& collection, NSString *key, RLMClas
     // new List each time
     if (info.rlmObjectSchema.isSwiftClass) {
         auto prop = info.rlmObjectSchema[key];
-        // Grab the actual class for the generic List from an instance of it
-        // so that we can make instances of the List without creating a new
-        // object accessor each time
-        Class cls = [object_getIvar(accessor, prop.swiftIvar) class];
-        RLMAccessorContext context(info);
-        if (prop && prop.collection && prop.swiftIvar) {
-            RLMGetCollectionType(prop, [&](auto type, auto objcType) {
-                for (size_t i = 0; i < count; ++i) {
-                    RLMSwiftCollectionBase *base = [[cls alloc] init];
-                    base._rlmCollection =
-                        RLMManagedCollectionFromCollection<std::decay_t<decltype(*type)>,
-                                                           std::decay_t<decltype(*objcType)>>
-                                                           (info, collection.get(i), prop);
-                    [array addObject:base];
-                }
-            });
+        if (prop.collection && prop.swiftAccessor) {
+            // Grab the actual class for the generic collection from an instance of it
+            // so that we can make instances of the collection without creating a new
+            // object accessor each time
+            Class cls = [[prop.swiftAccessor get:prop on:accessor] class];
+            for (size_t i = 0; i < count; ++i) {
+                RLMSwiftCollectionBase *base = [[cls alloc] init];
+                base._rlmCollection = [[[cls _backingCollectionType] alloc]
+                                       initWithParent:collection.get(i) property:prop parentInfo:info];
+                [array addObject:base];
+            }
             return array;
         }
     }
@@ -226,26 +244,31 @@ NSArray *RLMCollectionValueForKey(Collection& collection, NSString *key, RLMClas
     return array;
 }
 
-template<typename Fn>
-void RLMGetCollectionType(RLMProperty *prop, Fn&& func) {
-    if (prop.array) {
-        func(((realm::List *)0), ((RLMManagedArray *)0));
+realm::ColKey columnForProperty(NSString *propertyName,
+                                realm::object_store::Collection const& backingCollection,
+                                RLMClassInfo *objectInfo,
+                                RLMPropertyType propertyType,
+                                RLMCollectionType collectionType) {
+    if (backingCollection.get_type() == realm::PropertyType::Object) {
+        return objectInfo->tableColumn(propertyName);
     }
-    else if (prop.set) {
-        func(((realm::object_store::Set *)0), ((RLMManagedSet *)0));
+    if (![propertyName isEqualToString:@"self"]) {
+        NSString *collectionTypeName;
+        switch (collectionType) {
+            case RLMCollectionTypeArray:
+                collectionTypeName = @"Arrays";
+                break;
+            case RLMCollectionTypeSet:
+                collectionTypeName = @"Sets";
+                break;
+            case RLMCollectionTypeDictionary:
+                collectionTypeName = @"Dictionaries";
+                break;
+        }
+        @throw RLMException(@"%@ of '%@' can only be aggregated on \"self\"",
+                            collectionTypeName, RLMTypeToString(propertyType));
     }
-    else {
-        REALM_UNREACHABLE();
-    }
-}
-
-template<typename Collection, typename ObjcCollection>
-id RLMManagedCollectionFromCollection(RLMClassInfo& info, realm::Obj&& obj, RLMProperty *prop) {
-    return [[ObjcCollection alloc] initWithBackingCollection:Collection(info.realm->_realm,
-                                                                        obj,
-                                                                        info.tableColumn(prop))
-                                                  parentInfo:&info
-                                                    property:prop];
+    return {};
 }
 
 template NSArray *RLMCollectionValueForKey(realm::Results&, NSString *, RLMClassInfo&);
@@ -415,15 +438,7 @@ struct CollectionCallbackWrapper {
 };
 } // anonymous namespace
 
-@interface RLMCancellationToken : RLMNotificationToken
-@end
-
-@implementation RLMCancellationToken {
-@public
-    __unsafe_unretained RLMRealm *_realm;
-    realm::NotificationToken _token;
-    std::mutex _mutex;
-}
+@implementation RLMCancellationToken
 
 - (RLMRealm *)realm {
     std::lock_guard<std::mutex> lock(_mutex);
@@ -480,6 +495,7 @@ RLMNotificationToken *RLMAddNotificationBlock(RLMCollection *collection,
     });
     return token;
 }
+
 @end
 
 // Explicitly instantiate the templated function for the two types we'll use it on

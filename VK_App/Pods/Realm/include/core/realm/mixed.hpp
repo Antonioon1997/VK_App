@@ -200,7 +200,10 @@ public:
     bool accumulate_numeric_to(Decimal128& destination) const;
     bool is_unresolved_link() const;
     bool is_same_type(const Mixed& b) const;
+    // Will use utf8_compare for strings
     int compare(const Mixed& b) const;
+    // Will compare strings as arrays of signed chars
+    int compare_signed(const Mixed& b) const;
     bool operator==(const Mixed& other) const
     {
         return compare(other) == 0;
@@ -226,6 +229,7 @@ public:
         return compare(other) >= 0;
     }
     size_t hash() const;
+    StringData get_index_data(std::array<char, 16>&) const;
     void use_buffer(std::string& buf);
 
 protected:

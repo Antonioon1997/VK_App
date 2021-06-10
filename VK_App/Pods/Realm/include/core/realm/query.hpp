@@ -85,10 +85,8 @@ class Query final {
 public:
     Query(ConstTableRef table, ConstTableView* tv = nullptr);
     Query(ConstTableRef table, std::unique_ptr<ConstTableView>);
-    Query(ConstTableRef table, const LnkLst& list);
-    Query(ConstTableRef table, const LnkSet& set);
-    Query(ConstTableRef table, LnkLstPtr&& list);
-    Query(ConstTableRef table, LnkSetPtr&& set);
+    Query(ConstTableRef table, const ObjList& list);
+    Query(ConstTableRef table, LinkCollectionPtr&& list_ptr);
     Query();
     Query(std::unique_ptr<Expression>);
     ~Query() noexcept;
@@ -390,13 +388,16 @@ private:
     TableRef m_table;
 
     // points to the base class of the restricting view. If the restricting
-    // view is a link view, m_source_link_list is non-zero. If it is a table view,
+    // view is a link view, m_source_collection is non-zero. If it is a table view,
     // m_source_table_view is non-zero.
     ObjList* m_view = nullptr;
 
     // At most one of these can be non-zero, and if so the non-zero one indicates the restricting view.
-    LnkLstPtr m_source_link_list;                  // link lists are owned by the query.
-    LnkSetPtr m_source_link_set;                   // link sets are owned by the query.
+    //
+    // m_source_collection is a pointer to a collection which must also be a ObjList*
+    // this includes: LnkLst, LnkSet, and DictionaryLinkValues. It cannot be a list of primitives because
+    // it is used to populate a query through a collection of objects and there are asserts for this.
+    LinkCollectionPtr m_source_collection;         // collections are owned by the query.
     ConstTableView* m_source_table_view = nullptr; // table views are not refcounted, and not owned by the query.
     std::unique_ptr<ConstTableView> m_owned_source_table_view; // <--- except when indicated here
     std::shared_ptr<DescriptorOrdering> m_ordering;
