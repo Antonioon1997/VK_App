@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct VKGroups: Codable {
     
     let groupId: Int

@@ -13,7 +13,7 @@ struct VKUser {
     let firstName: String
     let lastName: String
     let avatarURL: String
-    let userID: Int
+    let id: Int
 }
 
 extension VKUser: Codable {
@@ -23,7 +23,7 @@ extension VKUser: Codable {
         case firstName = "first_name"
         case lastName = "last_name"
         case avatarURL = "photo_200_orig"
-        case userID = "id"
+        case id = "id"
     }
 }
 
