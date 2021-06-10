@@ -9,7 +9,8 @@ import Foundation
 
 struct VKPhoto: Codable {
     
-    let photoID: Int
+    let id: Int
+    let ownerID: Int
     let postID: Int
     let photoSize75: String
     let photoSize130: String
@@ -23,7 +24,8 @@ extension VKPhoto {
     
     enum CodingKeys: String, CodingKey {
         
-        case photoID = "id"
+        case id = "id"
+        case ownerID = "owner_id"
         case postID = "post_id"
         case photoSize75 = "photo_75"
         case photoSize130 = "photo_130"

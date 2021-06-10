@@ -7,25 +7,30 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
+import Kingfisher
 
 private let reuseIdentifier = "Cell"
 
 class FriendsPhotosCollectionViewController: UICollectionViewController {
-    var photoData = [VKPhoto] ()
+    
+    var photoData = try? RealmService.load(typeOf: VKPhotosRealm.self).filter("ownerID == %i", (Int(Session.instance.userID)) ?? 0)
+    
     private let networkService = NetworkService()
-    var id: String = ""
-    var photos = [String] ()
-    var indexPathInt = 0
+    var indexPaths: IndexPath!
+    var photoOwnersName: String = ""
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         networkService.getPhotos(Session.instance.userID, "profile", "", "0", "1", "", "", "0", "", "100") { [weak self] response in
-            self?.photoData = response.response.items
+            guard let photos = response else { return }
+            try? RealmService.save(items: photos)
             
             self?.collectionView.reloadData()
         }
+        self.title = photoOwnersName
         
         collectionView.backgroundColor = Presets.init().vkDarkGray
 
@@ -40,40 +45,23 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard !photoData.isEmpty else {return 0}
-        return photoData.count
+       
+        
+        return photoData?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentFriendPhotos", for: indexPath) as! FriendsPhotosCellCollectionView
-        guard !photoData.isEmpty else {
-            
-            return cell
-        }
-        let data = photoData[indexPath.row]
-       
-       var photo = ""
       
-        if data.photoSize2560 != nil {
-            photo = data.photoSize2560!
-            photos.append(data.photoSize2560!) }
-        else if data.photoSize1280 != nil {
-            photo = data.photoSize1280!
-            photos.append(data.photoSize1280!) }
-        else if data.photoSize807 != nil {
-            photo = data.photoSize807!
-            photos.append(data.photoSize807!) }
-        else { photo = data.photoSize604
-            photos.append(data.photoSize604) }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentFriendPhotos", for: indexPath) as! FriendsPhotosCellCollectionView
         
-        cell.currentFriendPhotos.image = UIImage(data:  try! Data(contentsOf: photo.asURL()))
-
+        guard let photo = photoData?[indexPath.row].photoSize604 ??
+                          photoData?[indexPath.row].photoSize130
+                          else { return cell }
+        
+        cell.currentFriendPhotos.kf.setImage(with: URL(string: photo))
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        indexPathInt = indexPath.row
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFullscreenPhoto",
@@ -81,8 +69,7 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
            let photoCellIndexPath = collectionView.indexPath(for: senderCell),
            let segueDestination = segue.destination as? FullscreenPhotoViewController
         {
-            segueDestination.photos = photos
-            segueDestination.photoIndexPath = photoCellIndexPath.row
+            segueDestination.indexPaths = photoCellIndexPath.row
             
         }
     }

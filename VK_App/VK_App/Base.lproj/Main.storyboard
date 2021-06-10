@@ -402,7 +402,7 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="currentFriendPhotos" destination="HBE-kX-ZwX" id="R52-J2-tj3"/>
+                                    <outlet property="currentFriendPhotos" destination="HBE-kX-ZwX" id="DdO-fF-unt"/>
                                     <segue destination="Hg8-Vc-818" kind="show" identifier="ShowFullscreenPhoto" id="2RU-lM-KWs"/>
                                 </connections>
                             </collectionViewCell>

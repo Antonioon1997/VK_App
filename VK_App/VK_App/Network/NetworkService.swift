@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import RealmSwift
 import SwiftyJSON
+import Kingfisher
 
 class NetworkService{
     let baseURL = "https://api.vk.com/"
@@ -17,7 +18,7 @@ class NetworkService{
     var id: String = ""
     var order: String = ""
 
-    func getFriends(_ user_id: String,_ order: String,_ offset: String,_ fields: String,  completion: @escaping (VKResponse<VKItems<VKUser>>) -> Void ) {
+    func getFriends(_ user_id: String,_ order: String,_ offset: String,_ fields: String,  completion: @escaping ([VKUserRealm]?) -> Void ) {
         
         let url = baseURL+path+"friends.get"
         let parameters: Parameters = [
@@ -32,8 +33,7 @@ class NetworkService{
         AF.request(url, method: .get, parameters: parameters).responseDecodable(of: VKResponse<VKItems<VKUser>>.self) { response in
             switch response.result {
             case .success(let vkResponce):
-                completion(vkResponce)
-
+                completion( vkResponce.response.items.map({VKUserRealm($0)}))
             case .failure(let error):
                 print(error)
             }
@@ -41,7 +41,7 @@ class NetworkService{
     }
     
     
-    func getGroups(_ user_id: String,_ extended: String,_ filter: String,_ fields: String,_ offset: String,_ count: String, completion: @escaping (VKResponse<VKItems<VKGroups>>) -> Void )  {
+    func getGroups(_ user_id: String,_ extended: String,_ filter: String,_ fields: String,_ offset: String,_ count: String, completion: @escaping ([VKGroupsRealm]?) -> Void )  {
          
         let url = baseURL+path+"groups.get"
         let parameters: Parameters = [
@@ -59,7 +59,7 @@ class NetworkService{
             switch response.result {
             case .success(let vkResponce):
 //                print(vkResponce)
-                completion(vkResponce)
+                completion(vkResponce.response.items.map{VKGroupsRealm($0)})
 
             case .failure(let error):
                 print(error)
@@ -68,7 +68,7 @@ class NetworkService{
     }
     
     
-    func getPhotos(_ owner_id: String,_ album_id: String,_ photo_ids: String,_ rev: String,_ extended: String,_ feed_type: String,_ feed: String,_ photo_sizes: String,_ offset: String,_ count: String,  completion: @escaping (VKResponse<VKItems<VKPhoto>>) -> Void ) {
+    func getPhotos(_ owner_id: String,_ album_id: String,_ photo_ids: String,_ rev: String,_ extended: String,_ feed_type: String,_ feed: String,_ photo_sizes: String,_ offset: String,_ count: String,  completion: @escaping ([VKPhotosRealm]?) -> Void ) {
         let url = baseURL+path+"photos.get"
         
         let parameters: Parameters = [
@@ -90,7 +90,7 @@ class NetworkService{
             switch response.result {
             case .success(let vkResponce):
                 print(vkResponce)
-                completion(vkResponce)
+                completion(vkResponce.response.items.map({VKPhotosRealm($0)}))
 
             case .failure(let error):
                 print(error)

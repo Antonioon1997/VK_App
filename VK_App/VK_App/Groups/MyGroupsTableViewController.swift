@@ -14,7 +14,7 @@ class MyGroupsTableViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     private var searchBarIsActive: Bool!
-    var groupsData = [VKGroups] ()
+    var groupsData = try? RealmService.load(typeOf: VKGroupsRealm.self)
 //    @IBOutlet var viewForSearchBar: UIView!
 //    @IBOutlet weak var searchBarPlaceholderIcon: UIImageView!
 //    @IBOutlet weak var searchBarPlaceholderText: UILabel!
@@ -32,8 +32,9 @@ class MyGroupsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         networkServise.getGroups(Session.instance.myID, "1", "", "", "", "50") { [weak self] response in
-            self?.groupsData = response.response.items
-            print(self?.groupsData)
+            guard let groups = response else { return }
+            try? RealmService.save(items: groups)
+            
             self?.tableView.reloadData()
         }
         searchBar.searchTextField.placeholder = "Groups"
@@ -66,15 +67,15 @@ class MyGroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard !groupsData.isEmpty else { return 1 }
-        return groupsData.count
+    
+        return groupsData?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
 //        guard !groupsData.isEmpty else { return cell }
-        let groups = groupsData[indexPath.row]
-        cell.avatarImage.image = UIImage(data: try! Data(contentsOf: groups.avatar.asURL()))
+        guard let groups = groupsData?[indexPath.row] else { return cell }
+        cell.avatarImage.kf.setImage(with: URL(string: groups.avatar))
         cell.nameLabel.text = groups.name
        
         

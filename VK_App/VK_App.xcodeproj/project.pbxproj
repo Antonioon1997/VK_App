@@ -20,6 +20,8 @@
 		F45D710C265EC0C700571A14 /* VKGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D710B265EC0C700571A14 /* VKGroups.swift */; };
 		F45D7118265F8B4700571A14 /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D7117265F8B4700571A14 /* VKPhoto.swift */; };
 		F461FC70266CEFCC00199E76 /* VKPhotosRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F461FC6F266CEFCC00199E76 /* VKPhotosRealm.swift */; };
+		F46A662D26711785008CFC24 /* FriendsPhotosCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A662C26711785008CFC24 /* FriendsPhotosCellCollectionView.swift */; };
+		F478A5B7266F94C9000AFCA4 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F478A5B6266F94C9000AFCA4 /* RealmService.swift */; };
 		F47D05C82667BF7900D2C163 /* VKUserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D05C72667BF7900D2C163 /* VKUserRealm.swift */; };
 		F47D05CE2667D3AA00D2C163 /* VKGroupsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D05CD2667D3AA00D2C163 /* VKGroupsRealm.swift */; };
 		F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */; };
@@ -34,7 +36,6 @@
 		F4B1CFAD265BDBC100556FB1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1CFAC265BDBC100556FB1 /* NetworkService.swift */; };
 		F4D472D22614D6CD005C9254 /* VKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D12614D6CD005C9254 /* VKUser.swift */; };
 		F4D472D62614E483005C9254 /* FriendsPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D52614E483005C9254 /* FriendsPhotosCollectionViewController.swift */; };
-		F4D472D92614E495005C9254 /* FriendsPhotosCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D472D82614E495005C9254 /* FriendsPhotosCellCollectionView.swift */; };
 		F4D68D9F26137121001E1DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D68D9E26137121001E1DFC /* AppDelegate.swift */; };
 		F4D68DA126137121001E1DFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D68DA026137121001E1DFC /* SceneDelegate.swift */; };
 		F4D68DA326137121001E1DFC /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D68DA226137121001E1DFC /* LoginScreenViewController.swift */; };
@@ -58,6 +59,8 @@
 		F45D710B265EC0C700571A14 /* VKGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroups.swift; sourceTree = "<group>"; };
 		F45D7117265F8B4700571A14 /* VKPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
 		F461FC6F266CEFCC00199E76 /* VKPhotosRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhotosRealm.swift; sourceTree = "<group>"; };
+		F46A662C26711785008CFC24 /* FriendsPhotosCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCellCollectionView.swift; sourceTree = "<group>"; };
+		F478A5B6266F94C9000AFCA4 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		F47D05C72667BF7900D2C163 /* VKUserRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUserRealm.swift; sourceTree = "<group>"; };
 		F47D05CD2667D3AA00D2C163 /* VKGroupsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroupsRealm.swift; sourceTree = "<group>"; };
 		F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsTableViewController.swift; sourceTree = "<group>"; };
@@ -72,7 +75,6 @@
 		F4B1CFAC265BDBC100556FB1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F4D472D12614D6CD005C9254 /* VKUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUser.swift; sourceTree = "<group>"; };
 		F4D472D52614E483005C9254 /* FriendsPhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCollectionViewController.swift; sourceTree = "<group>"; };
-		F4D472D82614E495005C9254 /* FriendsPhotosCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCellCollectionView.swift; sourceTree = "<group>"; };
 		F4D68D9B26137121001E1DFC /* VK_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D68D9E26137121001E1DFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4D68DA026137121001E1DFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,11 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				F47D05C62667BF5C00D2C163 /* RealmModels */,
-				F44834F7265C1FC600611596 /* VKResponse.swift */,
-				F44834F5265C1F6A00611596 /* VKItems.swift */,
-				F4D472D12614D6CD005C9254 /* VKUser.swift */,
-				F45D710B265EC0C700571A14 /* VKGroups.swift */,
-				F45D7117265F8B4700571A14 /* VKPhoto.swift */,
+				F48C11C6266FCCC5004E286F /* Models */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -134,6 +132,18 @@
 				F461FC6F266CEFCC00199E76 /* VKPhotosRealm.swift */,
 			);
 			path = RealmModels;
+			sourceTree = "<group>";
+		};
+		F48C11C6266FCCC5004E286F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F44834F7265C1FC600611596 /* VKResponse.swift */,
+				F44834F5265C1F6A00611596 /* VKItems.swift */,
+				F4D472D12614D6CD005C9254 /* VKUser.swift */,
+				F45D710B265EC0C700571A14 /* VKGroups.swift */,
+				F45D7117265F8B4700571A14 /* VKPhoto.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F48EA6EF261C86B700E1CBD9 /* NewsFeed */ = {
@@ -172,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				F4D472D52614E483005C9254 /* FriendsPhotosCollectionViewController.swift */,
-				F4D472D82614E495005C9254 /* FriendsPhotosCellCollectionView.swift */,
+				F46A662C26711785008CFC24 /* FriendsPhotosCellCollectionView.swift */,
 				F494A1F72614F21E0058DC78 /* FullscreenPhotoViewController.swift */,
 			);
 			path = "Friends Photos";
@@ -239,6 +249,7 @@
 			children = (
 				F4394B0026564BB300CDFDB7 /* Session.swift */,
 				F4B1CFAA265A96D500556FB1 /* VKLoginViewController.swift */,
+				F478A5B6266F94C9000AFCA4 /* RealmService.swift */,
 				F4B1CFAC265BDBC100556FB1 /* NetworkService.swift */,
 			);
 			path = Network;
@@ -376,8 +387,10 @@
 				F494A1FC2615B8DC0058DC78 /* MyGroupsTableViewController.swift in Sources */,
 				F4498622261779BB0091D3DC /* AddGroupTableViewController.swift in Sources */,
 				F4D68DA126137121001E1DFC /* SceneDelegate.swift in Sources */,
+				F46A662D26711785008CFC24 /* FriendsPhotosCellCollectionView.swift in Sources */,
 				F45D7118265F8B4700571A14 /* VKPhoto.swift in Sources */,
 				F44834F6265C1F6A00611596 /* VKItems.swift in Sources */,
+				F478A5B7266F94C9000AFCA4 /* RealmService.swift in Sources */,
 				F45B5D2A26396FD700CC8145 /* VkLogoDraw.swift in Sources */,
 				F4922ECF262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift in Sources */,
 				F47D05CE2667D3AA00D2C163 /* VKGroupsRealm.swift in Sources */,
@@ -387,7 +400,6 @@
 				F45D710C265EC0C700571A14 /* VKGroups.swift in Sources */,
 				F48EA6ED261C86A300E1CBD9 /* NewsFeedTableViewController.swift in Sources */,
 				F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */,
-				F4D472D92614E495005C9254 /* FriendsPhotosCellCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

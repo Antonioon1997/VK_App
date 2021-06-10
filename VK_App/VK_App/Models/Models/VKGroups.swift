@@ -10,7 +10,7 @@ import Foundation
 
 struct VKGroups: Codable {
     
-    let groupId: Int
+    let id: Int
     let name: String
     let avatar: String
 }
@@ -18,7 +18,7 @@ extension VKGroups {
     
     enum CodingKeys: String, CodingKey {
         
-        case groupId = "id"
+        case id = "id"
         case name = "name"
         case avatar = "photo_200"
     }

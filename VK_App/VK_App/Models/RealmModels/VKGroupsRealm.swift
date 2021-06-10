@@ -10,7 +10,7 @@ import RealmSwift
 
 class VKGroupsRealm: Object {
 
-    @objc dynamic var groupId: Int = 0
+    @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var avatar: String = ""
     
@@ -18,4 +18,14 @@ class VKGroupsRealm: Object {
         return "id"
     }
     
+}
+
+extension VKGroupsRealm {
+    
+    convenience init(_ groups: VKGroups){
+        self.init()
+        id = groups.id
+        name = groups.name
+        avatar = groups.avatar
+    }
 }

@@ -13,9 +13,19 @@ class VKUserRealm: Object, Codable {
     @objc dynamic var firstName: String = ""
     @objc dynamic var lastName: String = ""
     @objc dynamic var avatarURL: String = ""
-    @objc dynamic var userID: Int = 0
+    @objc dynamic var id: Int = 0
     
     override class func primaryKey() -> String? {
         return "id"
+    }
+}
+extension VKUserRealm {
+    
+    convenience init (_ user: VKUser){
+        self.init()
+        firstName = user.firstName
+        lastName = user.lastName
+        avatarURL = user.avatarURL
+        id = user.id
     }
 }
