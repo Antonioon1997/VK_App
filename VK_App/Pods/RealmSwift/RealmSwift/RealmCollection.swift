@@ -45,6 +45,39 @@ import Realm
     }
 }
 
+/// :nodoc:
+public protocol _RealmMapValue {
+    /// The key of this element.
+    associatedtype Key: _MapKey
+    /// The value of this element.
+    associatedtype Value: RealmCollectionValue
+}
+
+/**
+ An iterator for a `RealmKeyedCollection` instance.
+ */
+@frozen public struct RLMMapIterator<Element: _RealmMapValue>: IteratorProtocol {
+
+    private var generatorBase: NSFastEnumerationIterator
+    private var collection: RLMDictionary<AnyObject, AnyObject>
+
+    init(collection: RLMDictionary<AnyObject, AnyObject>) {
+        self.collection = collection
+        generatorBase = NSFastEnumerationIterator(collection)
+    }
+
+    /// Advance to the next element and return it, or `nil` if no next element exists.
+    public mutating func next() -> Element? {
+        let next = generatorBase.next()
+        if let next = next as? Element.Key {
+            let key: Element.Key = next
+            let val: Element.Value = dynamicBridgeCast(fromObjectiveC: collection[key as AnyObject]!)
+            return SingleMapEntry(key: key, value: val) as? Element
+        }
+        return nil
+    }
+}
+
 /**
  A `RealmCollectionChange` value encapsulates information about changes to collections
  that are reported by Realm notifications.
@@ -138,78 +171,17 @@ private func forceCast<A, U>(_ from: A, to type: U.Type) -> U {
 /// actually work. Most of the logic for how to store values in Realm is not
 /// implemented in Swift and there is currently no extension mechanism for
 /// supporting more types.
-public protocol RealmCollectionValue: Hashable {
+public protocol RealmCollectionValue: Hashable, _RealmSchemaDiscoverable {
     /// :nodoc:
-    static func _rlmArray() -> RLMArray<AnyObject>
-    /// :nodoc:
-    static func _rlmSet() -> RLMSet<AnyObject>
-    /// :nodoc:
+    // Iterating over collections requires mapping NSNull to nil, but we can't
+    // just do `nil as T` because of non-nullable collections
     static func _nilValue() -> Self
 }
 
 extension RealmCollectionValue {
     /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .int, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .int, optional: false)
-    }
-    /// :nodoc:
     public static func _nilValue() -> Self {
         fatalError("unexpected NSNull for non-Optional type")
-    }
-}
-
-private func arrayType<T>(_ type: T.Type) -> RLMArray<AnyObject> {
-    switch type {
-    case is Int.Type, is Int8.Type, is Int16.Type, is Int32.Type, is Int64.Type:
-        return RLMArray(objectType: .int, optional: true)
-    case is Bool.Type:       return RLMArray(objectType: .bool, optional: true)
-    case is Float.Type:      return RLMArray(objectType: .float, optional: true)
-    case is Double.Type:     return RLMArray(objectType: .double, optional: true)
-    case is String.Type:     return RLMArray(objectType: .string, optional: true)
-    case is Data.Type:       return RLMArray(objectType: .data, optional: true)
-    case is Date.Type:       return RLMArray(objectType: .date, optional: true)
-    case is Decimal128.Type: return RLMArray(objectType: .decimal128, optional: true)
-    case is ObjectId.Type:   return RLMArray(objectType: .objectId, optional: true)
-    case is UUID.Type:       return RLMArray(objectType: .UUID, optional: true)
-    case is AnyRealmValue.Type: return RLMArray(objectType: .any, optional: true)
-    default: fatalError("Unsupported type for List: \(type)?")
-    }
-}
-
-private func setType<T>(_ type: T.Type) -> RLMSet<AnyObject> {
-    switch type {
-    case is Int.Type, is Int8.Type, is Int16.Type, is Int32.Type, is Int64.Type:
-        return RLMSet(objectType: .int, optional: true)
-    case is Bool.Type:       return RLMSet(objectType: .bool, optional: true)
-    case is Float.Type:      return RLMSet(objectType: .float, optional: true)
-    case is Double.Type:     return RLMSet(objectType: .double, optional: true)
-    case is String.Type:     return RLMSet(objectType: .string, optional: true)
-    case is Data.Type:       return RLMSet(objectType: .data, optional: true)
-    case is Date.Type:       return RLMSet(objectType: .date, optional: true)
-    case is Decimal128.Type: return RLMSet(objectType: .decimal128, optional: true)
-    case is ObjectId.Type:   return RLMSet(objectType: .objectId, optional: true)
-    case is UUID.Type:       return RLMSet(objectType: .UUID, optional: true)
-    case is AnyRealmValue.Type: return RLMSet(objectType: .any, optional: false)
-    default: fatalError("Unsupported type for MutableSet: \(type)?")
-    }
-}
-
-extension Optional: RealmCollectionValue where Wrapped: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return arrayType(Wrapped.self)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return setType(Wrapped.self)
-    }
-    /// :nodoc:
-    public static func _nilValue() -> Optional {
-        return nil
     }
 }
 
@@ -218,116 +190,28 @@ extension Int8: RealmCollectionValue {}
 extension Int16: RealmCollectionValue {}
 extension Int32: RealmCollectionValue {}
 extension Int64: RealmCollectionValue {}
-extension Float: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .float, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .float, optional: false)
-    }
-}
-extension Double: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .double, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .double, optional: false)
-    }
-}
-extension Bool: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .bool, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .bool, optional: false)
-    }
-}
+extension Float: RealmCollectionValue {}
+extension Double: RealmCollectionValue {}
+extension Bool: RealmCollectionValue {}
+extension String: RealmCollectionValue {}
+extension Date: RealmCollectionValue {}
+extension Data: RealmCollectionValue {}
+extension Decimal128: RealmCollectionValue {}
+extension ObjectId: RealmCollectionValue {}
+extension UUID: RealmCollectionValue {}
 
-extension String: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .string, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .string, optional: false)
-    }
-}
-extension Date: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .date, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .date, optional: false)
-    }
-}
-extension Data: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .data, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .data, optional: false)
-    }
-}
-extension Decimal128: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .decimal128, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .decimal128, optional: false)
-    }
-}
-extension ObjectId: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .objectId, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .objectId, optional: false)
-    }
-}
-extension UUID: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .UUID, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .UUID, optional: false)
-    }
-}
 extension AnyRealmValue: RealmCollectionValue {
-    /// :nodoc:
-    public static func _rlmArray() -> RLMArray<AnyObject> {
-        return RLMArray(objectType: .any, optional: false)
-    }
-    /// :nodoc:
-    public static func _rlmSet() -> RLMSet<AnyObject> {
-        return RLMSet(objectType: .any, optional: false)
-    }
     /// :nodoc:
     public static func _nilValue() -> AnyRealmValue {
         return .none
     }
 }
 
-/// :nodoc:
-public protocol _RealmCollectionEnumerator {
-    // swiftlint:disable:next identifier_name
-    func _asNSFastEnumerator() -> Any
+extension Optional: RealmCollectionValue where Wrapped: RealmCollectionValue {
+    /// :nodoc:
+    public static func _nilValue() -> Optional {
+        return nil
+    }
 }
 
 /// :nodoc:
@@ -340,7 +224,7 @@ public protocol RealmCollectionBase: RandomAccessCollection, LazyCollectionProto
 /**
  A homogenous collection of `Object`s which can be retrieved, filtered, sorted, and operated upon.
 */
-public protocol RealmCollection: RealmCollectionBase, _RealmCollectionEnumerator {
+public protocol RealmCollection: RealmCollectionBase {
     // Must also conform to `AssistedObjectiveCBridgeable`
 
     // MARK: Properties
@@ -751,8 +635,7 @@ private class _AnyRealmCollectionBase<T: RealmCollectionValue>: AssistedObjectiv
         -> NotificationToken { fatalError() }
     class func bridging(from objectiveCValue: Any, with metadata: Any?) -> Self { fatalError() }
     var bridged: (objectiveCValue: Any, metadata: Any?) { fatalError() }
-    // swiftlint:disable:next identifier_name
-    func _asNSFastEnumerator() -> Any { fatalError() }
+    func asNSFastEnumerator() -> Any { fatalError() }
     var isFrozen: Bool { fatalError() }
     func freeze() -> AnyRealmCollection<T> { fatalError() }
     func thaw() -> AnyRealmCollection<T> { fatalError() }
@@ -824,9 +707,8 @@ private final class _AnyRealmCollection<C: RealmCollection>: _AnyRealmCollection
         return base.makeIterator() as! RLMIterator<Element>
     }
 
-    /// :nodoc:
-    override func _asNSFastEnumerator() -> Any {
-        return base._asNSFastEnumerator()
+    override func asNSFastEnumerator() -> Any {
+        return (base as! UntypedCollection).asNSFastEnumerator()
     }
 
     // MARK: Collection Support
@@ -885,7 +767,7 @@ private final class _AnyRealmCollection<C: RealmCollection>: _AnyRealmCollection
 
  Instances of `RealmCollection` forward operations to an opaque underlying collection having the same `Element` type.
  */
-public struct AnyRealmCollection<Element: RealmCollectionValue>: RealmCollection {
+public struct AnyRealmCollection<Element: RealmCollectionValue>: RealmCollection, UntypedCollection {
 
     /// The type of the objects contained within the collection.
     public typealias ElementType = Element
@@ -1045,10 +927,7 @@ public struct AnyRealmCollection<Element: RealmCollectionValue>: RealmCollection
     /// Returns a `RLMIterator` that yields successive elements in the collection.
     public func makeIterator() -> RLMIterator<Element> { return base.makeIterator() }
 
-    /// :nodoc:
-    // swiftlint:disable:next identifier_name
-    public func _asNSFastEnumerator() -> Any { return base._asNSFastEnumerator() }
-
+    internal func asNSFastEnumerator() -> Any { return base.asNSFastEnumerator() }
 
     // MARK: Collection Support
 
@@ -1208,13 +1087,13 @@ extension AnyRealmCollection: AssistedObjectiveCBridgeable {
 
 // MARK: Collection observation helpers
 
-internal protocol ObservableCollection: RealmCollection {
+internal protocol ObservableCollection {
     associatedtype BackingObjcCollection
     func isSameObjcCollection(_ objc: BackingObjcCollection) -> Bool
     init(objc: BackingObjcCollection)
 }
 
-extension ObservableCollection {
+extension ObservableCollection where Self: RealmCollection {
     // We want to pass the same object instance to the change callback each time.
     // If the callback is being called on the source thread the instance should
     // be `self`, but if it's on a different thread it needs to be a new Swift
@@ -1232,15 +1111,35 @@ extension ObservableCollection {
     }
 
     internal func wrapObserveBlock(_ block: @escaping (RealmCollectionChange<Self>) -> Void) -> ObjcCollectionChange {
-        var list: Self?
-        return { array, change, error in
-            if list == nil, let array = array {
-                list = self.isSameObjcCollection(array) ? self : Self(objc: array)
+        var col: Self?
+        return { collection, change, error in
+            if col == nil, let collection = collection {
+                col = self.isSameObjcCollection(collection) ? self : Self(objc: collection)
             }
-            block(RealmCollectionChange.fromObjc(value: list, change: change, error: error))
+            block(RealmCollectionChange.fromObjc(value: col, change: change, error: error))
         }
     }
 }
+
+extension ObservableCollection where Self: RealmKeyedCollection {
+    // We want to pass the same object instance to the change callback each time.
+    // If the callback is being called on the source thread the instance should
+    // be `self`, but if it's on a different thread it needs to be a new Swift
+    // wrapper for the obj-c type, which we'll construct the first time the
+    // callback is called.
+    internal typealias ObjcChange = (RLMDictionary<AnyObject, AnyObject>?, RLMDictionaryChange?, Error?) -> Void
+
+    internal func wrapDictionaryObserveBlock(_ block: @escaping (RealmMapChange<Self>) -> Void) -> ObjcChange {
+        var col: Self?
+        return { collection, change, error in
+            if col == nil, let collection = collection as? Self.BackingObjcCollection {
+                col = self.isSameObjcCollection(collection) ? self : Self(objc: collection)
+            }
+            block(RealmMapChange.fromObjc(value: col, change: change, error: error))
+        }
+    }
+}
+
 extension List: ObservableCollection {
     internal typealias BackingObjcCollection = RLMArray<AnyObject>
     internal func isSameObjcCollection(_ rlmArray: BackingObjcCollection) -> Bool {
@@ -1252,6 +1151,13 @@ extension MutableSet: ObservableCollection {
     internal typealias BackingObjcCollection = RLMSet<AnyObject>
     internal func isSameObjcCollection(_ rlmSet: BackingObjcCollection) -> Bool {
         return _rlmCollection === rlmSet
+    }
+}
+
+extension Map: ObservableCollection {
+    internal typealias BackingObjcCollection = RLMDictionary<AnyObject, AnyObject>
+    internal func isSameObjcCollection(_ rlmDictionary: BackingObjcCollection) -> Bool {
+        return _rlmCollection === rlmDictionary
     }
 }
 
