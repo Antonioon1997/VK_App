@@ -16,6 +16,7 @@ class FriendsTableViewController: UITableViewController {
    
     var nextData = 0
     var indexPaths: IndexPath! // IndexPath for Segue
+    var token: NotificationToken?
     //MARK: - Data
 
     
@@ -88,8 +89,23 @@ class FriendsTableViewController: UITableViewController {
 
         }
     }
-   
-}
+    private func observeRealm() {
+        token = friendsData?.observe({ changes in
+            switch changes {
+            case .initial(let results):
+                if results.count > 0 {
+                    self.tableView.reloadData()
+                }
+                
+            case let .update(results, deletions, insertions, modifications):
+                print(results, deletions, insertions, modifications)
+//                self.collectionView.reloadData()
+                
+            case .error(let error):
+                print(error)
+            }
+        })
+    }}
 
 
  //MARK: - Sorting friends by letters in sections
