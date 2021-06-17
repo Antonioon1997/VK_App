@@ -13,6 +13,10 @@ class CustomCell: UITableViewCell {
 //    @IBOutlet var shadowView: UIView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet weak var messageButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var isOnlineView: UIView!
+    
     
     
     override func awakeFromNib() {
@@ -20,21 +24,34 @@ class CustomCell: UITableViewCell {
         
         self.backgroundColor = .clear
         
-        nameLabel.font = UIFont(name: "Arial", size: 20)
+        nameLabel.font = UIFont(name: "Arial", size: 17)
         nameLabel.textColor = .white
         
-        descriptionLabel.font = UIFont(name: "Arial", size: 12)
+        descriptionLabel.font = UIFont(name: "Arial", size: 11)
         descriptionLabel.textColor = .lightGray
         descriptionLabel.isHidden = true
         
         avatarImage.clipsToBounds = true
         avatarImage.layer.cornerRadius = avatarImage.layer.bounds.height/2
         
-//        shadowView.clipsToBounds = false
-//        shadowView.layer.cornerRadius = shadowView.layer.bounds.height/2
-//        shadowView.layer.shadowColor = UIColor.white.cgColor
-//        shadowView.layer.shadowRadius = 3
-//        shadowView.layer.shadowOpacity = 1
+        isOnlineView.layer.cornerRadius =  isOnlineView.layer.bounds.height/2
+        isOnlineView.backgroundColor = .clear
+        
+        messageButton.setImage(UIImage(systemName: "message",
+                                       withConfiguration: UIImage.SymbolConfiguration(
+                                                pointSize: avatarImage.layer.frame.size.height * 0.3,
+                                                weight: .medium,
+                                                scale: .large)),
+                                                for: .normal)
+        messageButton.setTitle(nil, for: .normal)
+        
+        callButton.setImage(UIImage(systemName: "phone",
+                                    withConfiguration: UIImage.SymbolConfiguration(
+                                                pointSize: avatarImage.layer.frame.size.height * 0.4,
+                                                weight: .light,
+                                                scale: .large)),
+                                                for: .normal)
+        callButton.setTitle(nil, for: .normal)
         
     }
 

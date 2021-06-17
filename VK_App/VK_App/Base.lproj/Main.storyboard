@@ -294,12 +294,25 @@
                             <outlet property="delegate" destination="rTE-zg-3u8" id="8A9-zI-Rag"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="Enw-t8-ztR"/>
+                    <navigationItem key="navigationItem" title="Friends" id="Enw-t8-ztR">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="fHw-Wl-PT6">
+                            <connections>
+                                <action selector="activateSearchBar:" destination="rTE-zg-3u8" id="eWc-Xn-hqy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="eAi-nt-r0V" id="AaQ-Fc-crM"/>
+                        <outlet property="searchBarButtom" destination="fHw-Wl-PT6" id="Bq3-8Q-GGb"/>
                         <segue destination="vNt-rd-53A" kind="show" identifier="ShowFriendPhotos" id="LNZ-R3-P1F"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vif-WX-EFK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" id="eAi-nt-r0V">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="3408.6956521739135" y="793.52678571428567"/>
         </scene>
@@ -372,7 +385,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wKp-mE-Wia">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="11o-H0-aSH">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -388,9 +401,6 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HBE-kX-ZwX">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="128" id="xdf-3z-wU9"/>
-                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>

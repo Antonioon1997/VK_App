@@ -39,6 +39,27 @@ class NetworkService{
             }
         }
     }
+    func searchFriends(_ user_id: String,_ offset: String,_ fields: String,_ searchText: String,  completion: @escaping ([VKUserRealm]?) -> Void ) {
+        
+        let url = baseURL+path+"friends.get"
+        let parameters: Parameters = [
+            "access_token" : Session.instance.token,
+            "v" : Session.instance.appVersion,
+            "user_id" : user_id,
+            "q" : searchText,
+            "offset" : offset,
+            "fields" : fields
+        ]
+        
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: VKResponse<VKItems<VKUser>>.self) { response in
+            switch response.result {
+            case .success(let vkResponce):
+                completion( vkResponce.response.items.map({VKUserRealm($0)}))
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     
     func getGroups(_ user_id: String,_ extended: String,_ filter: String,_ fields: String,_ offset: String,_ count: String, completion: @escaping ([VKGroupsRealm]?) -> Void )  {

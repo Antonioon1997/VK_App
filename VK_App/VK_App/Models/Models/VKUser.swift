@@ -14,6 +14,7 @@ struct VKUser {
     let lastName: String
     let avatarURL: String
     let id: Int
+    let isOnline: Int
 }
 
 extension VKUser: Codable {
@@ -24,6 +25,7 @@ extension VKUser: Codable {
         case lastName = "last_name"
         case avatarURL = "photo_200_orig"
         case id = "id"
+        case isOnline = "online"
     }
 }
 

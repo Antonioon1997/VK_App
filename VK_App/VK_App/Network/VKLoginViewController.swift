@@ -16,30 +16,49 @@ class VKLoginViewController: UIViewController{
             webView.navigationDelegate = self
         }
     }
+    private var urlComponents: URLComponents = {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "oauth.vk.com"
+        urlComponents.path = "/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: "7859693"),
+            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
+            URLQueryItem(name: "scope", value: "336918"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "v", value: "5.130")
+    ]
+        return urlComponents
+    }()
+    
+    lazy var request = URLRequest(url: urlComponents.url!)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var urlComponents = URLComponents()
-                urlComponents.scheme = "https"
-                urlComponents.host = "oauth.vk.com"
-                urlComponents.path = "/authorize"
-                urlComponents.queryItems = [
-                    URLQueryItem(name: "client_id", value: "\(Session.instance.appID)"),
-                    URLQueryItem(name: "display", value: "mobile"),
-                    URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-                    URLQueryItem(name: "scope", value: "262150"),
-                    URLQueryItem(name: "response_type", value: "token"),
-                    URLQueryItem(name: "v", value: "5.68")
-                ]
-                
-                let request = URLRequest(url: urlComponents.url!)
-                
+        webView.navigationDelegate = self
         webView.load(request)
-        
-        
+//        logoutSegue()
     }
+    
+    func logoutSegue() {
+       Session.instance.token = ""
+       Session.instance.userID = "0"
+       
+       let dataStore = WKWebsiteDataStore.default()
+       dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { (records) in
+           for record in records {
+               if record.displayName.contains("vk") {
+                   dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), for: [record], completionHandler: { [weak self] in
+                       self?.webView.load(self!.request)
+                   })
+               }
+           }
+       }
+       webView.load(request)
+   }
 }
 
 extension VKLoginViewController: WKNavigationDelegate {

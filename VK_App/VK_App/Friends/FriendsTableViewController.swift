@@ -8,7 +8,12 @@
 import UIKit
 import Alamofire
 import RealmSwift
-class FriendsTableViewController: UITableViewController {
+class FriendsTableViewController: UITableViewController, UITabBarControllerDelegate{
+    
+    @IBOutlet weak var searchBarButtom: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var searchBarIsActive: Bool = false
     
     private let networkServise = NetworkService()
     private let realm = RealmService()
@@ -17,39 +22,53 @@ class FriendsTableViewController: UITableViewController {
     var nextData = 0
     var indexPaths: IndexPath! // IndexPath for Segue
     var token: NotificationToken?
+    var searchedFriends: Results<VKUserRealm>?
+    var friends: VKUserRealm!
     //MARK: - Data
-
+  
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font: UIFont(name: "Arial", size: 20)!]
+       
+        searchBar.backgroundColor = .clear
+        searchBar.searchTextField.backgroundColor = Presets.init().vkLightGray
+        searchBar.placeholder = "Search friends"
+        searchBar.delegate = self
+        searchBarButtom.image = UIImage(systemName: "magnifyingglass")
+        self.tabBarController?.delegate = self
         
+        
+        navigationController?.navigationBar.barTintColor = .clear
         networkServise.getFriends(  Session.instance.myID,
                                     "",
                                     "1",
-                                    "first_name,last_name,photo_200_orig,id,last_seen") { [weak self] response in
+                                    "first_name,last_name,photo_200_orig,id,last_seen, online") { [weak self] response in
             guard
                 let self = self,
                 let data = response
             else { return }
             try? RealmService.save(items: data)
-//                                     self.friendsData = data
-                            
         }
         tableView.backgroundColor = Presets.init().vkDarkGray
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
     }
 
     // MARK: - Table view data source
-
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
       return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        if !searchBarIsActive {
         return friendsData?.count ?? 0
+        } else {
+            return searchedFriends?.count ?? 0
+        }
     }
     
     
@@ -58,11 +77,17 @@ class FriendsTableViewController: UITableViewController {
         
         
 
-        guard let freinds = friendsData?[indexPath.row] else {return cell}
+//        guard let friends = friendsData?[indexPath.row] else {return cell}
+        if !searchBarIsActive {
+            friends = (friendsData?[indexPath.row])
+        } else {
+            friends = searchedFriends?[indexPath.row]
+        }
 
-        cell.nameLabel.text = "\(freinds.firstName) \(freinds.lastName)"
-//        cell.avatarImage.image = UIImage(data: try! Data(contentsOf: freindsData.avatarURL .asURL()))
-        cell.avatarImage.kf.setImage(with: URL(string: freinds.avatarURL))
+        cell.nameLabel.text = "\(friends.firstName) \(friends.lastName)"
+        cell.avatarImage.kf.setImage(with: URL(string: friends.avatarURL))
+        guard friends.isOnline == 1 else { return cell }
+        cell.isOnlineView.backgroundColor = Presets.init().onlineViewColor
         
         return cell
     }
@@ -85,10 +110,31 @@ class FriendsTableViewController: UITableViewController {
             guard let currentFriends = friendsData?[indexPaths.row] else { return }
             segueDestination.photoOwnersName = "\(currentFriends.firstName) \(currentFriends.lastName)"
 //            segueDestination.photoOwnersName = fullName
-            
-
         }
     }
+    
+    @IBAction func activateSearchBar(_ sender: Any) {
+        
+        searchBarIsActive.toggle()
+        
+        if searchBarIsActive  {
+            navigationItem.titleView = searchBar
+            searchBar.popIn()
+            searchBarButtom.image = UIImage(systemName: "xmark")
+        }
+        else {
+            
+            searchBar.popOut() { _ in
+                    self.navigationItem.titleView = nil
+//                self.searchBar.text = ""fdf
+                
+                self.searchBarButtom.image = UIImage(systemName: "magnifyingglass")
+                
+            }
+        }
+    }
+    
+   
     private func observeRealm() {
         token = friendsData?.observe({ changes in
             switch changes {
@@ -99,7 +145,6 @@ class FriendsTableViewController: UITableViewController {
                 
             case let .update(results, deletions, insertions, modifications):
                 print(results, deletions, insertions, modifications)
-//                self.collectionView.reloadData()
                 
             case .error(let error):
                 print(error)
@@ -110,4 +155,20 @@ class FriendsTableViewController: UITableViewController {
 
  //MARK: - Sorting friends by letters in sections
 
-
+extension FriendsTableViewController: UISearchBarDelegate, UITabBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            searchBarIsActive = true
+            searchedFriends = friendsData?.filter("firstName BEGINSWITH %@" , (searchText))
+            
+//        print(searchedFriends)
+        tableView.reloadData()
+        } else {
+            searchBarIsActive = false
+            tableView.reloadData()
+        }
+        
+    }
+    
+}

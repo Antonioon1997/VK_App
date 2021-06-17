@@ -71,6 +71,8 @@ class MyGroupsTableViewController: UITableViewController {
         guard let groups = groupsData?[indexPath.row] else { return cell }
         cell.avatarImage.kf.setImage(with: URL(string: groups.avatar))
         cell.nameLabel.text = groups.name
+        cell.messageButton.isHidden = true
+        cell.callButton.isHidden = true
        
         
         return cell

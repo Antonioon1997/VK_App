@@ -19,6 +19,7 @@ public struct Presets {
     let vkLightGray = UIColor(red: 105.0/255, green: 105.0/255, blue: 106.0/255, alpha: 1)
     
     let placeholderLightGray = UIColor(red: 140.0/255, green: 142.0/255, blue: 146.0/255.0, alpha: 1)
+    let onlineViewColor = UIColor(red: 71.0/255.0, green: 169.0/255.0, blue: 70.0/255.0, alpha: 1)
     
     //MARK: - Fonts
     let countLabelFont = UIFont(name: "Arial", size: 14)
