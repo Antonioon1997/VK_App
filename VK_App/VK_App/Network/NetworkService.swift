@@ -119,5 +119,46 @@ class NetworkService{
             }
         }
     }
-}
+    
+    func getNews (completion: @escaping (Response?) -> Void) {
+        
+        let url = baseURL+path+"newsfeed.get"
+        
+        let parameters: Parameters = [
+            "access_token" : Session.instance.token,
+            "v" : Session.instance.appVersion,
+            "filter" : "post",
+            "return_banned" : "0",
+            "max_photos" : "9",
+            "source_ids" : "groups",
+            "count" : "50"
+        ]
+//            AF.request(url, method: .get, parameters: parameters).responseData { response in
+//                switch response.result {
+//                case .success(let data):
+//                    let json = JSON(data)
+//                    let newsJSONs = json.arrayValue
+//                    print(newsJSONs)
+//                    let news = newsJSONs.map({ VKNewsJSON ($0)})
+//                    print(news)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+        
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: Welcome.self) { response in
+            switch response.result {
+            case .success(let vkResponce):
+                print(vkResponce)
+                completion(vkResponce.response)
+                
+//                completion( vkResponce.response.items.map({VKUserRealm($0)}))
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+            
+    }
 
+}

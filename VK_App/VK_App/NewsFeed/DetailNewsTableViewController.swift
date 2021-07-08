@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailNewsTableViewController: UITableViewController {
 
-    var currentNews: NewsFeed?
+//    var currentNews: NewsFeed?
+    var currentNewsAttach: Item?
+    var currentNewsAuthor: Group?
     var cellTag: Int!
     
     override func viewDidLoad() {
@@ -35,40 +38,60 @@ class DetailNewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
+        guard
+            let postAttatch = currentNewsAttach,
+            let postAuthor = currentNewsAuthor,
+            let date = postAttatch.date,
+            let postLikes = currentNewsAttach?.likes?.count,
+            let postResposts = currentNewsAttach?.reposts?.count,
+            let postComments = currentNewsAttach?.comments?.count,
+            let postViews = currentNewsAttach?.views?.count
         
-        let postData = currentNews!
+        else { return cell }
         
         cell.selectionStyle = .none
 
-        cell.indexPath = indexPath
-        cell.avatarImage.image = postData.authorAvatar
-        cell.nameLabel.text = postData.authorName
-        cell.descriptionLabel.text = postData.authorDescription
-        cell.postLabel?.text = postData.postText
-        if postData.isLiked == true {
-            cell.likeImageView.image = Presets.init().heartFillImage
-        } else if postData.isLiked == false {
-            cell.likeImageView.image = Presets.init().heartImage
-        }
-        cell.likeCountLabel.text = String(describing: postData.likeCount!)
-        cell.commentCountLabel.text = String(describing: postData.commentCount!)
-        cell.shareCountLabel.text = String(describing: postData.shareCount!)
-        cell.seenCountLabel.text = String(describing: postData.seenCount!)
         
-        cell.isLiked = postData.isLiked
-        cell.likeCount = postData.likeCount
+        let postTimeFormatter = DateFormatter()
+        let postDateFormatter = DateFormatter()
+        postTimeFormatter.dateFormat = "HH:mm"
+        postDateFormatter.dateStyle = .medium
+        postDateFormatter.doesRelativeDateFormatting = true
+        postDateFormatter.locale = Locale(identifier: "ru_RU")
+        
+        let postDate = "\(postDateFormatter.string(from: Date(timeIntervalSince1970: Double(date)))) в \(postTimeFormatter.string(from: Date(timeIntervalSince1970: Double(date))))"
+        
+//        cell.indexPath = indexPath
+        cell.avatarImage.kf.setImage(with: URL(string: postAuthor.photo200 ?? ""))
+        cell.nameLabel.text = postAuthor.name
+        cell.descriptionLabel.text = postDate
+        cell.postTextView?.text = postAttatch.text
+//        if postData.isLiked == true {
+//            cell.likeImageView.image = Presets.init().heartFillImage
+//        } else if postData.isLiked == false {
+//            cell.likeImageView.image = Presets.init().heartImage
+//        }
+        cell.likeCountLabel.text = String(describing: postLikes)
+        cell.shareCountLabel.text = String(describing: postResposts)
+        cell.commentCountLabel.text = String(describing: postComments)
+        cell.seenCountLabel.text = String(describing: postViews)
+        
+//        cell.isLiked = postData.isLiked
+//        cell.likeCount = postData.likeCount
    
-        for image in 0...postData.postImages.count - 1  {
-            
-            cell.moreImagesView.backgroundColor = .clear
-            cell.postImages?[image].tag = indexPath.row
-            cell.postImages?[image].isHidden = false
-            cell.postImages?[image].image = postData.postImages[image]
-            //MARK: - TO DO
-            cell.postImages![image].tag = image
-        }
-        if postData.postImages.count >= 3 {
-            cell.moreImagesView.isHidden = false
+        guard let count = currentNewsAttach?.attachments?.count,
+              let photos = currentNewsAttach?.attachments
+        else { return cell }
+        
+        for photo in 0..<count {
+            if photos[photo].type == "photo" {
+                cell.postImages?[photo].isHidden = false
+                cell.postImages?[photo].kf.setImage(with: URL(string: photos[photo].photo?.sizes?.last?.url ?? ""))
+                cell.postImages?[photo].tag = photo
+                cell.postImages?[photo].isUserInteractionEnabled = true
+                
+            }
+            cell.postImages?.forEach({$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPhotoTapGestureRecognizer)))})
         }
 
         cell.postImages?.forEach({$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPhotoTapGestureRecognizer)))})
@@ -76,7 +99,7 @@ class DetailNewsTableViewController: UITableViewController {
         return cell
     }
     
-    @objc func openPhotoTapGestureRecognizer (sender: UITapGestureRecognizer) {
+    @objc func openPhotoTapGestureRecognizer (_ sender: UITapGestureRecognizer) {
 
         cellTag = sender.view?.tag
         performSegue(withIdentifier: "ShowFullscreenNewsPhoto", sender: nil)
@@ -85,7 +108,10 @@ class DetailNewsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFullscreenNewsPhoto",
            let destination = segue.destination as? FeedNewsFullscreenPhotoViewController {
-            destination.photosFromNews = currentNews
+//            destination.photosFromNews = currentNews
+            guard let photos = currentNewsAttach?.attachments
+            else { return }
+            destination.photos2 = photos
             destination.photoIndexPathInt = cellTag
         }
     }

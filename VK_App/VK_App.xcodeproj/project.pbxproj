@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		30F0FAB0480A6EB9DB123654 /* Pods_VK_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA145BACA0E154EB539C84AA /* Pods_VK_App.framework */; };
 		F403EB52261DFB8100748090 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F403EB51261DFB8100748090 /* FooterView.swift */; };
+		F411368B26863FD90064E698 /* VKNewsFullModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411368A26863FD90064E698 /* VKNewsFullModel.swift */; };
 		F41CE428267A4B1200F4FAB8 /* VKSearchUserReam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE427267A4B1200F4FAB8 /* VKSearchUserReam.swift */; };
 		F4394B0126564BB300CDFDB7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4394B0026564BB300CDFDB7 /* Session.swift */; };
 		F44834F6265C1F6A00611596 /* VKItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44834F5265C1F6A00611596 /* VKItems.swift */; };
@@ -51,6 +52,7 @@
 		41F0AF6EF745C43BC42F2B86 /* Pods-VK_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_App.release.xcconfig"; path = "Target Support Files/Pods-VK_App/Pods-VK_App.release.xcconfig"; sourceTree = "<group>"; };
 		7126F9BCC2C410FBF2E5ABC0 /* Pods-VK_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_App.debug.xcconfig"; path = "Target Support Files/Pods-VK_App/Pods-VK_App.debug.xcconfig"; sourceTree = "<group>"; };
 		F403EB51261DFB8100748090 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		F411368A26863FD90064E698 /* VKNewsFullModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKNewsFullModel.swift; sourceTree = "<group>"; };
 		F41CE427267A4B1200F4FAB8 /* VKSearchUserReam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKSearchUserReam.swift; sourceTree = "<group>"; };
 		F4394B0026564BB300CDFDB7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		F44834F5265C1F6A00611596 /* VKItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKItems.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				F44834F7265C1FC600611596 /* VKResponse.swift */,
+				F411368A26863FD90064E698 /* VKNewsFullModel.swift */,
 				F44834F5265C1F6A00611596 /* VKItems.swift */,
 				F4D472D12614D6CD005C9254 /* VKUser.swift */,
 				F45D710B265EC0C700571A14 /* VKGroups.swift */,
@@ -390,6 +393,7 @@
 				F4D68DB92614CFAD001E1DFC /* FriendsTableViewController.swift in Sources */,
 				F4C63E5F2678E3F6008FD7E0 /* UsersListCell.swift in Sources */,
 				F44834F8265C1FC600611596 /* VKResponse.swift in Sources */,
+				F411368B26863FD90064E698 /* VKNewsFullModel.swift in Sources */,
 				F4394B0126564BB300CDFDB7 /* Session.swift in Sources */,
 				F4D472D22614D6CD005C9254 /* VKUser.swift in Sources */,
 				F41CE428267A4B1200F4FAB8 /* VKSearchUserReam.swift in Sources */,

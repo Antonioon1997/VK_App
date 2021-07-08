@@ -15,7 +15,7 @@ class Session {
     let accessKey = "i4NDFNOlRdNnij4XT73d"
     var appID: Int = 7861219
     var token: String = ""
-    let appVersion = "5.68"
+    let appVersion = "5.131"
     var myID: String = ""
     var userID: String = ""
     

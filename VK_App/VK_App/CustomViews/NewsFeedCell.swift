@@ -12,9 +12,9 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
-    @IBOutlet var postLabel: UILabel?
-    @IBOutlet var moreImagesView: UIView!
-    @IBOutlet var moreImagesCount: UILabel!
+//    @IBOutlet var postLabel: UILabel?
+//    @IBOutlet var moreImagesView: UIView!
+//    @IBOutlet var moreImagesCount: UILabel!
     @IBOutlet var postImages: [UIImageView]?
     @IBOutlet var likeImageView: UIImageView!
     @IBOutlet var likeCountLabel: UILabel!
@@ -25,22 +25,26 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet var seenImageView: UIImageView!
     @IBOutlet var seenCountLabel: UILabel!
     @IBOutlet var delimetrView: UIView!
+    @IBOutlet var postTextView: UITextView?
     
-    var isLiked: Bool!
-    var indexPath: IndexPath!
-    
-    var likeCount: Int!
-    
-    var likeImage: UIImage! {
-        get { likeImageView.image }
-        set { likeImageView.image = newValue}
-    }
+//    var isLiked: Bool!
+//    var indexPath: IndexPath!
+//
+//    var likeCount: Int!
+//
+//    var likeImage: UIImage! {
+//        get { likeImageView.image }
+//        set { likeImageView.image = newValue}
+//    }
     
     let identifire = "FooterView"
     
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        postImages?.forEach({$0.backgroundColor = .clear})
         
         avatarImage.layer.cornerRadius = avatarImage.layer.bounds.height/2
         avatarImage.clipsToBounds = true
@@ -51,19 +55,24 @@ class NewsFeedCell: UITableViewCell {
         descriptionLabel.font = Presets.init().descriptionLabelFont
         descriptionLabel.textColor = .lightGray
         
-        moreImagesView.backgroundColor = .black
-        moreImagesView.isHidden = true
+//        moreImagesView.backgroundColor = .black
+//        moreImagesView.isHidden = true
         
-        moreImagesCount.font = UIFont(name: "Arial", size: 40)
-        moreImagesCount.textColor = .white
-        moreImagesCount.isHidden = true
+//        moreImagesCount.font = UIFont(name: "Arial", size: 40)
+//        moreImagesCount.textColor = .white
+//        moreImagesCount.isHidden = true
         
-        postLabel?.font = Presets.init().standartLabelFont
-        postLabel?.textColor = .white
+//        postLabel?.font = Presets.init().standartLabelFont
+//        postLabel?.textColor = .white
+        postTextView?.backgroundColor = .clear
+//        postTextView?.font = postLabel?.font
+        postTextView?.textColor = .white
+        postTextView?.dataDetectorTypes = .link
+        postTextView?.font = Presets.init().standartLabelFont
+        postTextView?.isUserInteractionEnabled = true
         
-        postImages?.forEach({$0.isHidden = true})
 //        postImages?[0].tag = 0
-        postImages?.forEach({$0.isUserInteractionEnabled = true})
+//        postImages?.forEach({$0.isUserInteractionEnabled = false})
         
         self.backgroundColor = Presets.init().vkDarkGray
         
@@ -86,18 +95,32 @@ class NewsFeedCell: UITableViewCell {
         seenImageView.image = Presets.init().seenImage
         seenImageView.tintColor = Presets.init().vkLightGray
         
-        likeImageView.tintColor = .red
+        likeImageView.tintColor = Presets.init().vkLightGray
         let isLikedTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         likeImageView.isUserInteractionEnabled = true
         likeImageView.addGestureRecognizer(isLikedTapGestureRecognizer)
         
         delimetrView.backgroundColor = Presets.init().vkLightGray
+        postImages?.forEach({$0.isHidden = true})
+        
+//        postTextView = nil
         
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+    }
+    
+    override func prepareForReuse() {
+        
+        postImages?.forEach({   $0.image = nil;
+                                $0.isUserInteractionEnabled = false;
+                                $0.isHidden = true})
+        
+        
+//        postTextView?.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+//        postTextView?.isHidden = true
     }
     
     @objc func likeTapped() {
@@ -117,26 +140,26 @@ class NewsFeedCell: UITableViewCell {
         
         likeImageView.layer.add(group, forKey: nil)
         
-        if isLiked == true {
-            
-            likeCount -= 1
-            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromBottom) { [ self ] in
-                likeCountLabel.text = String(describing: likeCount!)
-                }
-            likeImage = Presets.init().heartImage
-            
-            
-        } else if isLiked == false {
-            
-            likeCount += 1
-            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromTop) { [ self ] in
-                likeCountLabel.text = String(describing: likeCount!)
-                }
-//            likeCountLabel.text = String(describing: likeCount!)
-            likeImage = Presets.init().heartFillImage
-        }
-        
-        isLiked.toggle()
+//        if isLiked == true {
+//
+//            likeCount -= 1
+//            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromBottom) { [ self ] in
+//                likeCountLabel.text = String(describing: likeCount!)
+//                }
+//            likeImage = Presets.init().heartImage
+//
+//
+//        } else if isLiked == false {
+//
+//            likeCount += 1
+//            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromTop) { [ self ] in
+//                likeCountLabel.text = String(describing: likeCount!)
+//                }
+////            likeCountLabel.text = String(describing: likeCount!)
+//            likeImage = Presets.init().heartFillImage
+//        }
+//
+//        isLiked.toggle()
+//    }
     }
-    
 }
