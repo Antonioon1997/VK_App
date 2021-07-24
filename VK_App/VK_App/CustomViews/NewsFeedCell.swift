@@ -9,12 +9,10 @@ import UIKit
 
 class NewsFeedCell: UITableViewCell {
     
+    @IBOutlet var firstStack: UIStackView!
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
-//    @IBOutlet var postLabel: UILabel?
-//    @IBOutlet var moreImagesView: UIView!
-//    @IBOutlet var moreImagesCount: UILabel!
     @IBOutlet var postImages: [UIImageView]?
     @IBOutlet var likeImageView: UIImageView!
     @IBOutlet var likeCountLabel: UILabel!
@@ -27,15 +25,8 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet var delimetrView: UIView!
     @IBOutlet var postTextView: UITextView?
     
-//    var isLiked: Bool!
-//    var indexPath: IndexPath!
-//
-//    var likeCount: Int!
-//
-//    var likeImage: UIImage! {
-//        get { likeImageView.image }
-//        set { likeImageView.image = newValue}
-//    }
+    var postPhotos: [UIImageView]?
+    
     
     let identifire = "FooterView"
     
@@ -45,6 +36,7 @@ class NewsFeedCell: UITableViewCell {
         super.awakeFromNib()
         
         postImages?.forEach({$0.backgroundColor = .clear})
+        postImages?.forEach({$0.layer.cornerRadius = 2.5})
         
         avatarImage.layer.cornerRadius = avatarImage.layer.bounds.height/2
         avatarImage.clipsToBounds = true
@@ -96,9 +88,7 @@ class NewsFeedCell: UITableViewCell {
         seenImageView.tintColor = Presets.init().vkLightGray
         
         likeImageView.tintColor = Presets.init().vkLightGray
-        let isLikedTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         likeImageView.isUserInteractionEnabled = true
-        likeImageView.addGestureRecognizer(isLikedTapGestureRecognizer)
         
         delimetrView.backgroundColor = Presets.init().vkLightGray
         postImages?.forEach({$0.isHidden = true})
@@ -123,43 +113,11 @@ class NewsFeedCell: UITableViewCell {
 //        postTextView?.isHidden = true
     }
     
-    @objc func likeTapped() {
-        
-        
-        let scale = CABasicAnimation(keyPath: "transform.scale")
-        scale.fromValue = 1
-        scale.toValue = 2
-        
-        let disappear = CABasicAnimation(keyPath: "opacity")
-        disappear.fromValue = 1
-        disappear.toValue = 0
-        
-        let group = CAAnimationGroup()
-        group.animations = [scale, disappear]
-        group.duration = 0.25
-        
-        likeImageView.layer.add(group, forKey: nil)
-        
-//        if isLiked == true {
+//    func setupFeedLayout (_ count: Int) -> [UIImageView] {
 //
-//            likeCount -= 1
-//            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromBottom) { [ self ] in
-//                likeCountLabel.text = String(describing: likeCount!)
-//                }
-//            likeImage = Presets.init().heartImage
+//        switch count{
+//        case 1:
+//            postPhotos?.append(<#T##newElement: UIImageView##UIImageView#>)
 //
-//
-//        } else if isLiked == false {
-//
-//            likeCount += 1
-//            UIView.transition(with: likeCountLabel, duration: 0.4, options: .transitionFlipFromTop) { [ self ] in
-//                likeCountLabel.text = String(describing: likeCount!)
-//                }
-////            likeCountLabel.text = String(describing: likeCount!)
-//            likeImage = Presets.init().heartFillImage
-//        }
-//
-//        isLiked.toggle()
 //    }
-    }
 }
