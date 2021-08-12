@@ -12,13 +12,17 @@ class DetailNewsTableViewController: UITableViewController {
 
 //    var currentNews: NewsFeed?
     var currentNewsAttach: Item?
-    var currentNewsAuthor: Group?
+    var currentNewsAuthor: [Group?] = []
+    var authorID: Int?
     var cellTag: Int!
+    var isWidthPhoto = false
+    let countOfComments = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: "NewsFeedCell")
+        self.tableView.register(UINib(nibName: "CommentsTableCell", bundle: nil), forCellReuseIdentifier: "CommentsTableCell")
         self.view.backgroundColor = Presets.init().vkDarkGray
     }
 
@@ -26,77 +30,47 @@ class DetailNewsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 1
+        if section == 0 { return 1 }
+        else { return countOfComments }
     }
-
+    
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let commentsCell = tableView.dequeueReusableCell(withIdentifier: "CommentsTableCell", for: indexPath) as! CommentsTableCell
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
+        
+        
+        if indexPath.section == 0 {
         guard
-            let postAttatch = currentNewsAttach,
-            let postAuthor = currentNewsAuthor,
-            let date = postAttatch.date,
-            let postLikes = currentNewsAttach?.likes?.count,
-            let postResposts = currentNewsAttach?.reposts?.count,
-            let postComments = currentNewsAttach?.comments?.count,
-            let postViews = currentNewsAttach?.views?.count
-        
+            let postAuthID = authorID
         else { return cell }
-        
-        cell.selectionStyle = .none
-
-        
-        let postTimeFormatter = DateFormatter()
-        let postDateFormatter = DateFormatter()
-        postTimeFormatter.dateFormat = "HH:mm"
-        postDateFormatter.dateStyle = .medium
-        postDateFormatter.doesRelativeDateFormatting = true
-        postDateFormatter.locale = Locale(identifier: "ru_RU")
-        
-        let postDate = "\(postDateFormatter.string(from: Date(timeIntervalSince1970: Double(date)))) в \(postTimeFormatter.string(from: Date(timeIntervalSince1970: Double(date))))"
-        
-//        cell.indexPath = indexPath
-        cell.avatarImage.kf.setImage(with: URL(string: postAuthor.photo200 ?? ""))
-        cell.nameLabel.text = postAuthor.name
-        cell.descriptionLabel.text = postDate
-        cell.postTextView?.text = postAttatch.text
-//        if postData.isLiked == true {
-//            cell.likeImageView.image = Presets.init().heartFillImage
-//        } else if postData.isLiked == false {
-//            cell.likeImageView.image = Presets.init().heartImage
-//        }
-        cell.likeCountLabel.text = String(describing: postLikes)
-        cell.shareCountLabel.text = String(describing: postResposts)
-        cell.commentCountLabel.text = String(describing: postComments)
-        cell.seenCountLabel.text = String(describing: postViews)
-        
-//        cell.isLiked = postData.isLiked
-//        cell.likeCount = postData.likeCount
-   
-        guard let count = currentNewsAttach?.attachments?.count,
-              let photos = currentNewsAttach?.attachments
-        else { return cell }
-        
-        for photo in 0..<count {
-            if photos[photo].type == "photo" {
-                cell.postImages?[photo].isHidden = false
-                cell.postImages?[photo].kf.setImage(with: URL(string: photos[photo].photo?.sizes?.last?.url ?? ""))
-                cell.postImages?[photo].tag = photo
-                cell.postImages?[photo].isUserInteractionEnabled = true
-                
-            }
+            
+            cell.setOneAuthor(currentNewsAuthor, postAuthID)
+            cell.setWall(currentNewsAttach, currentNewsAttach?.attachments)
             cell.postImages?.forEach({$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPhotoTapGestureRecognizer)))})
-        }
 
-        cell.postImages?.forEach({$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPhotoTapGestureRecognizer)))})
-        
-        return cell
+            cell.selectionStyle = .none
+            
+            return cell
+            
+        } else {
+            
+            commentsCell.likeCount.text = "0"
+            commentsCell.likeImage.image = Presets.init().heartImage
+            commentsCell.userAvatar.kf.setImage(with: URL(string: "https://sun9-67.userapi.com/impg/fafvmpfXVZ5qEi759zx9zxyUMwcTsFWXLU45-Q/bE5S_8FRHhQ.jpg?size=2446x2160&quality=96&sign=51a6067bb86ae7a241afdfaabcf452e9&type=album"))
+            commentsCell.userName.text = "Антон Онищенко"
+            commentsCell.comment.text = "К сожалению, запрос комментариев временно недоступен в виду ограниченных прав"
+            commentsCell.commentTime.text = "Временно"
+
+        }
+        return commentsCell
+//        return cell
     }
     
     @objc func openPhotoTapGestureRecognizer (_ sender: UITapGestureRecognizer) {

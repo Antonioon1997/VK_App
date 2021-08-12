@@ -30,6 +30,7 @@ class MyGroupsTableViewController: UITableViewController {
             guard let groups = response else { return }
             try? RealmService.save(items: groups)
             
+            
             self?.tableView.reloadData()
         }
         searchBar.searchTextField.placeholder = "Groups"

@@ -16,13 +16,14 @@ class NewsFeedTableViewController: UITableViewController {
     var postTextTag: Int!
     var photoForFullscreen: UIImageView!
     let networkService = NetworkService()
-    var news = [Response]()
     var newsAttach = [Item?] ()
     var newsAuthor = [Group?] ()
+    var isWidthPhoto = false
 
     
     let postTimeFormatter = DateFormatter()
     let postDateFormatter = DateFormatter()
+    var postDate: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,25 +31,27 @@ class NewsFeedTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: "NewsFeedCell")
        
         self.navigationController?.navigationBar.barTintColor = Presets.init().vkDarkGray
+        networkService.getPermission()
         
         
         self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 5))
         self.tableView.contentInset = UIEdgeInsets(top: -5, left: 0, bottom: 0, right: 0)
         
         networkService.getNews { [weak self] response in
-            guard let newss = response else {return}
-            self?.news = [newss]
-            self?.newsAttach = newss.items.filter({$0?.postType == "post"})
-            self?.newsAuthor = newss.groups
+            guard let groups = response?.groups,
+                  let items = response?.items?.filter({$0.postType != nil})
             
-//            print(self?.news)
-//            print(newss)
-//            print(self?.news.count)
+            else {
+                self?.tableView.reloadData()
+                return }
+            
+            self?.newsAuthor = groups
+            self?.newsAttach = items
+//            let groupsRealm = news.groups.map({VKGroupsRealm{$0}})
+            
             self?.tableView.reloadData()
         }
     }
- 
-   
 }
 
 extension NewsFeedTableViewController {
@@ -61,7 +64,7 @@ extension NewsFeedTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard !news.isEmpty else {return 0}
+        guard !newsAttach.isEmpty else {return 0}
         return newsAttach.count
     }
      
@@ -73,62 +76,18 @@ extension NewsFeedTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
         
         guard
-                let sourceID = newsAttach[indexPath.row]?.sourceID,
-                let postAuth = newsAuthor.filter({$0?.id == -sourceID}).first,
-                let date = newsAttach[indexPath.row]?.date
-            
+            let sourceID = newsAttach[indexPath.row]?.sourceID,
+            let attatchemnts = newsAttach[indexPath.row]
         else { return cell }
+       
+        cell.setOneAuthor(newsAuthor, sourceID)
+        cell.setWall(attatchemnts, attatchemnts.attachments)
         
-        setDateFormat()
-        
-        let postDate = "\(postDateFormatter.string(from: Date(timeIntervalSince1970: Double(date)))) в \(postTimeFormatter.string(from: Date(timeIntervalSince1970: Double(date))))"
-        
-        cell.postTextView?.tag = indexPath.row
         cell.postTextView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedPostText)))
         
-        cell.avatarImage.kf.setImage(with: URL(string: (postAuth?.photo200)!))
-        cell.nameLabel.text = postAuth?.name
-        cell.descriptionLabel.text = postDate
+        cell.postImages?.forEach({$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedPhotoView)))})
         
-        guard let postAttach = newsAttach[indexPath.row]?.attachments?.filter({$0.type != "video"}),
-              let postInfo = newsAttach[indexPath.row],
-              let postLikes = postInfo.likes?.count,
-              let postResposts = postInfo.reposts?.count,
-              let postComments = postInfo.comments?.count,
-              let postViews = postInfo.views?.count
-            
-        else {
-            
-            cell.postTextView?.text = "  Тут видос "
-            return cell
-        }
-//        if postAttach.count == 1 {
-////            cell.firstStack.frame = CGRect (x: 0, y: 0, width: 400, height: 200)
-//            cell.postImages?[0].contentMode = .scaleAspectFit        }
-        
-        for photo in 0..<postAttach.count {
-            if postAttach[photo].type == "photo" {
-                
-                
-                cell.postImages?[photo].isHidden = false
-                cell.postImages?[photo].kf.setImage(with: URL(string: postAttach[photo].photo?.sizes?.last?.url ?? ""))
-                cell.postImages?[photo].contentMode = setContentMode(postAttach[photo].photo?.sizes?.last?.url)
-                cell.postImages?[photo].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedPhotoView)))
-                cell.postImages?[photo].clipsToBounds = false
-            }
-        }
-        
-        if newsAttach[indexPath.row]?.text != nil {
-            
-            cell.postTextView?.sizeToFit()
-            cell.postTextView?.text = newsAttach[indexPath.row]?.text
-        }
-        
-        cell.likeCountLabel.text = String(describing: postLikes)
-        cell.shareCountLabel.text = String(describing: postResposts)
-        cell.commentCountLabel.text = String(describing: postComments)
-        cell.seenCountLabel.text = String(describing: postViews)
-        
+        isWidthPhoto = false
         
         return cell
     }
@@ -141,14 +100,13 @@ extension NewsFeedTableViewController {
     @objc func tappedPhotoView (_ sender: UITapGestureRecognizer,_ photoIndexPath: Int) {
 
         cellTag = sender.view?.tag
-        
         performSegue(withIdentifier: "ShowFullscreenNewsPhoto", sender: nil)
     }
     
     @objc func tappedPostText(_ sender: UITapGestureRecognizer, _ postTextIndexPath: Int) {
+        
         cellTag = sender.view?.tag
         performSegue(withIdentifier: "ShowNewsDetail", sender: self)
-//        postTextTag = po
     }
     
     @objc func showMorePhotos ( sender: UITapGestureRecognizer){
@@ -167,39 +125,10 @@ extension NewsFeedTableViewController {
         } else */if segue.identifier == "ShowNewsDetail",
                   let destination = segue.destination as? DetailNewsTableViewController {
             destination.currentNewsAttach = newsAttach[cellTag]
-            let currentAuthor = newsAuthor.filter({$0?.id == -(newsAttach[cellTag]?.sourceID ?? 0)})
-            destination.currentNewsAuthor = currentAuthor[0]
-            
+            let currentAuthor = newsAuthor
+            destination.currentNewsAuthor = currentAuthor
+            destination.authorID = newsAttach[cellTag]?.sourceID
         }
     }
     
-    func setDateFormat () {
-        
-        postTimeFormatter.dateFormat = "HH:mm"
-        postDateFormatter.dateStyle = .medium
-        postDateFormatter.doesRelativeDateFormatting = true
-        postDateFormatter.locale = Locale(identifier: "ru_RU")
-    }
-    
-    func setContentMode(_ photoURL: String?) -> UIView.ContentMode {
-        
-        let photoResolution = photoURL?.components( separatedBy: "=")[1]
-                                       .components(separatedBy: "&")[0]
-                                       .components(separatedBy: "x")
-        
-        guard let photoWidth = Double(photoResolution![0]),
-              let photoHeight = Double(photoResolution![1])
-        else { return .scaleAspectFill }
-        print(photoWidth)
-        print(photoHeight)
-        
-        switch photoWidth / photoHeight {
-        case 0.6...1:
-            return .scaleToFill
-        case 1.001...2:
-            return .redraw
-        default:
-            return .scaleToFill
-        }
-    }
 }

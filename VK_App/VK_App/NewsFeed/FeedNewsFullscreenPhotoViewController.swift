@@ -16,9 +16,7 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
     
     let animationDuration = 0.4
     let animationQueueTime = 0.37
-    var photosFromNews: NewsFeed?
-    var photos = [Size] ()
-    var photos2 = [Attachment] ()
+    var photos2 = [Attachments] ()
     var photoIndexPathInt: Int!
     
     override func viewDidLoad() {
@@ -28,7 +26,7 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
         currentPhoto.isUserInteractionEnabled = true
 
         guard     photoIndexPathInt != nil,
-                  let photo = photos2[photoIndexPathInt].photo?.sizes?.last?.url
+                  let photo = photos2[photoIndexPathInt].photo?.photo1280 ?? photos2[photoIndexPathInt].photo?.photo807
             else { return  }
         currentPhoto.kf.setImage(with: URL(string: photo))
     }
@@ -36,7 +34,7 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
     @IBAction func previousPhotoSwipe(_ sender: UISwipeGestureRecognizer) {
         guard photoIndexPathInt != nil && photoIndexPathInt - 1 >= 0 else { return }
         photoIndexPathInt -= 1
-      guard let photo = self.photos2[self.photoIndexPathInt].photo?.sizes?.last?.url
+      guard let photo = self.photos2[photoIndexPathInt].photo?.photo1280 ?? photos2[photoIndexPathInt].photo?.photo807
         else {
         return }
         currentPhoto.slideOut(to: .right) { _ in
@@ -61,7 +59,8 @@ class FeedNewsFullscreenPhotoViewController: UIViewController {
             
                 
         photoIndexPathInt += 1
-        guard let photo = self.photos2[self.photoIndexPathInt].photo?.sizes?.last?.url
+        guard let photo = self.photos2[photoIndexPathInt].photo?.photo1280 ?? photos2[photoIndexPathInt].photo?.photo807
+        
         else {
             return }
         currentPhoto.slideOut(to: .left) { _ in

@@ -305,6 +305,7 @@
                         <outlet property="searchBar" destination="eAi-nt-r0V" id="AaQ-Fc-crM"/>
                         <outlet property="searchBarButtom" destination="fHw-Wl-PT6" id="Bq3-8Q-GGb"/>
                         <segue destination="vNt-rd-53A" kind="show" identifier="ShowFriendPhotos" id="LNZ-R3-P1F"/>
+                        <segue destination="KmX-Vj-mlB" kind="show" identifier="ShowFriendScreen" id="a5B-sa-Mg7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vif-WX-EFK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -376,6 +377,35 @@
                 <exit id="Bkf-uZ-lw2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4313" y="1521"/>
+        </scene>
+        <!--Friend Screen Table View Controller-->
+        <scene sceneID="pFD-bE-u2C">
+            <objects>
+                <tableViewController id="KmX-Vj-mlB" customClass="FriendScreenTableViewController" customModule="VK_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fvR-2W-gE8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jB2-Lg-OBj">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jB2-Lg-OBj" id="Wri-uk-gGH">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KmX-Vj-mlB" id="7pr-D3-poL"/>
+                            <outlet property="delegate" destination="KmX-Vj-mlB" id="W0s-tv-NAV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Uj8-9j-e5t"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ioV-f3-jqb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4313" y="88"/>
         </scene>
         <!--Photos-->
         <scene sceneID="Wlr-Mh-EyC">

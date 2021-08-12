@@ -22,12 +22,13 @@ class VKLoginViewController: UIViewController{
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: "7859693"),
+            URLQueryItem(name: "client_id", value: "7861219"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: "336918"),
+//            URLQueryItem(name: "scope", value: "336918"),
+            URLQueryItem(name: "scope", value: "notify, friends, photos, audio, video, stories, pages, pages, notes, wall, ads, offline, docs, groups, notifications, stats, email, market"),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.130")
+            URLQueryItem(name: "v", value: "5.60")
     ]
         return urlComponents
     }()

@@ -51,6 +51,7 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
             else { return }
             try? RealmService.save(items: data)
             self.observeRealm()
+            self.friendsData = try? RealmService.load(typeOf: VKUserRealm.self)
         }
         tableView.backgroundColor = Presets.init().vkDarkGray
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
@@ -102,7 +103,7 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
         Session.instance.userID = String(id)
         indexPaths = indexPath
         
-        self.performSegue(withIdentifier: "ShowFriendPhotos", sender: self)
+        self.performSegue(withIdentifier: "ShowFriendScreen", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,6 +112,11 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
             guard let currentFriends = friendsData?[indexPaths.row] else { return }
             segueDestination.photoOwnersName = "\(currentFriends.firstName) \(currentFriends.lastName)"
             //            segueDestination.photoOwnersName = fullName
+        }
+        else if segue.identifier == "ShowFriendScreen",
+                let segueDestination = segue.destination as? FriendScreenTableViewController {
+            guard let friendID = friendsData?[indexPaths.row].id else { return }
+            segueDestination.userID = friendID
         }
     }
     
