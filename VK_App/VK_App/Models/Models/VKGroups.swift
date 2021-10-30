@@ -13,6 +13,7 @@ struct VKGroups: Codable {
     let id: Int
     let name: String
     let avatar: String
+    let isMember: Int
 }
 extension VKGroups {
     
@@ -21,5 +22,6 @@ extension VKGroups {
         case id = "id"
         case name = "name"
         case avatar = "photo_200"
+        case isMember = "is_member"
     }
 }

@@ -15,7 +15,7 @@ class MyGroupsTableViewController: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     private var searchBarIsActive: Bool!
-    var groupsData = try? RealmService.load(typeOf: VKGroupsRealm.self)
+    var groupsData = try? RealmService.load(typeOf: VKGroupsRealm.self).filter("isMember == 1")
     var token: NotificationToken?
     
     
@@ -26,9 +26,10 @@ class MyGroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkServise.getGroups(Session.instance.myID, "1", "", "", "", "50") { [weak self] response in
+        networkServise.getGroups(Session.instance.myID, "1", "", "is_member", "", "50") { [weak self] response in
             guard let groups = response else { return }
             try? RealmService.save(items: groups)
+            
             
             self?.tableView.reloadData()
         }
@@ -71,6 +72,8 @@ class MyGroupsTableViewController: UITableViewController {
         guard let groups = groupsData?[indexPath.row] else { return cell }
         cell.avatarImage.kf.setImage(with: URL(string: groups.avatar))
         cell.nameLabel.text = groups.name
+        cell.messageButton.isHidden = true
+        cell.callButton.isHidden = true
        
         
         return cell
