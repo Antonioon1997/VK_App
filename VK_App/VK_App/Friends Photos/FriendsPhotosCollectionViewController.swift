@@ -19,6 +19,7 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
     private let networkService = NetworkService()
     var indexPaths: IndexPath!
     var photoOwnersName: String = ""
+    var token: NotificationToken?
     
 
     override func viewDidLoad() {
@@ -72,5 +73,23 @@ class FriendsPhotosCollectionViewController: UICollectionViewController {
             segueDestination.indexPaths = photoCellIndexPath.row
             
         }
+    }
+    
+    private func observeRealm() {
+        token = photoData?.observe({ changes in
+            switch changes {
+            case .initial(let results):
+                if results.count > 0 {
+                    self.collectionView.reloadData()
+                }
+                
+            case let .update(results, deletions, insertions, modifications):
+                print(results, deletions, insertions, modifications)
+//                self.collectionView.reloadData()
+                
+            case .error(let error):
+                print(error)
+            }
+        })
     }
 }
