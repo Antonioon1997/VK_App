@@ -10,6 +10,10 @@
 		30F0FAB0480A6EB9DB123654 /* Pods_VK_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA145BACA0E154EB539C84AA /* Pods_VK_App.framework */; };
 		F411368B26863FD90064E698 /* VKNewsFullModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411368A26863FD90064E698 /* VKNewsFullModel.swift */; };
 		F41CE428267A4B1200F4FAB8 /* VKSearchUserReam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE427267A4B1200F4FAB8 /* VKSearchUserReam.swift */; };
+		F41F14572729681E00426CE4 /* NewsFeedTextMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F14552729681E00426CE4 /* NewsFeedTextMain.swift */; };
+		F41F14582729681E00426CE4 /* NewsFeedTextMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41F14562729681E00426CE4 /* NewsFeedTextMain.xib */; };
+		F41F1463272C46AF00426CE4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F1461272C46AF00426CE4 /* TableViewCell.swift */; };
+		F41F1464272C46AF00426CE4 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41F1462272C46AF00426CE4 /* TableViewCell.xib */; };
 		F435B2EA26B56CB00017FBDF /* VKUsersFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435B2E926B56CB00017FBDF /* VKUsersFriends.swift */; };
 		F435B2ED26B571540017FBDF /* ProfileFriendsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435B2EB26B571540017FBDF /* ProfileFriendsCollectionCell.swift */; };
 		F435B2EE26B571540017FBDF /* ProfileFriendsCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F435B2EC26B571540017FBDF /* ProfileFriendsCollectionCell.xib */; };
@@ -38,8 +42,13 @@
 		F47D05C82667BF7900D2C163 /* VKUserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D05C72667BF7900D2C163 /* VKUserRealm.swift */; };
 		F47D05CE2667D3AA00D2C163 /* VKGroupsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D05CD2667D3AA00D2C163 /* VKGroupsRealm.swift */; };
 		F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */; };
+		F4847AED26C91E56007C74F9 /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4847AEC26C91E56007C74F9 /* SideBarViewController.swift */; };
 		F48EA6ED261C86A300E1CBD9 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48EA6EC261C86A300E1CBD9 /* NewsFeedTableViewController.swift */; };
 		F4922ECF262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4922ECE262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift */; };
+		F4936BC72727FACA0002039C /* NewsFeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4936BC52727FACA0002039C /* NewsFeedHeaderCell.swift */; };
+		F4936BC82727FACA0002039C /* NewsFeedHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4936BC62727FACA0002039C /* NewsFeedHeaderCell.xib */; };
+		F4936BCB272959890002039C /* NewsFeedFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4936BC9272959890002039C /* NewsFeedFooterCell.swift */; };
+		F4936BCC272959890002039C /* NewsFeedFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4936BCA272959890002039C /* NewsFeedFooterCell.xib */; };
 		F494A1F82614F21E0058DC78 /* FullscreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494A1F72614F21E0058DC78 /* FullscreenPhotoViewController.swift */; };
 		F494A1FC2615B8DC0058DC78 /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494A1FB2615B8DC0058DC78 /* MyGroupsTableViewController.swift */; };
 		F494A2082615BA5C0058DC78 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494A2062615BA5C0058DC78 /* CustomCell.swift */; };
@@ -70,6 +79,10 @@
 		7126F9BCC2C410FBF2E5ABC0 /* Pods-VK_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_App.debug.xcconfig"; path = "Target Support Files/Pods-VK_App/Pods-VK_App.debug.xcconfig"; sourceTree = "<group>"; };
 		F411368A26863FD90064E698 /* VKNewsFullModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKNewsFullModel.swift; sourceTree = "<group>"; };
 		F41CE427267A4B1200F4FAB8 /* VKSearchUserReam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKSearchUserReam.swift; sourceTree = "<group>"; };
+		F41F14552729681E00426CE4 /* NewsFeedTextMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTextMain.swift; sourceTree = "<group>"; };
+		F41F14562729681E00426CE4 /* NewsFeedTextMain.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedTextMain.xib; sourceTree = "<group>"; };
+		F41F1461272C46AF00426CE4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		F41F1462272C46AF00426CE4 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		F435B2E926B56CB00017FBDF /* VKUsersFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUsersFriends.swift; sourceTree = "<group>"; };
 		F435B2EB26B571540017FBDF /* ProfileFriendsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendsCollectionCell.swift; sourceTree = "<group>"; };
 		F435B2EC26B571540017FBDF /* ProfileFriendsCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileFriendsCollectionCell.xib; sourceTree = "<group>"; };
@@ -98,8 +111,13 @@
 		F47D05C72667BF7900D2C163 /* VKUserRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUserRealm.swift; sourceTree = "<group>"; };
 		F47D05CD2667D3AA00D2C163 /* VKGroupsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroupsRealm.swift; sourceTree = "<group>"; };
 		F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsTableViewController.swift; sourceTree = "<group>"; };
+		F4847AEC26C91E56007C74F9 /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		F48EA6EC261C86A300E1CBD9 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
 		F4922ECE262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewsFullscreenPhotoViewController.swift; sourceTree = "<group>"; };
+		F4936BC52727FACA0002039C /* NewsFeedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedHeaderCell.swift; sourceTree = "<group>"; };
+		F4936BC62727FACA0002039C /* NewsFeedHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedHeaderCell.xib; sourceTree = "<group>"; };
+		F4936BC9272959890002039C /* NewsFeedFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedFooterCell.swift; sourceTree = "<group>"; };
+		F4936BCA272959890002039C /* NewsFeedFooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedFooterCell.xib; sourceTree = "<group>"; };
 		F494A1F72614F21E0058DC78 /* FullscreenPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenPhotoViewController.swift; sourceTree = "<group>"; };
 		F494A1FB2615B8DC0058DC78 /* MyGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableViewController.swift; sourceTree = "<group>"; };
 		F494A2062615BA5C0058DC78 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
@@ -162,6 +180,14 @@
 			children = (
 				F44986252618C68F0091D3DC /* NewsFeedCell.swift */,
 				F44986262618C68F0091D3DC /* NewsFeedCell.xib */,
+				F4936BC52727FACA0002039C /* NewsFeedHeaderCell.swift */,
+				F4936BC62727FACA0002039C /* NewsFeedHeaderCell.xib */,
+				F41F14552729681E00426CE4 /* NewsFeedTextMain.swift */,
+				F41F14562729681E00426CE4 /* NewsFeedTextMain.xib */,
+				F41F1461272C46AF00426CE4 /* TableViewCell.swift */,
+				F41F1462272C46AF00426CE4 /* TableViewCell.xib */,
+				F4936BC9272959890002039C /* NewsFeedFooterCell.swift */,
+				F4936BCA272959890002039C /* NewsFeedFooterCell.xib */,
 			);
 			name = NewsFeedCells;
 			sourceTree = "<group>";
@@ -186,6 +212,15 @@
 				F464F9F026BEB7C90078372A /* VKAllPhotosRealm.swift */,
 			);
 			path = RealmModels;
+			sourceTree = "<group>";
+		};
+		F4847AE926C91E28007C74F9 /* SideBar */ = {
+			isa = PBXGroup;
+			children = (
+				F4847AEC26C91E56007C74F9 /* SideBarViewController.swift */,
+			);
+			name = SideBar;
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		F48C11C6266FCCC5004E286F /* Models */ = {
@@ -233,9 +268,9 @@
 				F494A2072615BA5C0058DC78 /* CustomCell.xib */,
 				F4C63E5D2678E3F6008FD7E0 /* UsersListCell.swift */,
 				F4C63E5E2678E3F6008FD7E0 /* UsersListCell.xib */,
-				F435B2FF26BA39F00017FBDF /* NewsFeedCells */,
 				F4C67CB326B15F590021C7D2 /* CommentsTableCell.swift */,
 				F4C67CB426B15F590021C7D2 /* CommentsTableCell.xib */,
+				F435B2FF26BA39F00017FBDF /* NewsFeedCells */,
 				F4C67CD726B402BB0021C7D2 /* ProfileCells */,
 			);
 			path = CustomCells;
@@ -300,6 +335,7 @@
 				F4D68DA426137121001E1DFC /* Main.storyboard */,
 				F4D68DA026137121001E1DFC /* SceneDelegate.swift */,
 				F449860A261626FC0091D3DC /* Presets.swift */,
+				F4847AE926C91E28007C74F9 /* SideBar */,
 				F494A20B2615BB7F0058DC78 /* CustomCells */,
 				F4D68DB42613740B001E1DFC /* Login Screen */,
 				F4D68DBB2614CFB5001E1DFC /* Friends */,
@@ -402,11 +438,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F435B2FA26B945B10017FBDF /* ProfilePhotosPrewievTableCell.xib in Resources */,
+				F4936BC82727FACA0002039C /* NewsFeedHeaderCell.xib in Resources */,
 				F4C67CDB26B402FF0021C7D2 /* ProfileHeadTableCell.xib in Resources */,
+				F41F14582729681E00426CE4 /* NewsFeedTextMain.xib in Resources */,
+				F4936BCC272959890002039C /* NewsFeedFooterCell.xib in Resources */,
 				F494A2092615BA5C0058DC78 /* CustomCell.xib in Resources */,
 				F435B2F626B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.xib in Resources */,
 				F435B2EE26B571540017FBDF /* ProfileFriendsCollectionCell.xib in Resources */,
 				F44986282618C68F0091D3DC /* NewsFeedCell.xib in Resources */,
+				F41F1464272C46AF00426CE4 /* TableViewCell.xib in Resources */,
 				F4D68DA826137122001E1DFC /* Assets.xcassets in Resources */,
 				F4C63E602678E3F6008FD7E0 /* UsersListCell.xib in Resources */,
 				F4C67CB626B15F590021C7D2 /* CommentsTableCell.xib in Resources */,
@@ -466,6 +506,7 @@
 				F435B2F926B945B10017FBDF /* ProfilePhotosPrewievTableCell.swift in Sources */,
 				F435B2FC26B9471B0017FBDF /* VKUserProfileRealm.swift in Sources */,
 				F4D68DA326137121001E1DFC /* LoginScreenViewController.swift in Sources */,
+				F4936BC72727FACA0002039C /* NewsFeedHeaderCell.swift in Sources */,
 				F464F9EF26BC019E0078372A /* GetAppPermission.swift in Sources */,
 				F435B2F226B6FB320017FBDF /* VKGetMutualFriends.swift in Sources */,
 				F47D05C82667BF7900D2C163 /* VKUserRealm.swift in Sources */,
@@ -475,12 +516,14 @@
 				F4D68D9F26137121001E1DFC /* AppDelegate.swift in Sources */,
 				F449860B261626FC0091D3DC /* Presets.swift in Sources */,
 				F4B1CFAD265BDBC100556FB1 /* NetworkService.swift in Sources */,
+				F41F14572729681E00426CE4 /* NewsFeedTextMain.swift in Sources */,
 				F4D68DB92614CFAD001E1DFC /* FriendsTableViewController.swift in Sources */,
 				F464F9F126BEB7C90078372A /* VKAllPhotosRealm.swift in Sources */,
 				F4C63E5F2678E3F6008FD7E0 /* UsersListCell.swift in Sources */,
 				F44834F8265C1FC600611596 /* VKResponse.swift in Sources */,
 				F411368B26863FD90064E698 /* VKNewsFullModel.swift in Sources */,
 				F435B2F026B589950017FBDF /* VKUSersPhotos.swift in Sources */,
+				F4936BCB272959890002039C /* NewsFeedFooterCell.swift in Sources */,
 				F4394B0126564BB300CDFDB7 /* Session.swift in Sources */,
 				F4D472D22614D6CD005C9254 /* VKFriend.swift in Sources */,
 				F41CE428267A4B1200F4FAB8 /* VKSearchUserReam.swift in Sources */,
@@ -502,8 +545,10 @@
 				F4922ECF262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift in Sources */,
 				F47D05CE2667D3AA00D2C163 /* VKGroupsRealm.swift in Sources */,
 				F494A2082615BA5C0058DC78 /* CustomCell.swift in Sources */,
+				F4847AED26C91E56007C74F9 /* SideBarViewController.swift in Sources */,
 				F4C67CDF26B4277A0021C7D2 /* FriendScreenTableViewController.swift in Sources */,
 				F44986272618C68F0091D3DC /* NewsFeedCell.swift in Sources */,
+				F41F1463272C46AF00426CE4 /* TableViewCell.swift in Sources */,
 				F45D710C265EC0C700571A14 /* VKGroups.swift in Sources */,
 				F48EA6ED261C86A300E1CBD9 /* NewsFeedTableViewController.swift in Sources */,
 				F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */,

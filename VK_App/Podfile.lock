@@ -6,6 +6,7 @@ PODS:
   - Realm/Headers (10.8.0-beta.2)
   - RealmSwift (10.8.0-beta.2):
     - Realm (= 10.8.0-beta.2)
+  - SideMenu (6.5.0)
   - SimpleAnimation (0.4.2)
   - SwiftyJSON (5.0.1)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - Alamofire
   - Kingfisher (~> 6.0.0)
   - RealmSwift (= 10.8.0-beta.2)
+  - SideMenu
   - SimpleAnimation
   - SwiftyJSON
 
@@ -22,6 +24,7 @@ SPEC REPOS:
     - Kingfisher
     - Realm
     - RealmSwift
+    - SideMenu
     - SimpleAnimation
     - SwiftyJSON
 
@@ -30,9 +33,10 @@ SPEC CHECKSUMS:
   Kingfisher: adde87a4f74f6a3845395769354efff593581740
   Realm: 4072ee8275054abad62be9713004a4d58b198783
   RealmSwift: 24e4781aff3283259323f0301956bcd175f7f96a
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SimpleAnimation: 5430010b9548f392e7459290acce01c9ceba7171
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: b6ddb70b4baad543253a4db7d95e59f00c48de23
+PODFILE CHECKSUM: 7b3072c418d445fbc1ed57c5ad0e43749b654d94
 
 COCOAPODS: 1.10.1

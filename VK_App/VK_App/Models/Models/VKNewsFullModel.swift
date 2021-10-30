@@ -1,6 +1,6 @@
 
 
-struct Welcome: Decodable {
+struct VKNews: Decodable {
     let response: Response
 }
 
@@ -23,10 +23,9 @@ struct Group: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id
-        case name
+        case name, type
         case screenName = "screen_name"
         case isClosed = "is_closed"
-        case type
         case photo50 = "photo_50"
         case photo100 = "photo_100"
         case photo200 = "photo_200"
@@ -37,12 +36,11 @@ struct Item: Decodable {
     let sourceID, date,  postID: Int?
     let topicID: Int?
     let postType, text: String?
-    
     let attachments: [Attachments]?
     let comments: Comments?
     let likes: Likes?
     let reposts: Reposts?
-    
+
     enum CodingKeys: String, CodingKey {
         case sourceID = "source_id"
         case topicID = "topic_id"
@@ -65,21 +63,31 @@ struct Attachments: Decodable {
 }
 
 struct Photo: Decodable {
-    let albumID, date, id, ownerID, height, width, postID: Int?
-    let accessKey, photo75, text: String?
-    let photo604, photo807, photo1280: String?
+    let albumID, date, id, ownerID, postID: Int?
+    let accessKey, text: String?
+    let sizes: [Sizes]
+    
     
     enum CodingKeys: String, CodingKey {
         case albumID = "album_id"
         case ownerID = "owner_id"
         case postID = "post_id"
-        case date, id, height, width
+        case date, id
         case accessKey = "access_key"
-        case photo75 = "photo_75"
-        case photo604 = "photo_604"
-        case photo807 = "photo_807"
-        case photo1280 = "photo1_280"
         case text
+        case sizes
+    }
+}
+
+struct Sizes: Decodable {
+    
+    let height, width: Int?
+    let url, type: String?
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case height, width
+        case url, type
     }
 }
 

@@ -65,4 +65,8 @@ public struct Presets {
         
         return postDate
     }
+    
+    func photoAnimationDissapear(_ image: UIImageView, photoURL: String) {
+    
+    }
 }

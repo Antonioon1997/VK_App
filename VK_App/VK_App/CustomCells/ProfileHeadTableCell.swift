@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
+import Kingfisher
 
 class ProfileHeadTableCell: UITableViewCell {
     
     @IBOutlet var userAvatarImageView: UIImageView!
     @IBOutlet var userNameLabel: UILabel!
-    @IBOutlet var userStatusLabel: UILabel?
+    @IBOutlet var userStatusLabel: UILabel!
     @IBOutlet var isOnlineLabel: UILabel!
     @IBOutlet var messageButton: UIButton!
     @IBOutlet var callButton: UIButton!
@@ -34,20 +36,15 @@ class ProfileHeadTableCell: UITableViewCell {
     @IBOutlet var subscribersStackView: UIStackView!
     @IBOutlet var additionalStackView: UIStackView!
 
-    
     let presets = Presets()
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-        
-        
-        
         self.backgroundColor = Presets.init().vkDarkGray
         
-        userAvatarImageView.layer.cornerRadius = userAvatarImageView.layer.bounds.height/2
+        userAvatarImageView.layer.cornerRadius = userAvatarImageView.layer.bounds.height / 2
         userAvatarImageView.clipsToBounds = true
         
         userNameLabel.tintColor = presets.profileNameTitleColor
@@ -69,8 +66,6 @@ class ProfileHeadTableCell: UITableViewCell {
         sendMoneyButton.setImage(UIImage(named: "Деньги"), for: .normal)
         sendGiftButton.setImage(UIImage(named: "Подарок"), for: .normal)
         setNotificationsButton.setImage(UIImage(named: "Уведомления"), for: .normal)
-
-//        cityLabel.textColor = presets.occupationTitleColor
         
         occupationImageView.tintColor = presets.occupationTitleColor
         
@@ -83,6 +78,58 @@ class ProfileHeadTableCell: UITableViewCell {
         additionalInfoLabel.font = presets.standartLabelFont
         additionalInfoLabel.textColor = presets.profileNameTitleColor
         additionalInfoLabel.text = "Подробная информация"
+        
+        cityStackView.isHidden = true
+        occupationStackView.isHidden = true
+        subscribersStackView.isHidden = true
+        
+    }
+    
+    override func prepareForReuse() {
+        
+        cityStackView.isHidden = true
+        occupationStackView.isHidden = true
+        subscribersStackView.isHidden = true
+        
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+}
+
+extension ProfileHeadTableCell {
+    
+    func setUserHeadCell(_ data: Results<VKUserProfileRealm>?) {
+        
+        guard let user = data?.first else { return }
+        
+        let username = user.firstName + " " + user.lastName
+        let userPhoto = user.photo400Orig ?? user.photo200Orig ?? user.photo200 ?? user.photo50 ?? ""
+        var onlineStatus: String
+        var pronoun: String
+
+        if user.sex == 0 { pronoun = "Был в сети " }
+        else { pronoun = "Была в сети " }
+        
+        if user.isOnline == 0 { onlineStatus = pronoun + presets.setDateFormat(user.lastSeen) }
+        else { onlineStatus = "В сети" }
+            
+        userAvatarImageView.kf.setImage(with: URL(string: userPhoto))
+        userNameLabel.text = username
+        userStatusLabel.text = user.status
+        isOnlineLabel.text = onlineStatus
+        
+        setTable(user.occupationType ?? "", user.occupationName ?? "", user.followersCount, user.cityTitle)
+    }
+    
+    func setTextColorAndFont(_ nameLabel: [UILabel], _ occupationLabel: [UILabel?], _ isOnlineLabel: [UILabel], _ otherLabel: [UILabel]) {
+        
+        nameLabel.forEach({$0.textColor = presets.profileNameTitleColor; $0.font = presets.nameLabelFont})
+        occupationLabel.forEach({$0?.textColor = presets.occupationTitleColor; $0?.font = presets.occupationLabelFont})
+        isOnlineLabel.forEach({$0.textColor = presets.isOnlineTitleColor; $0.font = presets.occupationLabelFont})
         
     }
     
@@ -98,7 +145,8 @@ class ProfileHeadTableCell: UITableViewCell {
             occupationImageView.image = UIImage(named: "Work")
             occupationLabel.text = "Место работы: \(occupationText)"
 //            case "school"
-        case "":
+        case "", nil:
+            occupationStackView.isHidden = true
             return
         default:
             occupationStackView.isHidden = false
@@ -121,37 +169,7 @@ class ProfileHeadTableCell: UITableViewCell {
             cityImageView.image = UIImage(named: "City")
             cityLabel.text = "Город: \(cityTitle)"
         }
-        
-        
     }
-    
-    
-    
-    
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    func setTextColorAndFont(_ nameLabel: [UILabel], _ occupationLabel: [UILabel?], _ isOnlineLabel: [UILabel], _ otherLabel: [UILabel]) {
-        
-        nameLabel.forEach({$0.textColor = presets.profileNameTitleColor; $0.font = presets.nameLabelFont})
-        occupationLabel.forEach({$0?.textColor = presets.occupationTitleColor; $0?.font = presets.occupationLabelFont})
-        isOnlineLabel.forEach({$0.textColor = presets.isOnlineTitleColor; $0.font = presets.occupationLabelFont})
-        
-    }
-    
-    override func prepareForReuse() {
-        
-        cityStackView.isHidden = true
-        occupationStackView.isHidden = true
-        subscribersStackView.isHidden = true
-        
-    }
-    
-    
 }
 
 

@@ -153,7 +153,7 @@ class NetworkService{
         
         let parameters: Parameters = [
             "access_token" : Session.instance.token,
-            "v" : Session.instance.appVersion,
+            "v" : "5.81",
             "filter" : "post",
             "return_banned" : "0",
             "max_photos" : "9",
@@ -161,7 +161,7 @@ class NetworkService{
             "count" : "100"
         ]
         
-        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: Welcome.self) { response in
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: VKNews.self) { response in
             switch response.result {
             case .success(let vkResponce):
                 completion(vkResponce.response)
@@ -381,7 +381,7 @@ class NetworkService{
             "count" : "100"
         ]
         
-        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: Welcome.self) { response in
+        AF.request(url, method: .get, parameters: parameters).responseDecodable(of: VKNews.self) { response in
             switch response.result {
             case .success(let vkResponce):
                 completion(vkResponce.response)

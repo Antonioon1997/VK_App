@@ -34,11 +34,10 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
         
         searchBar.backgroundColor = .clear
         searchBar.searchTextField.backgroundColor = Presets.init().vkLightGray
-        searchBar.placeholder = "Search friends"
+        searchBar.placeholder = "Поиск"
         searchBar.delegate = self
         searchBarButtom.image = UIImage(systemName: "magnifyingglass")
         self.tabBarController?.delegate = self
-//        networkServise.getNews()
         
         navigationController?.navigationBar.barTintColor = .clear
         networkServise.getFriends(  Session.instance.myID,

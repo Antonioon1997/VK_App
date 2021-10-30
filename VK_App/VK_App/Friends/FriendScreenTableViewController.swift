@@ -15,7 +15,8 @@ class FriendScreenTableViewController: UITableViewController {
     let presets = Presets()
     var user: VKUser?
     var userRealm: Results<VKUserProfileRealm>?
-    var userID: Int!
+    var userID: Int?
+    let myID = Int(Session.instance.myID)!
     var userFriends: [VKUsersFriendsItems]?
 //    var usersPhotos: [VKUsersPhotosItems]?
     var mutualFriends: [Int]?
@@ -47,35 +48,35 @@ class FriendScreenTableViewController: UITableViewController {
 //        networkService.getAllPhotosRealm(userID, "0", "", "200", "0", "0", "0", "1") { [weak self] response in
 //            print(response)
 //        }
-        networkService.getAllPhotosRealm(userID, "", "", "0", "0", "1") { [weak self] response in
+        networkService.getAllPhotosRealm((userID ?? myID), "", "", "0", "0", "1") { [weak self] response in
             try? RealmService.save(items: response)
             self?.observeRealm()
             self?.tableView.reloadData()
             
         }
 
-        networkService.getUserRealm(userID) { [weak self] response in
+        networkService.getUserRealm(userID ?? myID) { [weak self] response in
             guard
                 let self = self
             else { return }
             try? RealmService.save(items: response)
             
             self.observeRealm()
-            self.userRealm = try? RealmService.load(typeOf: VKUserProfileRealm.self).filter("id == %i", (Int(Session.instance.userID)) ?? 0)
+            self.userRealm = try? RealmService.load(typeOf: VKUserProfileRealm.self).filter("id == %i", self.userID ?? self.myID)
             self.tableView.reloadData()
 
         }
         
-        networkService.getMutualFriends(Session.instance.myID, userID, "", "", 1000, "") { [weak self] response in
+        networkService.getMutualFriends(Session.instance.myID, userID ?? 0, "", "", 1000, "") { [weak self] response in
             guard let mutualFriendsResp = response.response else { return }
             self?.mutualFriends = mutualFriendsResp
     }
-        networkService.getUsersFriends(userID, "", "", "500", "nickname, domain, sex, photo_50, photo_100, photo_200_orig, online", "nom", "") { [weak self] response in
+        networkService.getUsersFriends(userID ?? myID, "", "", "500", "nickname, domain, sex, photo_50, photo_100, photo_200_orig, online", "nom", "") { [weak self] response in
             self?.userFriends = response
 
             self!.tableView.reloadData()
         }
-        networkService.getWall(userID) { [weak self] response in
+        networkService.getWall(userID ?? myID) { [weak self] response in
             self?.wall = response
         }
         
@@ -106,31 +107,12 @@ class FriendScreenTableViewController: UITableViewController {
         let headCell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeadTableCell", for: indexPath) as! ProfileHeadTableCell
         let friendsScrollCell = tableView.dequeueReusableCell(withIdentifier: "FriendsScrollCollectionTableCellTableViewCell", for: indexPath) as! FriendsScrollCollectionTableCellTableViewCell
         let photoPreviewCell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotosPrewievTableCell", for: indexPath) as! ProfilePhotosPrewievTableCell
-//
         let wallCell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
         
         if indexPath.section == 0 {
         
-        guard let userHeadInfo = userRealm?.first else { return headCell }
-        headCell.userAvatarImageView.kf.setImage(with: URL(string: userHeadInfo.photo400Orig ?? userHeadInfo.photo200Orig ?? userHeadInfo.photo200 ?? userHeadInfo.photo100 ?? ""))
-            headCell.userNameLabel.text = "\(userHeadInfo.firstName) \(userHeadInfo.lastName)"
-        headCell.userStatusLabel?.text = userHeadInfo.status ?? ""
-        headCell.setTable(userHeadInfo.occupationType ?? "", userHeadInfo.occupationName ?? "", userHeadInfo.followersCount, userHeadInfo.cityTitle)
-        if userHeadInfo.isOnline == 0 {
-            if userHeadInfo.sex == 2 {
-                pronoun = "Был "
-            }
-            else  {
-                pronoun = "Была "
-            }
-            headCell.isOnlineLabel.text = pronoun + presets.setDateFormat(userHeadInfo.lastSeen).lowercased()
-        } else { headCell.isOnlineLabel.text = "В сети" }
-        headCell.userStatusLabel?.text = userHeadInfo.status
-        setTitle(userHeadInfo.domain)
-        
-        return headCell
-            
-            
+            headCell.setUserHeadCell(userRealm)
+            return headCell
     }
         else if indexPath.section == 1 {
             
@@ -163,8 +145,8 @@ class FriendScreenTableViewController: UITableViewController {
         
         return photoPreviewCell
         }
-        wallCell.setOneUserAuthor(userRealm?.first)
-        wallCell.setWall(wall?.items?[indexPath.row], wall?.items?[indexPath.row].attachments)
+//        wallCell.setOneUserAuthor(userRealm?.first)
+        wallCell.setWall(wall?.items?[indexPath.row], wall?.items?[indexPath.row].attachments, indexPath)
         return wallCell
     }
 

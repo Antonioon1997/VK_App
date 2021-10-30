@@ -14,13 +14,13 @@ import RealmSwift
 class NewsFeedCell: UITableViewCell {
     
     @IBOutlet var firstStack: UIStackView!
-    @IBOutlet var avatarImage: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var descriptionLabel: UILabel!
-    
+//    @IBOutlet var avatarImage: UIImageView!
+//    @IBOutlet var nameLabel: UILabel!
+//    @IBOutlet var descriptionLabel: UILabel!
+//
     @IBOutlet var postImages: [UIImageView]?
     
-    @IBOutlet var videoView: UIView?
+    @IBOutlet var videoView: UIView!
     @IBOutlet var likeImageView: UIImageView!
     @IBOutlet var likeCountLabel: UILabel!
     @IBOutlet var commentImageView: UIImageView!
@@ -43,54 +43,44 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet var tenPhotos: [UIImageView]?
     @IBOutlet var allImageViews: [UIImageView]!
     @IBOutlet var widthPhotos: [UIImageView]?
-    @IBOutlet var secondAuthorStackView: UIStackView!
-    @IBOutlet var secondAuthorNameLabel: UILabel!
-    @IBOutlet var secondAuthorTimeLabel: UILabel!
-    @IBOutlet var secondAuthorAvatarImageView: UIImageView!
+//    @IBOutlet var secondAuthorStackView: UIStackView!
+//    @IBOutlet var secondAuthorNameLabel: UILabel!
+//    @IBOutlet var secondAuthorTimeLabel: UILabel!
+//    @IBOutlet var secondAuthorAvatarImageView: UIImageView!
     
     var isWidthPhoto = false
     let presets = Presets()
     
+  
     
-    
-    var playerLayer: AVPlayerLayer {
-        return layer as! AVPlayerLayer
-    }
-    private var playerItemContext = 0
-
-    // Keep the reference and use it to observe the loading status.
-    private var playerItem: AVPlayerItem?
-    
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.backgroundColor = Presets.init().vkDarkGray
         
-        secondAuthorStackView.isHidden = true
-        videoView?.isHidden = true
+//        secondAuthorStackView.isHidden = true
         allImageViews?.forEach({$0.backgroundColor = .clear})
         allImageViews?.forEach({$0.layer.cornerRadius = 2.5})
         allImageViews?.forEach({$0.isHidden = true})
         
-        avatarImage.layer.cornerRadius = avatarImage.layer.bounds.height/2
-        avatarImage.clipsToBounds = true
-        
-        nameLabel.font = Presets.init().standartLabelFont
-        nameLabel.textColor = .white
-        
-        descriptionLabel.font = Presets.init().descriptionLabelFont
-        descriptionLabel.textColor = .lightGray
-        
-        secondAuthorAvatarImageView.layer.cornerRadius = avatarImage.layer.bounds.height/2
-        secondAuthorAvatarImageView.clipsToBounds = true
-        
-        secondAuthorNameLabel.font = Presets.init().standartLabelFont
-        secondAuthorNameLabel.textColor = .white
-        
-        secondAuthorTimeLabel.font = Presets.init().descriptionLabelFont
-        secondAuthorTimeLabel.textColor = .lightGray
+//        avatarImage.layer.cornerRadius = avatarImage.layer.bounds.height/2
+//        avatarImage.clipsToBounds = true
+//
+//        nameLabel.font = Presets.init().standartLabelFont
+//        nameLabel.textColor = .white
+//
+//        descriptionLabel.font = Presets.init().descriptionLabelFont
+//        descriptionLabel.textColor = .lightGray
+//
+//        secondAuthorAvatarImageView.layer.cornerRadius = avatarImage.layer.bounds.height/2
+//        secondAuthorAvatarImageView.clipsToBounds = true
+//
+//        secondAuthorNameLabel.font = Presets.init().standartLabelFont
+//        secondAuthorNameLabel.textColor = .white
+//
+//        secondAuthorTimeLabel.font = Presets.init().descriptionLabelFont
+//        secondAuthorTimeLabel.textColor = .lightGray
         
         postTextView?.backgroundColor = .clear
         postTextView?.textColor = .white
@@ -135,7 +125,7 @@ class NewsFeedCell: UITableViewCell {
                                 $0.isHidden = true})
         postImages?.removeAll()
         allImageViews.forEach({$0.isHidden = true})
-        secondAuthorStackView.isHidden = true
+//        secondAuthorStackView.isHidden = true
         videoView?.isHidden = true
     }
     
@@ -168,36 +158,36 @@ class NewsFeedCell: UITableViewCell {
 
 extension NewsFeedCell {
     
-    func setOneAuthor(_ postAuthor: [Group?], _ postAuthID: Int) {
-       
-        guard let author = postAuthor.filter({$0?.id == -postAuthID})[0] else { return }
-        avatarImage.kf.setImage(with: URL(string: author.photo50))
-        nameLabel.text = author.name
-    }
+//    func setOneAuthor(_ postAuthor: [Group?], _ postAuthID: Int) {
+//
+//        guard let author = postAuthor.filter({$0?.id == -postAuthID})[0] else { return }
+//        avatarImage.kf.setImage(with: URL(string: author.photo50))
+//        nameLabel.text = author.name
+//    }
+//
+//    func setOneUserAuthor(_ postAuthor: VKUserProfileRealm?) {
+//
+//        guard let author = postAuthor else { return }
+//        let userName = author.firstName + " " + author.lastName
+//        avatarImage.kf.setImage(with: URL(string: author.photo50 ?? ""))
+//        nameLabel.text = userName
+//    }
+//
+//    func setTwoAuthor(_ postAuthor: [Group?], _ postAuthID: Int , postUser: Results<VKUserProfileRealm>?) {
+//
+//        guard let group = postAuthor.filter({$0?.id == postAuthID})[0],
+//              let user = postUser?[0]
+//        else { return }
+//        secondAuthorStackView.isHidden = false
+//        avatarImage.kf.setImage(with: URL(string: user.photo100 ?? user.photo50 ?? ""))
+//        let userName = user.firstName + " " + user.lastName
+//        nameLabel.text = userName
+//
+//        secondAuthorAvatarImageView.kf.setImage(with: URL(string: group.photo50))
+//        secondAuthorNameLabel.text = group.name
+//    }
     
-    func setOneUserAuthor(_ postAuthor: VKUserProfileRealm?) {
-       
-        guard let author = postAuthor else { return }
-        let userName = author.firstName + " " + author.lastName
-        avatarImage.kf.setImage(with: URL(string: author.photo50 ?? ""))
-        nameLabel.text = userName
-    }
-    
-    func setTwoAuthor(_ postAuthor: [Group?], _ postAuthID: Int , postUser: Results<VKUserProfileRealm>?) {
-       
-        guard let group = postAuthor.filter({$0?.id == postAuthID})[0],
-              let user = postUser?[0]
-        else { return }
-        secondAuthorStackView.isHidden = false
-        avatarImage.kf.setImage(with: URL(string: user.photo100 ?? user.photo50 ?? ""))
-        let userName = user.firstName + " " + user.lastName
-        nameLabel.text = userName
-        
-        secondAuthorAvatarImageView.kf.setImage(with: URL(string: group.photo50))
-        secondAuthorNameLabel.text = group.name
-    }
-    
-    func setWall(_ items : Item?, _ attatchments: [Attachments]?) {
+    func setWall(_ items : Item?, _ attatchments: [Attachments]?,_ indexPath: IndexPath) {
         guard let item = items,
               let attatch = attatchments else { return }
         
@@ -206,7 +196,7 @@ extension NewsFeedCell {
             if attatch[photo].type == "photo"
                
                {
-                let postPhoto = attatch[photo].photo?.photo1280 ?? attatch[photo].photo?.photo807 ?? attatch[photo].photo?.photo604 ?? attatch[photo].photo?.photo75
+                let postPhoto = attatch[photo].photo?.sizes.last?.url
                 
                 if photo == 0 && isWidthPhoto == true {
                     setupFeedLayout(0)
@@ -215,14 +205,20 @@ extension NewsFeedCell {
                 postImages?[photo].isHidden = false
                 postImages?[photo].kf.setImage(with: URL(string: postPhoto ?? ""))
                 postImages?[photo].contentMode = setContentMode(postPhoto)
+                postImages?[photo].tag = indexPath.row * 10 + photo
+                postImages?[photo].isUserInteractionEnabled = true
             }
             else if attatch[photo].type == "video" {
-                guard
-                let videoImage = attatch[photo].video?.photo800 ?? attatch[photo].video?.photo320
+//                videoView.isHidden = false
+//                playVideo("https://youtu.be/UF7O4P3h-hA")
+                guard let videoImage = attatch[photo].video?.photo800 ?? attatch[photo].video?.photo320
                 else { return }
                 setupFeedLayout(0)
                 postImages?[0].isHidden = false
                 postImages?[0].kf.setImage(with: URL(string: videoImage))
+                
+                
+                
             }
         }
             if item.text != nil {
@@ -231,10 +227,10 @@ extension NewsFeedCell {
                 postTextView?.text = item.text
             }
             guard let date = item.date else {
-                descriptionLabel.text = ""
+//                descriptionLabel.text = ""
                 return
             }
-            descriptionLabel.text = presets.setDateFormat(date)
+//            descriptionLabel.text = presets.setDateFormat(date)
             guard
                 let likes = item.likes?.count,
                 let reposts = item.reposts?.count,
@@ -272,4 +268,6 @@ extension NewsFeedCell {
             return .scaleAspectFill
         }
     }
+    
+    
 }

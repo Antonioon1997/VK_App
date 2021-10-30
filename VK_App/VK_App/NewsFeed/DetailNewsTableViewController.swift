@@ -51,8 +51,8 @@ class DetailNewsTableViewController: UITableViewController {
             let postAuthID = authorID
         else { return cell }
             
-            cell.setOneAuthor(currentNewsAuthor, postAuthID)
-            cell.setWall(currentNewsAttach, currentNewsAttach?.attachments)
+//            cell.setOneAuthor(currentNewsAuthor, postAuthID)
+            cell.setWall(currentNewsAttach, currentNewsAttach?.attachments, indexPath)
             cell.postImages?.forEach({$0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPhotoTapGestureRecognizer)))})
 
             cell.selectionStyle = .none
