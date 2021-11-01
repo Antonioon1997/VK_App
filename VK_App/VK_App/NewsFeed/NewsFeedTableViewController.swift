@@ -6,133 +6,179 @@
 //
 
 import UIKit
+import AVKit
+import SideMenu
 
 class NewsFeedTableViewController: UITableViewController {
+    
+    var sideMenu: SideMenuNavigationController?
     
     var indexPathForPhoto: IndexPath!
     var cellTag: Int!
     var imageTag: Int!
+    var postTextTag: Int!
     var photoForFullscreen: UIImageView!
+    let networkService = NetworkService()
+    var newsAttach = [Item?] ()
+    var newsAuthor = [Group?] ()
+    var isWidthPhoto = false
+    let appDelegate = AppDelegate()
     
-    var newsPosts = [
-        NewsFeed(authorName: "Reddit", authorDescription: "Russia moment", authorAvatar: UIImage(named: "Reddit"), postText: "Russia moment", postImages: [UIImage(named: "Reddit.post.1"), UIImage(named: "Reddit.post.2")], isLiked: true, likeCount: 10898, commentCount: 1311, shareCount: 1028, seenCount: 170000),
-        NewsFeed(authorName: "Reddit", authorDescription: "17 минут назад", authorAvatar: UIImage(named: "Reddit"), postText: "bruh", postImages: [UIImage(named: "Reddit.post.2")], isLiked: false, likeCount: 142, commentCount: 31, shareCount: 123, seenCount: 41231),
-        NewsFeed(authorName: "Reddit", authorDescription: "34 минуты назад", authorAvatar: UIImage(named: "Reddit"), postText: "Zoom Eternal", postImages: [UIImage(named: "Reddit.post.3")], isLiked: false, likeCount: 923, commentCount: 572, shareCount: 4234, seenCount: 43242),
-        NewsFeed(authorName: "Вижу рифмы", authorDescription: "2 часа назад", authorAvatar: UIImage(named: "Вижу рифмы"), postText: "Как-то неуклюже \nЗаурчал животик", postImages: [UIImage(named: "Вижу рифмы.post.1")], isLiked: true, likeCount: 13, commentCount: 442, shareCount: 32, seenCount: 33222),
-        NewsFeed(authorName: "Zлой Zаяй", authorDescription: "3 дня назад", authorAvatar: UIImage(named: "Zлой Zаяц"), postText: "Тоже самое с котами и хозяевами", postImages: [UIImage(named: "Zлой Zаяц.post.1")], isLiked: false, likeCount: 323, commentCount: 123, shareCount: 324, seenCount: 14523),
-        NewsFeed(authorName: "Вижу рифмы", authorDescription: "Вчера в 17:33", authorAvatar: UIImage(named: "Вижу рифмы"), postText: nil, postImages: [UIImage(named: "Вижу рифмы.post.2"), UIImage(named: "Вижу рифмы.post.2.2"), UIImage(named: "Вижу рифмы.post.2.3"), UIImage(named: "Вижу рифмы.post.2.4"), UIImage(named: "Вижу рифмы.post.2.5"), UIImage(named: "Вижу рифмы.post.2.6"), UIImage(named: "Вижу рифмы.post.2.7"), UIImage(named: "Вижу рифмы.post.2.8")], isLiked: true, likeCount: 323, commentCount: 529, shareCount: 19, seenCount: 23332),
-        NewsFeed(authorName: "Zлой Zаяц", authorDescription: "Сегодня в 11:14", authorAvatar: UIImage(named: "Zлой Zаяц"), postText: "Пранк замедленного действия", postImages:[UIImage(named: "Zлой Zаяц.post.2")], isLiked: true, likeCount: 749, commentCount: 35, shareCount: 15, seenCount: 27395),
-        NewsFeed(authorName: "Reddit", authorDescription: "13.03.2021", authorAvatar: UIImage(named: "Reddit"), postText: "fact-checked", postImages: [UIImage(named: "Reddit.post.4")], isLiked: false, likeCount: 313, commentCount: 73, shareCount: 9, seenCount: 3132)
-        ]
-
+    var photoNumber = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        appDelegate.didLoadedFirstScreen = true
+        
+        self.tableView.rowHeight = UITableView.automaticDimension
         
         self.tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: "NewsFeedCell")
-       
+        self.tableView.register(UINib(nibName: "NewsFeedHeaderCell", bundle: nil), forCellReuseIdentifier: "NewsFeedHeaderCell")
+        self.tableView.register(UINib(nibName: "NewsFeedFooterCell", bundle: nil), forCellReuseIdentifier: "NewsFeedFooterCell")
+        self.tableView.register(UINib(nibName: "NewsFeedTextMain", bundle: nil), forCellReuseIdentifier: "NewsFeedTextMain")
+        self.tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
+        
+        
         self.navigationController?.navigationBar.barTintColor = Presets.init().vkDarkGray
         
+        sideMenu = SideMenuNavigationController(rootViewController: SideBarViewController())
+        sideMenu?.setSidebar(sideMenu, self.view)
         
         self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: 5))
         self.tableView.contentInset = UIEdgeInsets(top: -5, left: 0, bottom: 0, right: 0)
         
+        Thread { [self] in
+            networkService.getNews { [weak self] response in
+                guard let groups = response?.groups,
+                      let items = response?.items?.filter({$0.postType != nil})
+                        
+                else {
+                    self?.tableView.reloadData()
+                    return }
+                
+                self?.newsAuthor = groups
+                self?.newsAttach = items
+                
+                self?.tableView.reloadData()
+            }
+        }.start()
     }
+}
 
-    // MARK: - Table view data source
+extension NewsFeedTableViewController {
+    
+    // MARK: - Rows settings
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 1
+        guard !newsAttach.isEmpty else { return 0}
+        return 50
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return newsPosts.count
+        return 2
     }
-     
-    //MARK: - Cell View
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 70
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 1 {
+            guard !newsAttach.isEmpty,
+                  let picWidth = newsAttach[indexPath.section]?.attachments?[0].photo?.sizes.last?.width,
+                  let picHeigth =  newsAttach[indexPath.section]?.attachments?[0].photo?.sizes.last?.height
+                    
+            else { return 0 }
+            let ratio =  CGFloat(picWidth) / CGFloat(picHeigth)
+            return tableView.frame.width / ratio }
+        else if indexPath.row == 0 && newsAttach[indexPath.section]?.text == "" || newsAttach[indexPath.section]?.text == nil {
+            return 0
+        }
+        return UITableView.automaticDimension
+        
+    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    //MARK: - Rows Data Source
+    
+    
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedHeaderCell") as! NewsFeedHeaderCell
+        
+        guard !newsAttach.isEmpty,
+              let ownerID = newsAttach[section]?.sourceID,
+              let ownerData = newsAuthor.filter({ $0?.id == -ownerID }).first,
+              let posDate = newsAttach[section]?.date
+        else { return headerCell }
+        
+        headerCell.avatarImageView.kf.setImage(with: URL(string: ownerData?.photo200 ?? ownerData?.photo100 ?? ownerData?.photo50 ?? ""))
+        headerCell.ownerNameLabel.text = ownerData?.name
+        headerCell.dateLabel.text = Presets.init().setDateFormat(posDate)
+        
+        return headerCell
+    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
-
-        let postData = newsPosts[indexPath.row]
         
-        cell.selectionStyle = .none
-
-        cell.indexPath = indexPath
+        let textCell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedTextMain") as! NewsFeedTextMain
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
         
-        cell.avatarImage.image = postData.authorAvatar
-        cell.nameLabel.text = postData.authorName
-        cell.descriptionLabel.text = postData.authorDescription
-        cell.postLabel?.text = postData.postText
-        if postData.isLiked == true {
-            cell.likeImageView.image = Presets.init().heartFillImage
-        } else if postData.isLiked == false {
-            cell.likeImageView.image = Presets.init().heartImage
-        }
-        cell.likeCountLabel.text = String(describing: postData.likeCount!)
-        cell.commentCountLabel.text = String(describing: postData.commentCount!)
-        cell.shareCountLabel.text = String(describing: postData.shareCount!)
-        cell.seenCountLabel.text = String(describing: postData.seenCount!)
+        guard  !newsAttach.isEmpty,
+               let postData = newsAttach[indexPath.section] else { return textCell }
         
-        cell.isLiked = postData.isLiked
-        cell.likeCount = postData.likeCount
-   
-        cell.postImages?.forEach({$0.tag = indexPath.row})
-        
-        for image in 0...postData.postImages.count - 1  {
-           
-            if image <= 3 {
-                cell.postImages?[image].tag = indexPath.row
-                cell.postImages?[image].isHidden = false
-                cell.postImages?[image].image = postData.postImages[image]
-                cell.postImages?[image].addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                                    action: #selector(openPhotoTapGestureRecognizer)))
-            } else {
-                cell.moreImagesCount.isHidden = false
-                cell.moreImagesView.isHidden = false
-                cell.postImages?[3].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showMorePhotos)))
-                cell.postImages?[3].alpha = 0.5
-                cell.moreImagesCount?.text = "+\(postData.postImages.count - 4)"
-                
-                break
-            }
-        }
-        
-        return cell
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cellTag = indexPath.row
-        performSegue(withIdentifier: "ShowNewsDetail", sender: self)
-    }
-   
-    @objc func openPhotoTapGestureRecognizer ( sender: UITapGestureRecognizer, photoIndexPath: Int) {
-
-        cellTag = sender.view?.tag
-        imageTag = photoIndexPath
-        performSegue(withIdentifier: "ShowFullscreenNewsPhoto", sender: nil)
-    }
-    
-    @objc func showMorePhotos ( sender: UITapGestureRecognizer){
-        
-        cellTag = sender.view?.tag
-        performSegue(withIdentifier: "ShowNewsDetail", sender: self)
-    }
-    
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "ShowFullscreenNewsPhoto",
-           let destination = segue.destination as? FeedNewsFullscreenPhotoViewController
-           {
-            destination.photosFromNews = newsPosts[cellTag]
-            destination.photoIndexPathInt = 0
-        } else if segue.identifier == "ShowNewsDetail",
-                  let destination = segue.destination as? DetailNewsTableViewController {
-            destination.currentNews = newsPosts[cellTag]
+        if indexPath.row == 1 {
+            cell.firstImageView.kf.setImage(with: URL(string: (postData.attachments?[photoNumber].photo?.sizes.last?.url ?? "")))
             
+            return cell
         }
+        
+        textCell.newsFeedText.text = postData.text
+        return textCell
     }
-   
+    
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerCell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedFooterCell") as! NewsFeedFooterCell
+        
+        guard !newsAttach.isEmpty,
+              newsAttach[section]?.likes?.count != nil,
+              let footerData = newsAttach[section],
+              let likesCount = footerData.likes?.count,
+              let isLiked = footerData.likes?.userLikes,
+              let commentsCount = footerData.comments?.count,
+              let shareCount = footerData.reposts?.count
+        else {
+            
+            footerCell.isHidden = true
+            return footerCell
+        }
+        
+        footerCell.likeCountLabel.text = "\(likesCount)"
+        footerCell.commentCountLabel.text = "\(commentsCount)"
+        footerCell.shareCountLabel.text = "\(shareCount)"
+        if isLiked == 1 {
+            footerCell.likeImageView.tintColor = .red
+        } else { footerCell.likeImageView.tintColor = Presets.init().vkLightGray }
+        
+        return footerCell
+    }
+    
+    
+    //MARK: - Actions
+    
+    @IBAction func openSidebar () {
+        
+        present(sideMenu!, animated: true)
+    }
+    
 }
+
+

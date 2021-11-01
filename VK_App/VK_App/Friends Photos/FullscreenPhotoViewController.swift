@@ -11,7 +11,7 @@ import Kingfisher
 
 class FullscreenPhotoViewController: UIViewController {
     
-    var photoData = try? RealmService.load(typeOf: VKPhotosRealm.self).filter("ownerID == %i", (Int(Session.instance.userID)) ?? 0)
+    var photoData = try? RealmService.load(typeOf: VKPhotosRealm.self).filter("ownerID == %i", (Int(Session.instance.userID)) ?? Session.instance.myID)
     @IBOutlet var currentPhoto: UIImageView!
     @IBOutlet var nextPhoto: UIImageView!
     var indexPaths: Int!

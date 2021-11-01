@@ -13,6 +13,7 @@ class VKGroupsRealm: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var avatar: String = ""
+    @objc dynamic var isMember: Int = 0
     
     override class func primaryKey() -> String? {
         return "id"
@@ -27,5 +28,6 @@ extension VKGroupsRealm {
         id = groups.id
         name = groups.name
         avatar = groups.avatar
+        isMember = groups.isMember
     }
 }
