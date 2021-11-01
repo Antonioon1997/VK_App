@@ -34,17 +34,12 @@ class DetailNewsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 { return 1 }
-        else { return countOfComments }
+        if section == 0 { return 1 } else { return countOfComments }
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let commentsCell = tableView.dequeueReusableCell(withIdentifier: "CommentsTableCell", for: indexPath) as! CommentsTableCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
-        
         
         if indexPath.section == 0 {
         guard

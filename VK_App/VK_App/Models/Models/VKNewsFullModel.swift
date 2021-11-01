@@ -1,5 +1,3 @@
-
-
 struct VKNews: Decodable {
     let response: Response
 }
@@ -33,7 +31,8 @@ struct Group: Decodable {
 }
 
 struct Item: Decodable {
-    let sourceID, date,  postID: Int?
+    let sourceID, date, postID: Int?
+    var owner: Group?
     let topicID: Int?
     let postType, text: String?
     let attachments: [Attachments]?
@@ -46,7 +45,7 @@ struct Item: Decodable {
         case topicID = "topic_id"
         case postType = "post_type"
         case postID = "post_id"
-        case text, date, attachments, comments, likes, reposts
+        case text, date, attachments, comments, likes, reposts, owner
     }
 }
 
@@ -66,7 +65,6 @@ struct Photo: Decodable {
     let albumID, date, id, ownerID, postID: Int?
     let accessKey, text: String?
     let sizes: [Sizes]
-    
     
     enum CodingKeys: String, CodingKey {
         case albumID = "album_id"
@@ -116,13 +114,11 @@ struct Video: Decodable {
         case photo800 = "photo_800"
         case photo1280 = "photo_1280"
         case ownerID = "owner_id"
-        case width, height, id , views, title
+        case width, height, id, views, title
         case trackCode = "track_code"
         
     }
 }
-
-
 
 struct Comments: Decodable {
     let count, canPost: Int?

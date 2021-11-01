@@ -36,21 +36,17 @@ extension VKNewsJSON {
     }
 }
 
-
-//struct Comments {
+// struct Comments {
 //    let count: Int
 //    let canPost: Int
 //    
 //    
-//}
-//extension Comments {
+// }
+// extension Comments {
 //    init(_ json: JSON){
 //        let count = json["count"].intValue
 //        let canPost = json["can_post"].intValue
 //        
 //        self.init(count:count, canPost: canPost)
 //    }
-//}
-
-
-
+// }

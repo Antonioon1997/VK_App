@@ -85,7 +85,7 @@ class VKUserProfileRealm: Object {
 }
 extension VKUserProfileRealm {
     
-    convenience init (_ user: VKUser){
+    convenience init (_ user: VKUser) {
         self.init()
         firstName = user.firstName
         lastName = user.lastName
@@ -140,10 +140,4 @@ extension VKUserProfileRealm {
         cityTitle = user.city?.title ?? ""
         
     }
-//    convenience init (_ time: LastSeen) {
-//        self.init()
-//        platform = time.platform
-//        lastSeen = time.time
-//
-//    }
 }

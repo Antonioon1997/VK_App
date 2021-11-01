@@ -8,6 +8,7 @@ PODS:
     - Realm (= 10.8.0-beta.2)
   - SideMenu (6.5.0)
   - SimpleAnimation (0.4.2)
+  - SwiftLint (0.45.0)
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - RealmSwift (= 10.8.0-beta.2)
   - SideMenu
   - SimpleAnimation
+  - SwiftLint
   - SwiftyJSON
 
 SPEC REPOS:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - RealmSwift
     - SideMenu
     - SimpleAnimation
+    - SwiftLint
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -35,8 +38,9 @@ SPEC CHECKSUMS:
   RealmSwift: 24e4781aff3283259323f0301956bcd175f7f96a
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SimpleAnimation: 5430010b9548f392e7459290acce01c9ceba7171
+  SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 7b3072c418d445fbc1ed57c5ad0e43749b654d94
+PODFILE CHECKSUM: eb824573a5da65b19c07c0eaf191d8241275c718
 
 COCOAPODS: 1.10.1

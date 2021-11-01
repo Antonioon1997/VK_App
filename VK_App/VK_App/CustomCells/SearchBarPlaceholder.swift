@@ -16,6 +16,5 @@ class SearchBarPlaceholder: UIView {
     override class func awakeFromNib() {
         super.awakeFromNib()
         
-        
     }
 }

@@ -5,7 +5,7 @@
 //  Created by Антон Онищенко on 24.05.2021.
 //
 
-struct VKItems <T:Codable>: Codable {
+struct VKItems <T: Codable>: Codable {
     
     let count: Int
     let items: [T]

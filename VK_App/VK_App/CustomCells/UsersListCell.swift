@@ -8,12 +8,10 @@
 import UIKit
 
 class UsersListCell: UICollectionViewCell {
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
 
 }

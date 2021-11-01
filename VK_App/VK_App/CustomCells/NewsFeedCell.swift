@@ -51,9 +51,6 @@ class NewsFeedCell: UITableViewCell {
     var isWidthPhoto = false
     let presets = Presets()
     
-  
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -120,8 +117,8 @@ class NewsFeedCell: UITableViewCell {
     
     override func prepareForReuse() {
         
-        postImages?.forEach({   $0.image = nil;
-                                $0.isUserInteractionEnabled = false;
+        postImages?.forEach({   $0.image = nil
+                                $0.isUserInteractionEnabled = false
                                 $0.isHidden = true})
         postImages?.removeAll()
         allImageViews.forEach({$0.isHidden = true})
@@ -131,7 +128,7 @@ class NewsFeedCell: UITableViewCell {
     
     func setupFeedLayout (_ count: Int) {
         
-        switch count{
+        switch count {
         case 0:
             postImages = widthPhotos
         case 1...2:
@@ -158,44 +155,13 @@ class NewsFeedCell: UITableViewCell {
 
 extension NewsFeedCell {
     
-//    func setOneAuthor(_ postAuthor: [Group?], _ postAuthID: Int) {
-//
-//        guard let author = postAuthor.filter({$0?.id == -postAuthID})[0] else { return }
-//        avatarImage.kf.setImage(with: URL(string: author.photo50))
-//        nameLabel.text = author.name
-//    }
-//
-//    func setOneUserAuthor(_ postAuthor: VKUserProfileRealm?) {
-//
-//        guard let author = postAuthor else { return }
-//        let userName = author.firstName + " " + author.lastName
-//        avatarImage.kf.setImage(with: URL(string: author.photo50 ?? ""))
-//        nameLabel.text = userName
-//    }
-//
-//    func setTwoAuthor(_ postAuthor: [Group?], _ postAuthID: Int , postUser: Results<VKUserProfileRealm>?) {
-//
-//        guard let group = postAuthor.filter({$0?.id == postAuthID})[0],
-//              let user = postUser?[0]
-//        else { return }
-//        secondAuthorStackView.isHidden = false
-//        avatarImage.kf.setImage(with: URL(string: user.photo100 ?? user.photo50 ?? ""))
-//        let userName = user.firstName + " " + user.lastName
-//        nameLabel.text = userName
-//
-//        secondAuthorAvatarImageView.kf.setImage(with: URL(string: group.photo50))
-//        secondAuthorNameLabel.text = group.name
-//    }
-    
-    func setWall(_ items : Item?, _ attatchments: [Attachments]?,_ indexPath: IndexPath) {
+    func setWall(_ items: Item?, _ attatchments: [Attachments]?, _ indexPath: IndexPath) {
         guard let item = items,
               let attatch = attatchments else { return }
         
         for photo in 0..<attatch.count {
 //
-            if attatch[photo].type == "photo"
-               
-               {
+            if attatch[photo].type == "photo" {
                 let postPhoto = attatch[photo].photo?.sizes.last?.url
                 
                 if photo == 0 && isWidthPhoto == true {
@@ -207,8 +173,7 @@ extension NewsFeedCell {
                 postImages?[photo].contentMode = setContentMode(postPhoto)
                 postImages?[photo].tag = indexPath.row * 10 + photo
                 postImages?[photo].isUserInteractionEnabled = true
-            }
-            else if attatch[photo].type == "video" {
+            } else if attatch[photo].type == "video" {
 //                videoView.isHidden = false
 //                playVideo("https://youtu.be/UF7O4P3h-hA")
                 guard let videoImage = attatch[photo].video?.photo800 ?? attatch[photo].video?.photo320
@@ -217,8 +182,6 @@ extension NewsFeedCell {
                 postImages?[0].isHidden = false
                 postImages?[0].kf.setImage(with: URL(string: videoImage))
                 
-                
-                
             }
         }
             if item.text != nil {
@@ -226,11 +189,7 @@ extension NewsFeedCell {
                 postTextView?.sizeToFit()
                 postTextView?.text = item.text
             }
-            guard let date = item.date else {
-//                descriptionLabel.text = ""
-                return
-            }
-//            descriptionLabel.text = presets.setDateFormat(date)
+        
             guard
                 let likes = item.likes?.count,
                 let reposts = item.reposts?.count,
@@ -243,7 +202,6 @@ extension NewsFeedCell {
             seenCountLabel.text = ""
         }
     
-    
     private func setContentMode(_ photoURL: String?) -> UIView.ContentMode {
         
         guard photoURL?.contains("size") == true,
@@ -255,8 +213,6 @@ extension NewsFeedCell {
         guard let photoWidth = Double(photoResolution[0]),
               let photoHeight = Double(photoResolution[1])
         else { return .scaleAspectFill }
-
-        
         
         switch photoWidth / photoHeight {
         case 0...1:
@@ -268,6 +224,5 @@ extension NewsFeedCell {
             return .scaleAspectFill
         }
     }
-    
     
 }

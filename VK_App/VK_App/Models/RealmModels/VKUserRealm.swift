@@ -22,7 +22,7 @@ class VKUserRealm: Object, Codable {
 }
 extension VKUserRealm {
     
-    convenience init (_ user: VKFriend){
+    convenience init (_ user: VKFriend) {
         self.init()
         firstName = user.firstName
         lastName = user.lastName

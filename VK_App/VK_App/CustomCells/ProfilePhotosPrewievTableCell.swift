@@ -20,11 +20,9 @@ class ProfilePhotosPrewievTableCell: UITableViewCell {
         
         self.backgroundColor = Presets.init().vkDarkGray
         
-        photosImageViews?.forEach({ $0.layer.cornerRadius = 5;
-                                    $0.clipsToBounds = true;
+        photosImageViews?.forEach({ $0.layer.cornerRadius = 5
+                                    $0.clipsToBounds = true
                                     $0.contentMode = .scaleAspectFill})
-  
-        
         
         photosLabel.text = "ФОТОГРАФИИ"
         photosLabel.font = preset.standartLabelFont

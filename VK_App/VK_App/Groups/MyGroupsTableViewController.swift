@@ -18,11 +18,8 @@ class MyGroupsTableViewController: UITableViewController {
     var groupsData = try? RealmService.load(typeOf: VKGroupsRealm.self).filter("isMember == 1")
     var token: NotificationToken?
     
+    // MARK: - Groups Data
     
-    //MARK:- Groups Data
-    
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,16 +27,15 @@ class MyGroupsTableViewController: UITableViewController {
             guard let groups = response else { return }
             try? RealmService.save(items: groups)
             
-            
             self?.tableView.reloadData()
         }
         searchBar.searchTextField.placeholder = "Groups"
-    
+        
         self.navigationItem.titleView = searchBar
         searchBarIsActive = false
-    
+        
         tableView.backgroundColor = Presets.init().vkDarkGray
-
+        
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         
     }
@@ -53,28 +49,27 @@ class MyGroupsTableViewController: UITableViewController {
         super.viewDidLoad()
         
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return groupsData?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-//        guard !groupsData.isEmpty else { return cell }
+        //        guard !groupsData.isEmpty else { return cell }
         guard let groups = groupsData?[indexPath.row] else { return cell }
         cell.avatarImage.kf.setImage(with: URL(string: groups.avatar))
         cell.nameLabel.text = groups.name
         cell.messageButton.isHidden = true
         cell.callButton.isHidden = true
-       
         
         return cell
     }
@@ -82,7 +77,7 @@ class MyGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-
+            
         }
     }
     private func observeRealm() {
@@ -95,14 +90,11 @@ class MyGroupsTableViewController: UITableViewController {
                 
             case let .update(results, deletions, insertions, modifications):
                 print(results, deletions, insertions, modifications)
-//                self.collectionView.reloadData()
                 
             case .error(let error):
                 print(error)
             }
         })
     }
- 
+    
 }
-
-

@@ -11,13 +11,13 @@ import UIKit
 struct VKUserResponse: Decodable {
     let response: [VKUser]
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case response
     }
     
 }
 
-struct VKUser : Decodable {
+struct VKUser: Decodable {
     
     let firstName: String
     let lastName: String
@@ -75,7 +75,6 @@ struct VKUser : Decodable {
     
     let city: City?
     
-    
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case lastName = "last_name"
@@ -126,7 +125,7 @@ struct City: Decodable {
     let id: Int?
     let title: String?
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case id, title
     }
 }
@@ -154,4 +153,3 @@ struct Occupation: Decodable {
         case occupationType = "type"
     }
 }
-

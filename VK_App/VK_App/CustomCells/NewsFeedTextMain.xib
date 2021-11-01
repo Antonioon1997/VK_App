@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="NewsFeed Text 5 - 0 " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XIw-Vc-Tji">
-                        <rect key="frame" x="10" y="10" width="300" height="383"/>
+                        <rect key="frame" x="10" y="10" width="300" height="389"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Pka-TU-Ogu"/>
@@ -28,22 +29,12 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                     </textView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOW-xA-ciT">
-                        <rect key="frame" x="0.0" y="398" width="320" height="1"/>
-                        <color key="backgroundColor" systemColor="labelColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="RBF-Wy-2Uz"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="XIw-Vc-Tji" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="3N0-pp-MEB"/>
                     <constraint firstAttribute="trailing" secondItem="XIw-Vc-Tji" secondAttribute="trailing" constant="10" id="4q5-Ue-4J7"/>
-                    <constraint firstAttribute="trailing" secondItem="qOW-xA-ciT" secondAttribute="trailing" id="Gdr-4H-T3b"/>
-                    <constraint firstItem="qOW-xA-ciT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="K3D-AL-FCR"/>
-                    <constraint firstItem="qOW-xA-ciT" firstAttribute="top" secondItem="XIw-Vc-Tji" secondAttribute="bottom" constant="5" id="QaY-eZ-aeb"/>
                     <constraint firstItem="XIw-Vc-Tji" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Ucq-GC-3Lf"/>
-                    <constraint firstAttribute="bottom" secondItem="qOW-xA-ciT" secondAttribute="bottom" constant="5" id="gmR-n0-iDI"/>
+                    <constraint firstAttribute="bottom" secondItem="XIw-Vc-Tji" secondAttribute="bottom" constant="5" id="z7G-bH-AGE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

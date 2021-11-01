@@ -7,38 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7CEFEBA7-7EF5-4F17-9BA5-834D3AE212CC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/NewsFeed/FeedNewsFullscreenPhotoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "previousPhotoSwipe(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EEBDC4EE-0480-4D09-AFFB-25134DE68E04"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/NewsFeed/FeedNewsFullscreenPhotoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C1F94EC9-536A-439A-BF62-1B81355FCFF2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -71,22 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "92DED38A-4961-455B-B7D0-97C23F0BF835"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/NewsFeed/FeedNewsFullscreenPhotoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "nextPhotoSwipe(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "467A4FB2-1D8F-4A70-9911-F6223AC654AF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -96,8 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
             endingLineNumber = "52"
-            landmarkName = "viewDidAppear(_:)"
-            landmarkType = "7">
+            landmarkName = "MyGroupsTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
             endingLineNumber = "79"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "tableView(_:commit:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

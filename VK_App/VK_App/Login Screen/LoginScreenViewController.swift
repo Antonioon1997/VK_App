@@ -9,7 +9,7 @@ import UIKit
 
 class LoginScreenViewController: UIViewController {
     
-    //MARK: - Outlets for view
+    // MARK: - Outlets for view
     @IBOutlet var loginTextField: UITextField!
     @IBOutlet var passwordTextFiled: UITextField!
     @IBOutlet var forgotPasswordButton: UIButton!
@@ -19,10 +19,8 @@ class LoginScreenViewController: UIViewController {
     @IBOutlet weak var vkLogoPathView: VkLogoDraw!
     @IBOutlet weak var vkLogoFillView: VkLogoDraw!
     
-    
-    
-    let loginTextFieldPlaceholder = NSAttributedString(string: "Enter your email or phone number", attributes: [NSAttributedString.Key.foregroundColor : Presets.init().placeholderLightGray])
-    let passwordTextFieldPlacegolder = NSAttributedString(string: "Enter your password", attributes: [NSAttributedString.Key.foregroundColor : Presets.init().placeholderLightGray])
+    let loginTextFieldPlaceholder = NSAttributedString(string: "Enter your email or phone number", attributes: [NSAttributedString.Key.foregroundColor: Presets.init().placeholderLightGray])
+    let passwordTextFieldPlacegolder = NSAttributedString(string: "Enter your password", attributes: [NSAttributedString.Key.foregroundColor: Presets.init().placeholderLightGray])
     
     let login = ""
     let password = ""
@@ -30,8 +28,7 @@ class LoginScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        //MARK: - Design for login screen
+        // MARK: - Design for login screen
         self.view.backgroundColor = Presets.init().vkDarkGray
         
         loginTextField.backgroundColor = Presets.init().vkGray
@@ -66,7 +63,7 @@ class LoginScreenViewController: UIViewController {
         vkLogoPathView.vkLogoLayer.fillColor = UIColor.clear.cgColor
     }
     
-    //MARK: - Scrolling for keyboard
+    // MARK: - Scrolling for keyboard
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -125,9 +122,8 @@ class LoginScreenViewController: UIViewController {
     @objc func hideKeyboard () {
         self.scrollView?.endEditing(true)
     }
-
     
-    //MARK: - Sign in function
+    // MARK: - Sign in function
     func wrongLoginOrPasswordAnimated() {
         
     }
@@ -135,11 +131,9 @@ class LoginScreenViewController: UIViewController {
     @IBAction func signInPressed(_ sender: UIButton) {
         if passwordTextFiled.text == password && loginTextField.text == login {
             self.performSegue(withIdentifier: "Accccc", sender: self)
-        }
-        else {
+        } else {
             signInButton.setTitle("Wrong login or password", for: .normal)
         }
     }
     
 }
-

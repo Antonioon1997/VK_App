@@ -17,7 +17,6 @@ class NewsFeedHeaderCell: UITableViewCell {
         super.awakeFromNib()
         
         setStyle()
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,5 +37,4 @@ class NewsFeedHeaderCell: UITableViewCell {
         
         self.backgroundColor = Presets.init().vkDarkGray
     }
-    
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct VKUsersPhotos: Decodable {
-    let response : VKUsersPhotosResponse?
+    let response: VKUsersPhotosResponse?
     
     enum CodingKeys: String, CodingKey {
         case response = "response"
@@ -28,8 +28,7 @@ struct VKUsersPhotosResponse: Decodable {
 
 struct VKUsersPhotosItems: Decodable {
     let albumID, date, id, ownerID, height, width, postID: Int?
-    let photo75, photo130, photo604, photo807, photo1280,photo2560, text: String?
-    
+    let photo75, photo130, photo604, photo807, photo1280, photo2560, text: String?
     
     enum CodingKeys: String, CodingKey {
     
@@ -42,6 +41,6 @@ struct VKUsersPhotosItems: Decodable {
     case photo75 = "photo_75"
     case photo807 = "photo_807"
     case postID = "post_id"
-    case height, date, id, text,width
+    case height, date, id, text, width
     }
 }

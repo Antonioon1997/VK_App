@@ -38,8 +38,6 @@ class FriendScreenTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "ProfilePhotosPrewievTableCell", bundle: nil), forCellReuseIdentifier: "ProfilePhotosPrewievTableCell")
         self.tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: "NewsFeedCell")
         
-        
-        
 //        networkService.getUsersPhotos(userID, "profile", "", "1", "", "", "", "", "", "100") { [weak self] response in
 //
 //            guard let photos = response else {return}
@@ -80,8 +78,6 @@ class FriendScreenTableViewController: UITableViewController {
             self?.wall = response
         }
         
-        
-        
     }
 
     // MARK: - Table view data source
@@ -101,20 +97,17 @@ class FriendScreenTableViewController: UITableViewController {
         }
 //        return 1
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let headCell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeadTableCell", for: indexPath) as! ProfileHeadTableCell
-        let friendsScrollCell = tableView.dequeueReusableCell(withIdentifier: "FriendsScrollCollectionTableCellTableViewCell", for: indexPath) as! FriendsScrollCollectionTableCellTableViewCell
+        let friendsScrollCell = tableView.dequeueReusableCell(withIdentifier: "FriendsScrollCollectionTableCellTableViewCell", for: indexPath) as! FriendsScrollCollectionTableViewCell
         let photoPreviewCell = tableView.dequeueReusableCell(withIdentifier: "ProfilePhotosPrewievTableCell", for: indexPath) as! ProfilePhotosPrewievTableCell
-        let wallCell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell", for: indexPath) as! NewsFeedCell
         
         if indexPath.section == 0 {
         
             headCell.setUserHeadCell(userRealm)
             return headCell
-    }
-        else if indexPath.section == 1 {
+    } else if indexPath.section == 1 {
             
             guard let friends = userFriends else {return friendsScrollCell}
             friendsScrollCell.friends = friends
@@ -127,27 +120,22 @@ class FriendScreenTableViewController: UITableViewController {
             
             return friendsScrollCell
         }
-        else if indexPath.section == 2 {
-        
         guard let photos = userPhotos else {return photoPreviewCell}
                 if photos.count < 6 {
                 for photo in 0..<photos.count {
-//                    guard let currentPhoto = photos[photo].url else {return photoPreviewCell}
+                    
                     photoPreviewCell.photosImageViews?[photo].kf.setImage(with: URL(string: photos[photo].url))
                     }
                 } else {
                     for photo in 0...5 {
-//                        guard let currentPhoto = photos[photo].url else {return photoPreviewCell}
+                        
                         photoPreviewCell.photosImageViews?[photo].kf.setImage(with: URL(string: photos[photo].url))
                         }
                 }
         photoPreviewCell.photosCountLabel.text = "\(photos.count)"
         
         return photoPreviewCell
-        }
-//        wallCell.setOneUserAuthor(userRealm?.first)
-        wallCell.setWall(wall?.items?[indexPath.row], wall?.items?[indexPath.row].attachments, indexPath)
-        return wallCell
+        
     }
 
     private func observeRealm() {
@@ -216,6 +204,5 @@ class FriendScreenTableViewController: UITableViewController {
         guard let title = domain else {return}
         self.navigationItem.title = title
     }
-    
 
 }

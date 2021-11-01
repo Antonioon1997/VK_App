@@ -17,25 +17,17 @@ extension Response {
         case response
         
         enum JSONContainer: String, CodingKey {
-            case count = "count"
+            case count
             case vkFriends
             
             enum CodingKeys: String, CodingKey {
-                case firtsName = "frist_name";
-                case lastName = "last_name";
-                case id = "id";
+                case firtsName = "frist_name"
+                case lastName = "last_name"
+                case id = "id"
                 case avatarPhoto = "photo_200_orig"
             
             }
-            
         
     }
-//
-//    enum CodingKeys: String, CodingKey {
-//        case firtsName = "frist_name";
-//        case lastName = "last_name";
-//        case id = "id";
-//        case avatarPhoto = "photo_200_orig"
-//
     }
 }

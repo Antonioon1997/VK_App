@@ -23,7 +23,7 @@ class VKGroupsRealm: Object {
 
 extension VKGroupsRealm {
     
-    convenience init(_ groups: VKGroups){
+    convenience init(_ groups: VKGroups) {
         self.init()
         id = groups.id
         name = groups.name

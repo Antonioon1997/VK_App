@@ -14,5 +14,6 @@ target 'VK_App' do
   pod "SimpleAnimation"
 #  pod 'JSONDecoder'
   pod 'SideMenu'
+  pod 'SwiftLint'
 
 end

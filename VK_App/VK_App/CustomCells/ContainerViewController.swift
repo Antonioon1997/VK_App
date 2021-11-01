@@ -51,7 +51,7 @@ class ContainerViewController: UIViewController, SideBarControllerDelegate {
                             initialSpringVelocity: 0,
                             options: .curveEaseInOut) {
                 self.controller.view.frame.origin.x = self.controller.view.frame.width - 140
-            } completion: { (finished) in
+            } completion: { (_) in
                 //
             }
 
@@ -62,7 +62,7 @@ class ContainerViewController: UIViewController, SideBarControllerDelegate {
                             initialSpringVelocity: 0,
                             options: .curveEaseInOut) {
                 self.controller.view.frame.origin.x = 0
-            } completion: { (finished) in
+            } completion: { (_) in
                 //
             }
             
@@ -75,8 +75,5 @@ class ContainerViewController: UIViewController, SideBarControllerDelegate {
             sideBarIsOpened.toggle()
             showSideBar(sideBarIsOpened)
     }
-    
-        
         
 }
-

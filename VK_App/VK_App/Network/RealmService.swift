@@ -17,20 +17,20 @@
                                  update: Realm.UpdatePolicy = .modified) throws {
          let realm = try Realm(configuration: configuration)
          print(configuration.fileURL ?? "")
-         try realm.write{
+         try realm.write {
              realm.add(items,
                        update: update)
          }
      }
 
-     static func load<T:Object>(typeOf: T.Type) throws -> Results<T> {
+     static func load<T: Object>(typeOf: T.Type) throws -> Results<T> {
          print(Realm.Configuration().fileURL ?? "")
          let realm = try Realm()
          let object = realm.objects(T.self)
          return object
      }
 
-     static func delete<T:Object>(object: Results<T>) throws {
+     static func delete<T: Object>(object: Results<T>) throws {
          let realm = try Realm()
          try realm.write {
              realm.delete(object)

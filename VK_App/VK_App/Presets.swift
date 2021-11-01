@@ -12,7 +12,7 @@ public struct Presets {
     
     let postTimeFormatter = DateFormatter()
     let postDateFormatter = DateFormatter()
-    //MARK: - Colors
+    // MARK: - Colors
     let vkBlue = UIColor(red: 82.0/255.0, green: 129.0/255.0, blue: 185.0/255.0, alpha: 1)
     let vkLightBlue = UIColor(red: 95.0/255.0, green: 155.0/255.0, blue: 224.0/255.0, alpha: 1)
     
@@ -32,7 +32,7 @@ public struct Presets {
     let addittionalInfoTitleColor = UIColor(red: 126.0/255.0, green: 129.0/255.0, blue: 133.0/255.0, alpha: 1)
     let cellsCountsTitleColor = UIColor(red: 119.0/255.0, green: 121.0/255.0, blue: 123.0/255.0, alpha: 1)
     
-    //MARK: - Fonts
+    // MARK: - Fonts
     let countLabelFont = UIFont(name: "Arial", size: 15)
     let standartLabelFont = UIFont(name: "Arial", size: 17)
     let descriptionLabelFont = UIFont(name: "Arial", size: 15)
@@ -40,7 +40,7 @@ public struct Presets {
     let occupationLabelFont = UIFont(name: "Apple SD Gothic Neo", size: 16)
     let cellsCountLabelFont = UIFont(name: "Apple SD Gothic Neo", size: 14)
     
-    //MARK: - Images
+    // MARK: - Images
     let heartImage = UIImage(systemName: "heart")
     let heartFillImage = UIImage(systemName: "heart.fill")
     let commentImage = UIImage(systemName: "bubble.left")
@@ -52,9 +52,7 @@ public struct Presets {
     let giftImage = UIImage(systemName: "gift.fill")!
     let bellImage = UIImage(systemName: "bell.fill")!
     
- 
-    
-    func setDateFormat (_ date : Int) -> String {
+    func setDateFormat (_ date: Int) -> String {
         
         postTimeFormatter.dateFormat = "HH:mm"
         postDateFormatter.dateStyle = .medium

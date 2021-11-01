@@ -13,14 +13,13 @@ import Kingfisher
 private let reuseIdentifier = "Cell"
 
 class FriendsPhotosCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+
     var photoData = try? RealmService.load(typeOf: VKPhotosRealm.self).filter("ownerID == %i", (Int(Session.instance.userID)) ?? 0)
-    
+   
     private let networkService = NetworkService()
     var indexPaths: IndexPath!
     var photoOwnersName: String = ""
     var token: NotificationToken?
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +27,11 @@ class FriendsPhotosCollectionViewController: UICollectionViewController, UIColle
         networkService.getPhotos(Session.instance.userID, "profile", "", "0", "1", "", "", "0", "", "100") { [weak self] response in
             guard let photos = response else { return }
             try? RealmService.save(items: photos)
-            
+
             self?.collectionView.reloadData()
         }
         self.title = photoOwnersName
-        
+
         collectionView.backgroundColor = Presets.init().vkDarkGray
 
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -41,13 +40,12 @@ class FriendsPhotosCollectionViewController: UICollectionViewController, UIColle
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
+
         return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
-        
+
         return photoData?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -56,41 +54,41 @@ class FriendsPhotosCollectionViewController: UICollectionViewController, UIColle
 
         return CGSize(width: yourWidth, height: yourHeight)
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
         return UIEdgeInsets.zero
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
         return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
         return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentFriendPhotos", for: indexPath) as! FriendsPhotosCellCollectionView
-        
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentFriendPhotos", for: indexPath) as? FriendsPhotosCellCollectionView else { return UICollectionViewCell() }
         guard let photo = photoData?[indexPath.row].photoSize604 ??
-                          photoData?[indexPath.row].photoSize130
-                          else { return cell }
-        
+                photoData?[indexPath.row].photoSize130
+        else { return cell }
         cell.currentFriendPhotos.kf.setImage(with: URL(string: photo))
         return cell
     }
-    
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowFullscreenPhoto",
            let senderCell = sender as? FriendsPhotosCellCollectionView,
            let photoCellIndexPath = collectionView.indexPath(for: senderCell),
-           let segueDestination = segue.destination as? FullscreenPhotoViewController
-        {
-            segueDestination.indexPaths = photoCellIndexPath.row
-            
-        }
+           let segueDestination = segue.destination as? FullscreenPhotoViewController { segueDestination.indexPaths = photoCellIndexPath.row }
+        
     }
+}
+
+extension FriendsPhotosCollectionViewController {
     
     private func observeRealm() {
         token = photoData?.observe({ changes in
@@ -102,11 +100,11 @@ class FriendsPhotosCollectionViewController: UICollectionViewController, UIColle
                 
             case let .update(results, deletions, insertions, modifications):
                 print(results, deletions, insertions, modifications)
-//                self.collectionView.reloadData()
-                
+
             case .error(let error):
                 print(error)
             }
         })
     }
 }
+ 

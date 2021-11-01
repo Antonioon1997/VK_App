@@ -19,18 +19,13 @@ class NewsFeedTableViewController: UITableViewController {
     var postTextTag: Int!
     var photoForFullscreen: UIImageView!
     let networkService = NetworkService()
-    var newsAttach = [Item?] ()
-    var newsAuthor = [Group?] ()
+    var newsAttach = [Item?]()
+    var newsAuthor = [Group?]()
     var isWidthPhoto = false
-    let appDelegate = AppDelegate()
-    
     var photoNumber = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appDelegate.didLoadedFirstScreen = true
-        
-        self.tableView.rowHeight = UITableView.automaticDimension
         
         self.tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: "NewsFeedCell")
         self.tableView.register(UINib(nibName: "NewsFeedHeaderCell", bundle: nil), forCellReuseIdentifier: "NewsFeedHeaderCell")
@@ -38,8 +33,8 @@ class NewsFeedTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "NewsFeedTextMain", bundle: nil), forCellReuseIdentifier: "NewsFeedTextMain")
         self.tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
         
-        
         self.navigationController?.navigationBar.barTintColor = Presets.init().vkDarkGray
+        self.view.backgroundColor = Presets.init().vkDarkGray
         
         sideMenu = SideMenuNavigationController(rootViewController: SideBarViewController())
         sideMenu?.setSidebar(sideMenu, self.view)
@@ -52,16 +47,26 @@ class NewsFeedTableViewController: UITableViewController {
                 guard let groups = response?.groups,
                       let items = response?.items?.filter({$0.postType != nil})
                         
-                else {
-                    self?.tableView.reloadData()
+                else { self?.tableView.reloadData()
                     return }
                 
                 self?.newsAuthor = groups
                 self?.newsAttach = items
                 
+                DispatchQueue.global().async {
+                    setOwner()
+                }
+                
                 self?.tableView.reloadData()
+                
             }
         }.start()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.tableView.reloadData()
     }
 }
 
@@ -92,10 +97,9 @@ extension NewsFeedTableViewController {
                     
             else { return 0 }
             let ratio =  CGFloat(picWidth) / CGFloat(picHeigth)
-            return tableView.frame.width / ratio }
-        else if indexPath.row == 0 && newsAttach[indexPath.section]?.text == "" || newsAttach[indexPath.section]?.text == nil {
-            return 0
-        }
+            return tableView.frame.width / ratio } else if indexPath.row == 0 && newsAttach[indexPath.section]?.text == "" || newsAttach[indexPath.section]?.text == nil {
+                return 0
+            }
         return UITableView.automaticDimension
         
     }
@@ -103,27 +107,24 @@ extension NewsFeedTableViewController {
         return 30
     }
     
-    //MARK: - Rows Data Source
-    
-    
+    // MARK: - Rows Data Source
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedHeaderCell") as! NewsFeedHeaderCell
         
         guard !newsAttach.isEmpty,
-              let ownerID = newsAttach[section]?.sourceID,
-              let ownerData = newsAuthor.filter({ $0?.id == -ownerID }).first,
+              let currentNews = newsAttach[section],
+              //              let ownerData = newsAuthor.filter({ $0?.id == -ownerID }).first,
               let posDate = newsAttach[section]?.date
         else { return headerCell }
         
-        headerCell.avatarImageView.kf.setImage(with: URL(string: ownerData?.photo200 ?? ownerData?.photo100 ?? ownerData?.photo50 ?? ""))
-        headerCell.ownerNameLabel.text = ownerData?.name
+        headerCell.avatarImageView.kf.setImage(with: URL(string: currentNews.owner?.photo50 ?? ""))
+        headerCell.ownerNameLabel.text = currentNews.owner?.name
         headerCell.dateLabel.text = Presets.init().setDateFormat(posDate)
         
         return headerCell
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -135,6 +136,7 @@ extension NewsFeedTableViewController {
         
         if indexPath.row == 1 {
             cell.firstImageView.kf.setImage(with: URL(string: (postData.attachments?[photoNumber].photo?.sizes.last?.url ?? "")))
+            cell.photos = postData.attachments
             
             return cell
         }
@@ -142,7 +144,6 @@ extension NewsFeedTableViewController {
         textCell.newsFeedText.text = postData.text
         return textCell
     }
-    
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
@@ -171,14 +172,19 @@ extension NewsFeedTableViewController {
         return footerCell
     }
     
-    
-    //MARK: - Actions
+    // MARK: - Actions
     
     @IBAction func openSidebar () {
         
         present(sideMenu!, animated: true)
     }
     
+    private func setOwner() {
+        
+        for count in 0..<newsAttach.count {
+            
+            let owner = newsAuthor.filter({$0?.id == -(newsAttach[count]?.sourceID ?? 0)})
+            newsAttach[count]?.owner = owner[0]
+        }
+    }
 }
-
-

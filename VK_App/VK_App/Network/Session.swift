@@ -20,10 +20,6 @@ class Session {
     var myID: String = ""
     var userID: String = ""
     
-    
-    
-    
-    
     private init () {}
 
 }

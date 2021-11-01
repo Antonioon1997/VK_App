@@ -57,5 +57,4 @@ class VKAllPhotosRealm: Object {
         type = photos.sizes?.last?.type ?? ""
     }
     
-    
 }

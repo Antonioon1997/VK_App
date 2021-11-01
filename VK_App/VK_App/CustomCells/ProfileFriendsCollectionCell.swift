@@ -12,7 +12,6 @@ class ProfileFriendsCollectionCell: UICollectionViewCell {
     @IBOutlet var friendAvatar: UIImageView!
     @IBOutlet var frindName: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         friendAvatar.layer.cornerRadius = (friendAvatar.bounds.height)/2
@@ -22,10 +21,6 @@ class ProfileFriendsCollectionCell: UICollectionViewCell {
         
 //        frindName.textColor = .white
         
-        
     }
-    
-
-    
 
 }
