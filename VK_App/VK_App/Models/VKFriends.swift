@@ -15,7 +15,7 @@ struct VKFriends: Codable {
     let avatarPhoto: String
 }
 
-//extension VKFriends {
+// extension VKFriends {
 //    enum Response: String, CodingKey {
 //        case response = JSONContainer
 //    }
@@ -26,4 +26,4 @@ struct VKFriends: Codable {
 //        case avatarPhoto = "photo_200_orig"
 //    
 //    }
-//}
+// }

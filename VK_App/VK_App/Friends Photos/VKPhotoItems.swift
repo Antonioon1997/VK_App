@@ -8,8 +8,6 @@
 import Foundation
 
 struct VKPhotoItems: Codable {
-    
     let count: Int
     let items: [VKPhoto]
 }
-

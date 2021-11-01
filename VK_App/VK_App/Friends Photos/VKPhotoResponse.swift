@@ -8,6 +8,5 @@
 import Foundation
 
 struct VKPhotoResponse: Codable {
-    
     let response: VKPhotoItems
 }

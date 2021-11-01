@@ -11,10 +11,8 @@ import Alamofire
 class AddGroupTableViewController: UITableViewController {
     
     private let networkServise = NetworkService()
-    
    
     var selectedRow: IndexPath!
-
 
     override func viewDidLoad() {
         
@@ -43,7 +41,6 @@ class AddGroupTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-
 
         return cell
     }

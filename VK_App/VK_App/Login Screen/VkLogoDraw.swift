@@ -8,7 +8,6 @@
 import UIKit
 
 class VkLogoDraw: UIView {
-
     
 //    let scale = 0.14
     let vkLogoLayer = CAShapeLayer()
@@ -42,7 +41,6 @@ class VkLogoDraw: UIView {
     }
 }
 
-
 let scale = 0.14
 var vklogoPath: UIBezierPath {
     
@@ -58,15 +56,15 @@ var vklogoPath: UIBezierPath {
     logoPath.addLine(to: CGPoint(x: 926.14 * scale, y: 61.18 * scale))
     logoPath.addCurve(to: CGPoint(x: 876.63 * scale, y: -0.45 * scale), controlPoint1: CGPoint(x: 926.14 * scale, y: 17.68 * scale), controlPoint2: CGPoint(x: 913.76 * scale, y: -0.45 * scale))
     logoPath.addLine(to: CGPoint(x: 604.36 * scale, y: -0.45 * scale))
-    logoPath.addCurve(to: CGPoint(x: 559.8 * scale,  y: 38.22 * scale), controlPoint1: CGPoint(x: 577.13 * scale, y: -0.45 * scale), controlPoint2: CGPoint(x: 559.8 * scale,  y: 20.1 * scale) )
-    logoPath.addCurve(to: CGPoint(x: 629.11 * scale, y: 202.57 * scale), controlPoint1: CGPoint(x: 559.8 * scale,  y: 79.31 * scale), controlPoint2: CGPoint(x: 621.68 * scale, y: 88.98 * scale))
+    logoPath.addCurve(to: CGPoint(x: 559.8 * scale, y: 38.22 * scale), controlPoint1: CGPoint(x: 577.13 * scale, y: -0.45 * scale), controlPoint2: CGPoint(x: 559.8 * scale, y: 20.1 * scale) )
+    logoPath.addCurve(to: CGPoint(x: 629.11 * scale, y: 202.57 * scale), controlPoint1: CGPoint(x: 559.8 * scale, y: 79.31 * scale), controlPoint2: CGPoint(x: 621.68 * scale, y: 88.98 * scale))
     logoPath.addLine(to: CGPoint(x: 629.11 * scale, y: 451.5 * scale) )
     logoPath.addCurve(to: CGPoint(x: 596.93 * scale, y: 515.55 * scale), controlPoint1: CGPoint(x: 629.11 * scale, y: 505.88 * scale), controlPoint2: CGPoint(x: 619.21 * scale, y: 515.55 * scale))
-    logoPath.addCurve(to: CGPoint(x: 311.04 * scale, y: 63.6 * scale) , controlPoint1: CGPoint(x: 538.76 * scale, y: 515.55 * scale), controlPoint2: CGPoint(x: 395.2 * scale,  y: 305.28 * scale))
+    logoPath.addCurve(to: CGPoint(x: 311.04 * scale, y: 63.6 * scale), controlPoint1: CGPoint(x: 538.76 * scale, y: 515.55 * scale), controlPoint2: CGPoint(x: 395.2 * scale, y: 305.28 * scale))
     logoPath.addCurve(to: CGPoint(x: 233.07 * scale, y: -0.45 * scale), controlPoint1: CGPoint(x: 293.71 * scale, y: 18.89 * scale), controlPoint2: CGPoint(x: 277.62 * scale, y: -0.45 * scale))
     logoPath.addLine(to: CGPoint(x: 59.8 * scale, y: -0.45 * scale))
-    logoPath.addCurve(to: CGPoint(x: 0.4 * scale, y: 47.89 * scale), controlPoint1: CGPoint(x: 10.3 * scale,  y: -0.45 * scale), controlPoint2: CGPoint(x: 0.4 * scale,  y: 22.51 * scale))
-    logoPath.addCurve(to: CGPoint(x: 273.91 * scale, y: 608.6 * scale) , controlPoint1: CGPoint(x: 0.4 * scale, y: 92.6 * scale), controlPoint2: CGPoint(x: 58.56 * scale, y: 314.95 * scale))
+    logoPath.addCurve(to: CGPoint(x: 0.4 * scale, y: 47.89 * scale), controlPoint1: CGPoint(x: 10.3 * scale, y: -0.45 * scale), controlPoint2: CGPoint(x: 0.4 * scale, y: 22.51 * scale))
+    logoPath.addCurve(to: CGPoint(x: 273.91 * scale, y: 608.6 * scale), controlPoint1: CGPoint(x: 0.4 * scale, y: 92.6 * scale), controlPoint2: CGPoint(x: 58.56 * scale, y: 314.95 * scale))
     logoPath.addCurve(to: CGPoint(x: 802.38 * scale, y: 917.95 * scale), controlPoint1: CGPoint(x: 417.48 * scale, y: 809.19 * scale), controlPoint2: CGPoint(x: 619.21 * scale, y: 917.95 * scale))
     logoPath.addCurve(to: CGPoint(x: 926.14 * scale, y: 852.7 * scale), controlPoint1: CGPoint(x: 912.52 * scale, y: 917.95 * scale), controlPoint2: CGPoint(x: 926.14 * scale, y: 893.78 * scale))
     logoPath.addLine(to: CGPoint(x: 926.14 * scale, y: 700.44 * scale))
@@ -77,9 +75,8 @@ var vklogoPath: UIBezierPath {
     logoPath.addCurve(to: CGPoint(x: 1579.6 * scale, y: 846.65 * scale), controlPoint1: CGPoint(x: 1569.7 * scale, y: 917.95 * scale), controlPoint2: CGPoint(x: 1594.46 * scale, y: 893.78 * scale))
     logoPath.addCurve(to: CGPoint(x: 1433.56 * scale, y: 648.47 * scale), controlPoint1: CGPoint(x: 1563.51 * scale, y: 799.53 * scale), controlPoint2: CGPoint(x: 1507.82 * scale, y: 730.65 * scale))
     logoPath.addCurve(to: CGPoint(x: 1314.75 * scale, y: 526.42 * scale), controlPoint1: CGPoint(x: 1392.72 * scale, y: 601.35 * scale), controlPoint2: CGPoint(x: 1332.08 * scale, y: 551.8 * scale))
-    logoPath.addCurve(to: CGPoint(x: 1314.75 * scale, y: 451.5 * scale), controlPoint1: CGPoint(x: 1288.76 * scale, y: 493.8 * scale) , controlPoint2: CGPoint(x: 1296.19 * scale, y: 479.3 * scale))
+    logoPath.addCurve(to: CGPoint(x: 1314.75 * scale, y: 451.5 * scale), controlPoint1: CGPoint(x: 1288.76 * scale, y: 493.8 * scale), controlPoint2: CGPoint(x: 1296.19 * scale, y: 479.3 * scale))
     logoPath.addCurve(to: CGPoint(x: 1547.43 * scale, y: 61.18 * scale), controlPoint1: CGPoint(x: 1314.75 * scale, y: 450.29 * scale), controlPoint2: CGPoint(x: 1526.39 * scale, y: 160.27 * scale))
     
     return logoPath
 }
-

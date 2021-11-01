@@ -17,8 +17,6 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var isOnlineView: UIView!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

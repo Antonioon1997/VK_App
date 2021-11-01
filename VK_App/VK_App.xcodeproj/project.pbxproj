@@ -19,7 +19,7 @@
 		F435B2EE26B571540017FBDF /* ProfileFriendsCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F435B2EC26B571540017FBDF /* ProfileFriendsCollectionCell.xib */; };
 		F435B2F026B589950017FBDF /* VKUSersPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435B2EF26B589950017FBDF /* VKUSersPhotos.swift */; };
 		F435B2F226B6FB320017FBDF /* VKGetMutualFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435B2F126B6FB320017FBDF /* VKGetMutualFriends.swift */; };
-		F435B2F526B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435B2F326B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.swift */; };
+		F435B2F526B9442B0017FBDF /* FriendsScrollCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435B2F326B9442B0017FBDF /* FriendsScrollCollectionTableViewCell.swift */; };
 		F435B2F626B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F435B2F426B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.xib */; };
 		F435B2F926B945B10017FBDF /* ProfilePhotosPrewievTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435B2F726B945B10017FBDF /* ProfilePhotosPrewievTableCell.swift */; };
 		F435B2FA26B945B10017FBDF /* ProfilePhotosPrewievTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F435B2F826B945B10017FBDF /* ProfilePhotosPrewievTableCell.xib */; };
@@ -30,8 +30,6 @@
 		F44834F8265C1FC600611596 /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44834F7265C1FC600611596 /* VKResponse.swift */; };
 		F449860B261626FC0091D3DC /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F449860A261626FC0091D3DC /* Presets.swift */; };
 		F4498622261779BB0091D3DC /* AddGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4498621261779BB0091D3DC /* AddGroupTableViewController.swift */; };
-		F44986272618C68F0091D3DC /* NewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44986252618C68F0091D3DC /* NewsFeedCell.swift */; };
-		F44986282618C68F0091D3DC /* NewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44986262618C68F0091D3DC /* NewsFeedCell.xib */; };
 		F45B5D2A26396FD700CC8145 /* VkLogoDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45B5D2926396FD700CC8145 /* VkLogoDraw.swift */; };
 		F45D710C265EC0C700571A14 /* VKGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D710B265EC0C700571A14 /* VKGroups.swift */; };
 		F45D7118265F8B4700571A14 /* VKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45D7117265F8B4700571A14 /* VKPhoto.swift */; };
@@ -41,10 +39,8 @@
 		F46A662D26711785008CFC24 /* FriendsPhotosCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46A662C26711785008CFC24 /* FriendsPhotosCellCollectionView.swift */; };
 		F47D05C82667BF7900D2C163 /* VKUserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D05C72667BF7900D2C163 /* VKUserRealm.swift */; };
 		F47D05CE2667D3AA00D2C163 /* VKGroupsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D05CD2667D3AA00D2C163 /* VKGroupsRealm.swift */; };
-		F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */; };
 		F4847AED26C91E56007C74F9 /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4847AEC26C91E56007C74F9 /* SideBarViewController.swift */; };
 		F48EA6ED261C86A300E1CBD9 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48EA6EC261C86A300E1CBD9 /* NewsFeedTableViewController.swift */; };
-		F4922ECF262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4922ECE262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift */; };
 		F4936BC72727FACA0002039C /* NewsFeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4936BC52727FACA0002039C /* NewsFeedHeaderCell.swift */; };
 		F4936BC82727FACA0002039C /* NewsFeedHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4936BC62727FACA0002039C /* NewsFeedHeaderCell.xib */; };
 		F4936BCB272959890002039C /* NewsFeedFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4936BC9272959890002039C /* NewsFeedFooterCell.swift */; };
@@ -88,7 +84,7 @@
 		F435B2EC26B571540017FBDF /* ProfileFriendsCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileFriendsCollectionCell.xib; sourceTree = "<group>"; };
 		F435B2EF26B589950017FBDF /* VKUSersPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUSersPhotos.swift; sourceTree = "<group>"; };
 		F435B2F126B6FB320017FBDF /* VKGetMutualFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGetMutualFriends.swift; sourceTree = "<group>"; };
-		F435B2F326B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsScrollCollectionTableCellTableViewCell.swift; sourceTree = "<group>"; };
+		F435B2F326B9442B0017FBDF /* FriendsScrollCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsScrollCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		F435B2F426B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsScrollCollectionTableCellTableViewCell.xib; sourceTree = "<group>"; };
 		F435B2F726B945B10017FBDF /* ProfilePhotosPrewievTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotosPrewievTableCell.swift; sourceTree = "<group>"; };
 		F435B2F826B945B10017FBDF /* ProfilePhotosPrewievTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotosPrewievTableCell.xib; sourceTree = "<group>"; };
@@ -99,8 +95,6 @@
 		F44834F7265C1FC600611596 /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
 		F449860A261626FC0091D3DC /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		F4498621261779BB0091D3DC /* AddGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewController.swift; sourceTree = "<group>"; };
-		F44986252618C68F0091D3DC /* NewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCell.swift; sourceTree = "<group>"; };
-		F44986262618C68F0091D3DC /* NewsFeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedCell.xib; sourceTree = "<group>"; };
 		F45B5D2926396FD700CC8145 /* VkLogoDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLogoDraw.swift; sourceTree = "<group>"; };
 		F45D710B265EC0C700571A14 /* VKGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroups.swift; sourceTree = "<group>"; };
 		F45D7117265F8B4700571A14 /* VKPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhoto.swift; sourceTree = "<group>"; };
@@ -110,10 +104,8 @@
 		F46A662C26711785008CFC24 /* FriendsPhotosCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotosCellCollectionView.swift; sourceTree = "<group>"; };
 		F47D05C72667BF7900D2C163 /* VKUserRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUserRealm.swift; sourceTree = "<group>"; };
 		F47D05CD2667D3AA00D2C163 /* VKGroupsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGroupsRealm.swift; sourceTree = "<group>"; };
-		F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsTableViewController.swift; sourceTree = "<group>"; };
 		F4847AEC26C91E56007C74F9 /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		F48EA6EC261C86A300E1CBD9 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
-		F4922ECE262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewsFullscreenPhotoViewController.swift; sourceTree = "<group>"; };
 		F4936BC52727FACA0002039C /* NewsFeedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedHeaderCell.swift; sourceTree = "<group>"; };
 		F4936BC62727FACA0002039C /* NewsFeedHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedHeaderCell.xib; sourceTree = "<group>"; };
 		F4936BC9272959890002039C /* NewsFeedFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedFooterCell.swift; sourceTree = "<group>"; };
@@ -178,8 +170,6 @@
 		F435B2FF26BA39F00017FBDF /* NewsFeedCells */ = {
 			isa = PBXGroup;
 			children = (
-				F44986252618C68F0091D3DC /* NewsFeedCell.swift */,
-				F44986262618C68F0091D3DC /* NewsFeedCell.xib */,
 				F4936BC52727FACA0002039C /* NewsFeedHeaderCell.swift */,
 				F4936BC62727FACA0002039C /* NewsFeedHeaderCell.xib */,
 				F41F14552729681E00426CE4 /* NewsFeedTextMain.swift */,
@@ -246,8 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				F48EA6EC261C86A300E1CBD9 /* NewsFeedTableViewController.swift */,
-				F480FC022636C56600017E9A /* DetailNewsTableViewController.swift */,
-				F4922ECE262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -288,7 +276,7 @@
 			children = (
 				F4C67CD826B402FF0021C7D2 /* ProfileHeadTableCell.swift */,
 				F4C67CD926B402FF0021C7D2 /* ProfileHeadTableCell.xib */,
-				F435B2F326B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.swift */,
+				F435B2F326B9442B0017FBDF /* FriendsScrollCollectionTableViewCell.swift */,
 				F435B2F426B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.xib */,
 				F435B2F726B945B10017FBDF /* ProfilePhotosPrewievTableCell.swift */,
 				F435B2F826B945B10017FBDF /* ProfilePhotosPrewievTableCell.xib */,
@@ -385,6 +373,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4D68DAF26137122001E1DFC /* Build configuration list for PBXNativeTarget "VK_App" */;
 			buildPhases = (
+				F41A19A2272FF64500D2C234 /* ShellScript */,
 				D0ADA9BAB41BD843CB238FE6 /* [CP] Check Pods Manifest.lock */,
 				F4D68D9726137121001E1DFC /* Sources */,
 				F4D68D9826137121001E1DFC /* Frameworks */,
@@ -445,7 +434,6 @@
 				F494A2092615BA5C0058DC78 /* CustomCell.xib in Resources */,
 				F435B2F626B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.xib in Resources */,
 				F435B2EE26B571540017FBDF /* ProfileFriendsCollectionCell.xib in Resources */,
-				F44986282618C68F0091D3DC /* NewsFeedCell.xib in Resources */,
 				F41F1464272C46AF00426CE4 /* TableViewCell.xib in Resources */,
 				F4D68DA826137122001E1DFC /* Assets.xcassets in Resources */,
 				F4C63E602678E3F6008FD7E0 /* UsersListCell.xib in Resources */,
@@ -496,6 +484,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F41A19A2272FF64500D2C234 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -534,7 +539,7 @@
 				F4D68DA126137121001E1DFC /* SceneDelegate.swift in Sources */,
 				F435B2FE26B9A3590017FBDF /* VKAllPhotos.swift in Sources */,
 				F46A662D26711785008CFC24 /* FriendsPhotosCellCollectionView.swift in Sources */,
-				F435B2F526B9442B0017FBDF /* FriendsScrollCollectionTableCellTableViewCell.swift in Sources */,
+				F435B2F526B9442B0017FBDF /* FriendsScrollCollectionTableViewCell.swift in Sources */,
 				F435B2ED26B571540017FBDF /* ProfileFriendsCollectionCell.swift in Sources */,
 				F45D7118265F8B4700571A14 /* VKPhoto.swift in Sources */,
 				F4C63E5C2678DD17008FD7E0 /* RealmService.swift in Sources */,
@@ -542,16 +547,13 @@
 				F44834F6265C1F6A00611596 /* VKItems.swift in Sources */,
 				F435B2EA26B56CB00017FBDF /* VKUsersFriends.swift in Sources */,
 				F45B5D2A26396FD700CC8145 /* VkLogoDraw.swift in Sources */,
-				F4922ECF262D87BA003499CA /* FeedNewsFullscreenPhotoViewController.swift in Sources */,
 				F47D05CE2667D3AA00D2C163 /* VKGroupsRealm.swift in Sources */,
 				F494A2082615BA5C0058DC78 /* CustomCell.swift in Sources */,
 				F4847AED26C91E56007C74F9 /* SideBarViewController.swift in Sources */,
 				F4C67CDF26B4277A0021C7D2 /* FriendScreenTableViewController.swift in Sources */,
-				F44986272618C68F0091D3DC /* NewsFeedCell.swift in Sources */,
 				F41F1463272C46AF00426CE4 /* TableViewCell.swift in Sources */,
 				F45D710C265EC0C700571A14 /* VKGroups.swift in Sources */,
 				F48EA6ED261C86A300E1CBD9 /* NewsFeedTableViewController.swift in Sources */,
-				F480FC032636C56600017E9A /* DetailNewsTableViewController.swift in Sources */,
 				F4C67CB526B15F590021C7D2 /* CommentsTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,5 +28,3 @@ extension VKFriend: Codable {
         case isOnline = "online"
     }
 }
-
-

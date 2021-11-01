@@ -58,10 +58,7 @@ class FooterView: UITableViewHeaderFooterView {
         likeImageView.addGestureRecognizer(isLikedTapGestureRecognizer)
     }
     
-    
-    
     @objc func likeTapped() {
-        
         
         if isLiked == true {
             likeCount -= 1
@@ -73,8 +70,6 @@ class FooterView: UITableViewHeaderFooterView {
             likeImage = Presets.init().heartFillImage
         }
         isLiked.toggle()
-        
-        
         
     }
 }

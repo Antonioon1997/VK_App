@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 import RealmSwift
-class FriendsTableViewController: UITableViewController, UITabBarControllerDelegate{
+class FriendsTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var searchBarButtom: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -24,13 +24,11 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
     var token: NotificationToken?
     var searchedFriends: Results<VKUserRealm>?
     var friends: VKUserRealm!
-    //MARK: - Data
-    
-    
+    // MARK: - Data
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,NSAttributedString.Key.font: UIFont(name: "Arial", size: 20)!]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Arial", size: 20)!]
         
         searchBar.backgroundColor = .clear
         searchBar.searchTextField.backgroundColor = Presets.init().vkLightGray
@@ -58,7 +56,6 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
     
     // MARK: - Table view data source
     
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -72,11 +69,8 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
         }
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        
-        
         
         //        guard let friends = friendsData?[indexPath.row] else {return cell}
         if !searchBarIsActive {
@@ -93,7 +87,7 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
         return cell
     }
     
-    //MARK: - Segue from XIB
+    // MARK: - Segue from XIB
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -111,8 +105,7 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
             guard let currentFriends = friendsData?[indexPaths.row] else { return }
             segueDestination.photoOwnersName = "\(currentFriends.firstName) \(currentFriends.lastName)"
             //            segueDestination.photoOwnersName = fullName
-        }
-        else if segue.identifier == "ShowFriendScreen",
+        } else if segue.identifier == "ShowFriendScreen",
                 let segueDestination = segue.destination as? FriendScreenTableViewController {
             guard let friendID = friendsData?[indexPaths.row].id else { return }
             segueDestination.userID = friendID
@@ -123,13 +116,13 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
         
         searchBarIsActive.toggle()
         
-        if searchBarIsActive  {
+        if searchBarIsActive {
             navigationItem.titleView = searchBar
             searchBar.popIn()
             searchBarButtom.image = UIImage(systemName: "xmark")
         } else {
             
-            searchBar.popOut() { _ in
+            searchBar.popOut { _ in
                 self.navigationItem.titleView?.isHidden = true
                 self.searchBarButtom.image = UIImage(systemName: "magnifyingglass")
             }
@@ -153,8 +146,7 @@ class FriendsTableViewController: UITableViewController, UITabBarControllerDeleg
         })
     }}
 
-
-//MARK: - Sorting friends by letters in sections
+// MARK: - Sorting friends by letters in sections
 
 extension FriendsTableViewController: UISearchBarDelegate, UITabBarDelegate {
     
@@ -162,7 +154,6 @@ extension FriendsTableViewController: UISearchBarDelegate, UITabBarDelegate {
         if searchText != "" {
             searchBarIsActive = true
             searchedFriends = friendsData?.filter("firstName CONTAINS[cd] '\(searchText)' OR lastName CONTAINS[cd] '\(searchText)'")
-            
             
             //        print(searchedFriends)
             tableView.reloadData()

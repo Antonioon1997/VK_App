@@ -11,7 +11,7 @@ struct AllPhotos: Decodable {
     
     let response: AllPhotosResponse
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case response = "response"
     }
 }
@@ -21,7 +21,7 @@ struct AllPhotosResponse: Decodable {
     let count: Int
     let items: [AllPhotosItems]
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case count = "count"
         case items = "items"
     }

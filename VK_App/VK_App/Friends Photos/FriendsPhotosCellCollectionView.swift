@@ -8,6 +8,6 @@
 import UIKit
 
 class FriendsPhotosCellCollectionView: UICollectionViewCell {
+
     @IBOutlet weak var currentFriendPhotos: UIImageView!
-    
 }

@@ -29,7 +29,6 @@ class ProfileHeadTableCell: UITableViewCell {
     @IBOutlet var subscribersLabel: UILabel!
     @IBOutlet var additionalInfoImageView: UIImageView!
     @IBOutlet var additionalInfoLabel: UILabel!
-
     
     @IBOutlet var cityStackView: UIStackView!
     @IBOutlet var occupationStackView: UIStackView!
@@ -37,7 +36,6 @@ class ProfileHeadTableCell: UITableViewCell {
     @IBOutlet var additionalStackView: UIStackView!
 
     let presets = Presets()
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,7 +59,6 @@ class ProfileHeadTableCell: UITableViewCell {
         
         setTextColorAndFont([userNameLabel], [userStatusLabel], [isOnlineLabel, occupationLabel, subscribersLabel, cityLabel], [])
         
-        //MARK:  - TODO Ебаные кнопки хуй знает как сделать нормальный инсет
         isFriendsButton.setImage(UIImage(named: "В друзьях"), for: .normal)
         sendMoneyButton.setImage(UIImage(named: "Деньги"), for: .normal)
         sendGiftButton.setImage(UIImage(named: "Подарок"), for: .normal)
@@ -111,11 +108,9 @@ extension ProfileHeadTableCell {
         var onlineStatus: String
         var pronoun: String
 
-        if user.sex == 0 { pronoun = "Был в сети " }
-        else { pronoun = "Была в сети " }
+        if user.sex == 0 { pronoun = "Был в сети " } else { pronoun = "Была в сети " }
         
-        if user.isOnline == 0 { onlineStatus = pronoun + presets.setDateFormat(user.lastSeen) }
-        else { onlineStatus = "В сети" }
+        if user.isOnline == 0 { onlineStatus = pronoun + presets.setDateFormat(user.lastSeen) } else { onlineStatus = "В сети" }
             
         userAvatarImageView.kf.setImage(with: URL(string: userPhoto))
         userNameLabel.text = username
@@ -133,7 +128,7 @@ extension ProfileHeadTableCell {
         
     }
     
-    func setTable(_ occupationType: String,_ occupationText: String,_ subscribers: Int,_ city: String?) {
+    func setTable(_ occupationType: String, _ occupationText: String, _ subscribers: Int, _ city: String?) {
         
         switch occupationType {
         case "university", "school":
@@ -171,5 +166,3 @@ extension ProfileHeadTableCell {
         }
     }
 }
-
-

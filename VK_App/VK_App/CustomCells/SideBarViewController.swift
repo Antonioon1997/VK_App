@@ -7,9 +7,6 @@
 
 import UIKit
 import SideMenu
-protocol SideBarControllerDelegate {
-    func toggleSideBar()
-}
 
 class SideBarViewController: UITableViewController {
     
@@ -21,7 +18,6 @@ class SideBarViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SideBarCell")
 
         view.backgroundColor = Presets().vkDarkGray
-        
         
     }
     
@@ -47,13 +43,11 @@ class SideBarViewController: UITableViewController {
 //        default:
 //            destination = FriendScreenTableViewController()
 //        }
-
         
 //        present(FriendsTableViewController(), animated: true)
 //        let vc = storyboard?.instantiateViewController(withIdentifier: "GroupVC")
         self.navigationController?.pushViewController(FriendScreenTableViewController(), animated: true)
 //        performSegue(withIdentifier: "ShowFriendScreen", sender: self)
-        
     
     }
     /*
@@ -70,7 +64,7 @@ class SideBarViewController: UITableViewController {
 
 extension SideMenuNavigationController {
     
-    func setSidebar(_ bar: SideMenuNavigationController?,_ view: UIView) {
+    func setSidebar(_ bar: SideMenuNavigationController?, _ view: UIView) {
 //        bar?.leftSide = true
         SideMenuManager.default.leftMenuNavigationController = bar
 //        SideMenuManager.default.addPanGestureToPresent(toView: view)

@@ -9,20 +9,20 @@ import Foundation
 
 struct OneFileResponse: Decodable {
 //    let response: [Items]
-//}
+// }
 //
-//struct Items: Codable {
+// struct Items: Codable {
 //    let count: Int
 //    let friend: [Friend]
-//}
+// }
 //
-//struct Friend: Codable {
+// struct Friend: Codable {
 //    let name: String
 //    let surname: String
 //    let id: Int
 //    let photo: String
-//}
-//extension OneFileResponse {
+// }
+// extension OneFileResponse {
 //    enum CodingKeys: String, CodingKey {
 //        case responce
 //
@@ -41,7 +41,6 @@ struct OneFileResponse: Decodable {
 //        try self.init(from: decoder)
 //    }
     
-    
     var count: Int
     var name: String
     var surname: String
@@ -54,7 +53,7 @@ extension OneFileResponse {
         case response
     }
     enum Responce: String, CodingKey {
-        case count = "count"
+        case count
         case items
     }
     enum Items: String, CodingKey {
@@ -65,7 +64,7 @@ extension OneFileResponse {
     }
     
     init(from decoder: Decoder) throws {
-        try! self.init(from: decoder)
+        try? self.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let responce = try container.nestedContainer(keyedBy: Responce.self, forKey: .response)
         self.count = try responce.decode(Int.self, forKey: .count)

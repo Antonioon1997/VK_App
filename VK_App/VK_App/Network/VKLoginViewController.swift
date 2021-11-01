@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 import Alamofire
 
-class VKLoginViewController: UIViewController{
+class VKLoginViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
@@ -34,7 +34,6 @@ class VKLoginViewController: UIViewController{
     }()
     
     lazy var request = URLRequest(url: urlComponents.url!)
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,10 +84,8 @@ extension VKLoginViewController: WKNavigationDelegate {
         Session.instance.token = token
         let id = params["user_id"]
         Session.instance.myID = id!
-        
 
 //        print(token)
-        
         
         decisionHandler(.cancel)
         

@@ -7,15 +7,13 @@
 
 import UIKit
 
-class FriendsScrollCollectionTableCellTableViewCell: UITableViewCell {
-    
+class FriendsScrollCollectionTableViewCell: UITableViewCell {
     
     @IBOutlet var friendsLabel: UILabel!
     @IBOutlet var friendsCountLabel: UILabel!
     @IBOutlet var friendsCollectionView: UICollectionView!
-
     
-    var friends = [VKUsersFriendsItems] ()
+    var friends = [VKUsersFriendsItems]()
     let preset = Presets()
     
     override func awakeFromNib() {
@@ -41,18 +39,15 @@ class FriendsScrollCollectionTableCellTableViewCell: UITableViewCell {
     }
     
 }
-extension FriendsScrollCollectionTableCellTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension FriendsScrollCollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard !friends.isEmpty else {return 0 }
         return friends.count
     }
     
-    
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileFriendsCollectionCell", for: indexPath) as! ProfileFriendsCollectionCell
@@ -69,7 +64,5 @@ extension FriendsScrollCollectionTableCellTableViewCell: UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 70, height: 100)
     }
-    
-    
     
 }

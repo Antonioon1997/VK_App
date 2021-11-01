@@ -71,118 +71,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1271FA31-ABD5-4F60-994C-44D9E0B2429D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "getFriends(_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C5798265-DB26-49C6-8084-A2B0173218B8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "getFriends(_:_:_:_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C5798265-DB26-49C6-8084-A2B0173218B8 - 7fa6540a72152db2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.NetworkService.getFriendsSecondVar(_: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, completion: (VK_App.VKResponce) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "1152">
-               </Location>
-               <Location
-                  uuid = "C5798265-DB26-49C6-8084-A2B0173218B8 - bc79983f21dbfa58"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;VK_App.VKResponce, Alamofire.AFError&gt;) -&gt; () in VK_App.NetworkService.getFriendsSecondVar(_: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, completion: (VK_App.VKResponce) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "216">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "338D18B9-6952-438C-9860-01BA052E05ED"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "getFriends(_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5748757D-0241-40BC-BF5B-F614FAEFC7AA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "getFriends(_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1F0641FC-8577-4E7F-8227-E172275A01A6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "getFriends(_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7591DC85-CC63-4076-AAFD-461738A88386"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -391,166 +279,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CF4EFA0D-51C2-4B87-9C4B-F8D2AEEA72B9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Friends Photos/FriendsPhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D3276BF0-8F6E-4DC2-9B7A-79F5FC28A15B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Friends Photos/FriendsPhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F994AE3E-237E-45C2-B53A-E77BE7AE1838"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Friends Photos/FriendsPhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4C5C5764-CA0B-484A-92AD-732D3450E7FC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Friends Photos/FriendsPhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4C5C5764-CA0B-484A-92AD-732D3450E7FC - a5ce8261bdc3c668"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.FriendsPhotosCollectionViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Friends%20Photos/FriendsPhotosCollectionViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "176">
-               </Location>
-               <Location
-                  uuid = "4C5C5764-CA0B-484A-92AD-732D3450E7FC - 1048612aa365251a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;VK_App.VKPhotosRealm&gt;&gt;) -&gt; () in VK_App.FriendsPhotosCollectionViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Friends%20Photos/FriendsPhotosCollectionViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F53904B7-6C44-4536-A8C4-320F49E53679"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Friends Photos/FriendsPhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F53904B7-6C44-4536-A8C4-320F49E53679 - a5ce8261bdc3c668"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.FriendsPhotosCollectionViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Friends%20Photos/FriendsPhotosCollectionViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "176">
-               </Location>
-               <Location
-                  uuid = "F53904B7-6C44-4536-A8C4-320F49E53679 - 1048612aa365251a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;VK_App.VKPhotosRealm&gt;&gt;) -&gt; () in VK_App.FriendsPhotosCollectionViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Friends%20Photos/FriendsPhotosCollectionViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "474DB362-B769-4EBF-9CAB-1317269FDBE2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Friends Photos/FriendsPhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "prepare(for:sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EE37D54A-A42E-4D39-B046-696410DD7B1C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -583,22 +311,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A5073E9C-2AA5-47E9-A5C9-5AB83CCF03F6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Friends Photos/FriendsPhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "5585B5DA-7B34-4AB7-A285-03D6F8F832FC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -606,8 +318,8 @@
             filePath = "VK_App/Friends Photos/FullscreenPhotoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "prewiousPhotoSwipe(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -622,8 +334,8 @@
             filePath = "VK_App/Friends Photos/FullscreenPhotoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "setPhotoUrl()"
             landmarkType = "7">
          </BreakpointContent>
@@ -839,86 +551,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CA45F155-8E3B-4A70-B797-7D9F0673D334"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "getGroups(_:_:_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2F3E2578-E879-4314-8837-0064FCD09C78"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "getPhotos(_:_:_:_:_:_:_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FAD34638-355D-4CEA-B12F-54ED1490785A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/NewsFeed/FeedNewsFullscreenPhotoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "nextPhotoSwipe(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "127B4081-0F8F-43EB-9007-B66A37BB07AB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/NewsFeed/FeedNewsFullscreenPhotoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "07115F8F-638B-4F69-879F-42701BB86CCB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/NewsFeed/FeedNewsFullscreenPhotoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BD0D61BE-C05A-4794-935F-0126D6705AD4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -951,38 +583,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BEFE99B5-9F61-4C2B-94F6-46938D771C58"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "NetworkService"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9530083E-4553-4F06-8DB7-A7FFA68B7B79"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "searchFriends(_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E5D7B86F-8223-4EB8-B630-876FFD079A6A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -994,54 +594,6 @@
             endingLineNumber = "44"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7B956FAE-61E9-45A2-A504-540279D2D39F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
-            landmarkName = "getUsersPhotos(_:_:_:_:_:_:_:_:_:_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7B956FAE-61E9-45A2-A504-540279D2D39F - 598af328ead4e8b2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.NetworkService.getUsersPhotos(_: Swift.Int, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, completion: (Swift.Optional&lt;Swift.Array&lt;VK_App.VKUsersPhotosItems&gt;&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "240"
-                  endingLineNumber = "240"
-                  offsetFromSymbolStart = "1836">
-               </Location>
-               <Location
-                  uuid = "7B956FAE-61E9-45A2-A504-540279D2D39F - f7a452e87bb1d80d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;VK_App.VKUsersPhotos, Alamofire.AFError&gt;) -&gt; () in VK_App.NetworkService.getUsersPhotos(_: Swift.Int, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, completion: (Swift.Optional&lt;Swift.Array&lt;VK_App.VKUsersPhotosItems&gt;&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "241"
-                  endingLineNumber = "241"
-                  offsetFromSymbolStart = "228">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1072,8 +624,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
             endingLineNumber = "89"
-            landmarkName = "numberOfSections(in:)"
-            landmarkType = "7">
+            landmarkName = "FriendScreenTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1102,8 +654,8 @@
             filePath = "VK_App/Friends/FriendScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1118,8 +670,8 @@
             filePath = "VK_App/Friends/FriendScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1135,9 +687,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "FriendScreenTableViewController"
-            landmarkType = "3">
+            endingLineNumber = "219">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1170,166 +720,6 @@
             endingLineNumber = "56"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "46B085CE-AB5E-4CBA-90BF-317FBBD399BA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "getUserRealm(_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "46B085CE-AB5E-4CBA-90BF-317FBBD399BA - e5414ff78a601012"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.NetworkService.getUserRealm(_: Swift.Int, completion: (Swift.Array&lt;VK_App.VKUserProfileRealm&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "207"
-                  endingLineNumber = "207"
-                  offsetFromSymbolStart = "908">
-               </Location>
-               <Location
-                  uuid = "46B085CE-AB5E-4CBA-90BF-317FBBD399BA - d42f5f71b45fe874"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;VK_App.VKUserResponse, Alamofire.AFError&gt;) -&gt; () in VK_App.NetworkService.getUserRealm(_: Swift.Int, completion: (Swift.Array&lt;VK_App.VKUserProfileRealm&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "208"
-                  endingLineNumber = "208"
-                  offsetFromSymbolStart = "224">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "82762745-E18E-4290-8732-264CD41929DC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "getAllPhotos(_:_:_:_:_:_:_:_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "82762745-E18E-4290-8732-264CD41929DC - 9c960458ce80398f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.NetworkService.getAllPhotos(_: Swift.Int, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, completion: (VK_App.AllPhotosItems) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "313"
-                  endingLineNumber = "313"
-                  offsetFromSymbolStart = "1524">
-               </Location>
-               <Location
-                  uuid = "82762745-E18E-4290-8732-264CD41929DC - 6e4b4b0462617bf5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;VK_App.AllPhotos, Alamofire.AFError&gt;) -&gt; () in VK_App.NetworkService.getAllPhotos(_: Swift.Int, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, _: Swift.String, completion: (VK_App.AllPhotosItems) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "314"
-                  endingLineNumber = "314"
-                  offsetFromSymbolStart = "176">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3B39C4A8-D053-4ABC-B0EF-2D5C88328BA8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "getWall(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD1606AF-18CF-4651-BD81-0106F1C87348"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "getWall(_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FD1606AF-18CF-4651-BD81-0106F1C87348 - 4947691fa58763c8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.NetworkService.getWall(_: Swift.Int, completion: (Swift.Optional&lt;VK_App.Response&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "359"
-                  endingLineNumber = "359"
-                  offsetFromSymbolStart = "1196">
-               </Location>
-               <Location
-                  uuid = "FD1606AF-18CF-4651-BD81-0106F1C87348 - 627bbc573e3728c3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;VK_App.Welcome, Alamofire.AFError&gt;) -&gt; () in VK_App.NetworkService.getWall(_: Swift.Int, completion: (Swift.Optional&lt;VK_App.Response&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "360"
-                  endingLineNumber = "360"
-                  offsetFromSymbolStart = "224">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1390,9 +780,9 @@
             filePath = "VK_App/Friends/FriendScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "observeRealm()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1438,8 +828,8 @@
             filePath = "VK_App/CustomCells/NewsFeedCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "setWall(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1454,56 +844,8 @@
             filePath = "VK_App/CustomCells/NewsFeedCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "setWall(_:_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C861AB62-A965-4B24-83E0-BC760EE008AA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/CustomCells/NewsFeedCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "setWall(_:_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DC78520A-F0D7-4704-BE90-F8B9763C8292"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/CustomCells/NewsFeedCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
-            landmarkName = "setWall(_:_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "86B7FED2-46F0-4EDD-AA5E-11C8080FF854"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/CustomCells/NewsFeedCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "setWall(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1518,8 +860,8 @@
             filePath = "VK_App/CustomCells/NewsFeedCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "setWall(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1534,8 +876,8 @@
             filePath = "VK_App/CustomCells/NewsFeedCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "setWall(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1591,22 +933,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5C101FC2-8654-44A9-AB83-F42B466988A9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
-            landmarkName = "getAllPhotosRealm(_:_:_:_:_:_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "96058F06-356D-4AF6-B0DA-5798A188FF0C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1632,23 +958,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
-            landmarkName = "NewsFeedCell"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "16799B91-C994-4FD7-B1AA-DA31FD2D0D5F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/CustomCells/NewsFeedCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "setWall(_:_:_:)"
+            landmarkName = "awakeFromNib()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1847,54 +1157,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A543EF53-8BF3-41CC-BE6D-C04ABFE295D5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VK_App/Network/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "getNews(completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A543EF53-8BF3-41CC-BE6D-C04ABFE295D5 - 633f3b4a51d0d1e7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "VK_App.NetworkService.getNews(completion: (Swift.Optional&lt;VK_App.Response&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164"
-                  offsetFromSymbolStart = "1096">
-               </Location>
-               <Location
-                  uuid = "A543EF53-8BF3-41CC-BE6D-C04ABFE295D5 - 73d73a1c90b064e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;VK_App.VKNews, Alamofire.AFError&gt;) -&gt; () in VK_App.NetworkService.getNews(completion: (Swift.Optional&lt;VK_App.Response&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "VK_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/antononishchenko/Desktop/VK_App/VK_App/VK_App/Network/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "165"
-                  endingLineNumber = "165"
-                  offsetFromSymbolStart = "224">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "FEA52EA1-178E-4C19-A61A-B7C5761487B9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1970,6 +1232,20 @@
             endingLineNumber = "34"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C40EB0A0-7C8A-48BC-8AF9-E986065D9E17"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VK_App/NewsFeed/NewsFeedTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
